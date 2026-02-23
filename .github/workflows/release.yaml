@@ -47,14 +47,15 @@ jobs:
                 | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .version'
             )"
 
-            if curl -fsS "https://crates.io/api/v1/crates/$name/$version" >/dev/null; then
+            if cargo search "$name" --limit 1 | grep -q "$version"; then
               echo "The crate $1 is already up to date, skipping"
-            else
-              echo "Publishing $1"
-              cargo publish --locked
-              echo "Waiting for crates.io index to update"
-              sleep 25
+              return 0
             fi
+
+            echo "Publishing $1"
+            cargo publish --locked
+            echo "Waiting for crates.io index to update"
+            sleep 25
 
             popd >/dev/null
           }
@@ -193,13 +194,6 @@ jobs:
             ANCHOR_CLI=v0.32.1
           provenance: mode=max
           sbom: true
-
-      - name: Attest
-        uses: actions/attest-build-provenance@v3
-        with:
-          subject-name: ${{ env.IMAGE_NAME }}
-          subject-digest: ${{ steps.build.outputs.digest }}
-          push-to-registry: true
 
   # build:
   #   name: Build
