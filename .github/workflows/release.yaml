@@ -34,10 +34,29 @@ jobs:
           set -euo pipefail
 
           publish() {
-            echo "Publishing $1"
-            (cd "$1" && cargo publish --locked)
-            echo "Waiting for crates.io index to update..."
-            sleep 25
+            local dir="$1"
+            pushd "$dir" >/dev/null
+
+            local name version
+            name="$(
+              cargo metadata --no-deps --format-version 1 --manifest-path Cargo.toml \
+                | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .name'
+            )"
+            version="$(
+              cargo metadata --no-deps --format-version 1 --manifest-path Cargo.toml \
+                | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .version'
+            )"
+
+            if curl -fsS "https://crates.io/api/v1/crates/$name/$version" >/dev/null; then
+              echo "The crate $1 is already up to date, skipping"
+            else
+              echo "Publishing $1"
+              cargo publish --locked
+              echo "Waiting for crates.io index to update"
+              sleep 25
+            fi
+
+            popd >/dev/null
           }
 
           publish idl/spec
@@ -64,8 +83,6 @@ jobs:
       contents: read
     environment:
       name: production
-    env:
-      NODE_ENV: production
     steps:
       - uses: actions/checkout@v4
 
@@ -82,20 +99,27 @@ jobs:
 
           publish() {
             local dir="$1"
-            local name
-            name="$(basename "$dir")"
+            pushd "$dir" >/dev/null
+
+            local name version
+            name="$(node -p "require('./package.json').name")"
+            version="$(node -p "require('./package.json').version")"
+
+            if npm view "${name}@${version}" version >/dev/null 2>&1; then
+              echo "The package $1 is already up to date, skipping"
+              popd >/dev/null
+              return 0
+            fi
 
             echo "Publishing $dir"
             pushd "$dir" >/dev/null
 
             yarn
-
             if [[ "$name" == spl-* ]]; then
               yarn build:npm
             else
               yarn build
             fi
-
             npm publish
 
             popd >/dev/null
@@ -163,9 +187,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          # TODO: swap ANCHOR_CLI to ${{ github.ref_name }}
           build-args: |
             SOLANA_CLI=v2.3.0
-            ANCHOR_CLI=${{ github.ref_name }}
+            ANCHOR_CLI=v0.32.1
           provenance: mode=max
           sbom: true
 
