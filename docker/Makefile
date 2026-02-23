@@ -3,7 +3,7 @@ ANCHOR_CLI=v0.32.1
 # Solana toolchain.
 SOLANA_CLI=v2.3.0
 # Build version should match the Anchor cli version.
-VERSIONED_IMG_NAME=solanafoundation/anchor:$(ANCHOR_CLI)
+VERSIONED_IMG_NAME=trixterosec/anchor:$(ANCHOR_CLI)
 
 .PHONY: build build-push build-shell publish
 

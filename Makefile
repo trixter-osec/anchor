@@ -13,6 +13,10 @@ clean:
 
 .PHONY: publish
 publish:
+	cd idl/spec/ && cargo publish && cd ../../
+	sleep 25
+	cd idl/ && cargo publish && cd ../../
+	sleep 25
 	cd lang/syn/ && cargo publish && cd ../../
 	sleep 25
 	cd lang/derive/accounts/ && cargo publish && cd ../../../
