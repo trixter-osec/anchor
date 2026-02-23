@@ -2,7 +2,7 @@ use quote::quote;
 
 pub fn idl_accounts_and_functions() -> proc_macro2::TokenStream {
     quote! {
-        use anchor_lang::idl::ERASED_AUTHORITY;
+        use trixter_osec_anchor_lang::idl::ERASED_AUTHORITY;
 
         #[account("internal")]
         #[derive(Debug)]

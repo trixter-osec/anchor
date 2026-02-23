@@ -1,11 +1,11 @@
 //! A relatively advanced example of a lockup program. If you're new to Anchor,
 //! it's suggested to start with the other examples.
 
-use anchor_lang::accounts::state::ProgramState;
-use anchor_lang::prelude::*;
-use anchor_lang::solana_program;
-use anchor_lang::solana_program::instruction::Instruction;
-use anchor_spl::token::{self, TokenAccount, Transfer};
+use trixter_osec_anchor_lang::accounts::state::ProgramState;
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::solana_program;
+use trixter_osec_anchor_lang::solana_program::instruction::Instruction;
+use trixter_osec_anchor_spl::token::{self, TokenAccount, Transfer};
 
 mod calculator;
 

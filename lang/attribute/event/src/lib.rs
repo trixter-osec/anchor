@@ -1,8 +1,8 @@
 extern crate proc_macro;
 
 #[cfg(feature = "event-cpi")]
-use anchor_syn::parser::accounts::event_cpi::{add_event_cpi_accounts, EventAuthority};
-use anchor_syn::{codegen::program::common::gen_discriminator, Overrides};
+use trixter_osec_anchor_syn::parser::accounts::event_cpi::{add_event_cpi_accounts, EventAuthority};
+use trixter_osec_anchor_syn::{codegen::program::common::gen_discriminator, Overrides};
 use quote::quote;
 use syn::parse_macro_input;
 
@@ -61,7 +61,7 @@ pub fn event(
 
     #[cfg(feature = "idl-build")]
     {
-        let idl_build = anchor_syn::idl::gen_idl_print_fn_event(&event_strct);
+        let idl_build = trixter_osec_anchor_syn::idl::gen_idl_print_fn_event(&event_strct);
         return proc_macro::TokenStream::from(quote! {
             #ret
             #idl_build
@@ -81,7 +81,7 @@ pub fn event(
 /// # Example
 ///
 /// ```rust,ignore
-/// use anchor_lang::prelude::*;
+/// use trixter_osec_anchor_lang::prelude::*;
 ///
 /// // handler function inside #[program]
 /// pub fn initialize(_ctx: Context<Initialize>) -> Result<()> {
@@ -127,7 +127,7 @@ pub fn emit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 /// # Example
 ///
 /// ```ignore
-/// use anchor_lang::prelude::*;
+/// use trixter_osec_anchor_lang::prelude::*;
 ///
 /// #[program]
 /// pub mod my_program {

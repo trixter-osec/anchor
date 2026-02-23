@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 // Intentionally different program id than the one defined in Anchor.toml.
 declare_id!("4D6rvpR7TSPwmFottLGa5gpzMcJ76kN8bimQHV9rogjH");

@@ -1,8 +1,8 @@
 //! Testing of handling of remaining accounts with anchor Account structs
 
 use account::*;
-use anchor_lang::prelude::*;
-use anchor_spl::token::TokenAccount;
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_spl::token::TokenAccount;
 use context::*;
 
 mod account;

@@ -1,4 +1,4 @@
-use anchor_lang::declare_id;
+use trixter_osec_anchor_lang::declare_id;
 
 pub use srm::ID as SRM;
 mod srm {

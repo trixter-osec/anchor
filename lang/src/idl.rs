@@ -4,4 +4,4 @@
 //! without injecting instructions into programs.
 
 #[cfg(feature = "idl-build")]
-pub use anchor_lang_idl::{build::IdlBuild, *};
+pub use trixter_osec_anchor_lang_idl::{build::IdlBuild, *};

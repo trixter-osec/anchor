@@ -102,7 +102,7 @@ pub enum MigrationInner<From, To> {
 ///
 /// # Example
 /// ```ignore
-/// use anchor_lang::prelude::*;
+/// use trixter_osec_anchor_lang::prelude::*;
 ///
 /// declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 ///

@@ -1,5 +1,5 @@
 use crate::solana_program::{program_error::ProgramError, pubkey::Pubkey};
-use anchor_lang::error_code;
+use trixter_osec_anchor_lang::error_code;
 use borsh::io::Error as BorshIoError;
 use std::fmt::{Debug, Display};
 use std::num::TryFromIntError;

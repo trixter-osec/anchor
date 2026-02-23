@@ -1,9 +1,9 @@
 use crate::account::*;
 use crate::program::Misc;
-use anchor_lang::prelude::*;
-use anchor_spl::associated_token::AssociatedToken;
-use anchor_spl::token::{Mint, Token, TokenAccount};
-use anchor_spl::token_interface::{Mint as MintInterface, TokenAccount as TokenAccountInterface};
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_spl::associated_token::AssociatedToken;
+use trixter_osec_anchor_spl::token::{Mint, Token, TokenAccount};
+use trixter_osec_anchor_spl::token_interface::{Mint as MintInterface, TokenAccount as TokenAccountInterface};
 
 #[derive(Accounts)]
 pub struct TestTokenSeedsInit<'info> {

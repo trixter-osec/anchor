@@ -3,8 +3,8 @@
 
 mod other;
 
-use anchor_lang::prelude::*;
-use anchor_spl::{
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_spl::{
     associated_token::AssociatedToken,
     token::{Mint, Token, TokenAccount},
 };

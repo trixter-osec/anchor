@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 use callee::cpi::accounts::CpiReturn;
 use callee::program::Callee;
 use callee::{self, CpiReturnAccount};

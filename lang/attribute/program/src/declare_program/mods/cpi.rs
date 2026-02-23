@@ -1,4 +1,4 @@
-use anchor_lang_idl::types::Idl;
+use trixter_osec_anchor_lang_idl::types::Idl;
 use heck::CamelCase;
 use quote::{format_ident, quote};
 

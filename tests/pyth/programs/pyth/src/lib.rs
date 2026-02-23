@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 mod pc;
 use pc::Price;
 

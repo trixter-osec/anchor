@@ -1,5 +1,5 @@
 // #region core
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};

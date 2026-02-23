@@ -1,8 +1,8 @@
 // Avoiding AccountInfo deprecated msg in anchor context
 #![allow(dead_code, deprecated)]
 
-use anchor_lang::prelude::borsh::io::Write;
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::borsh::io::Write;
+use trixter_osec_anchor_lang::prelude::*;
 use borsh::{BorshDeserialize, BorshSerialize};
 use solana_pubkey::Pubkey;
 

@@ -50,18 +50,18 @@ mod vec;
 mod lazy;
 
 pub use crate::bpf_upgradeable_state::*;
-pub use anchor_attribute_access_control::access_control;
-pub use anchor_attribute_account::{account, declare_id, pubkey, zero_copy};
-pub use anchor_attribute_constant::constant;
-pub use anchor_attribute_error::*;
-pub use anchor_attribute_event::{emit, event};
-pub use anchor_attribute_program::{declare_program, instruction, program};
-pub use anchor_derive_accounts::Accounts;
-pub use anchor_derive_serde::{AnchorDeserialize, AnchorSerialize};
-pub use anchor_derive_space::InitSpace;
+pub use trixter_osec_anchor_attribute_access_control::access_control;
+pub use trixter_osec_anchor_attribute_account::{account, declare_id, pubkey, zero_copy};
+pub use trixter_osec_anchor_attribute_constant::constant;
+pub use trixter_osec_anchor_attribute_error::*;
+pub use trixter_osec_anchor_attribute_event::{emit, event};
+pub use trixter_osec_anchor_attribute_program::{declare_program, instruction, program};
+pub use trixter_osec_anchor_derive_accounts::Accounts;
+pub use trixter_osec_anchor_derive_serde::{AnchorDeserialize, AnchorSerialize};
+pub use trixter_osec_anchor_derive_space::InitSpace;
 pub use const_crypto::ed25519::derive_program_address;
 
-pub use anchor_derive_serde::__erase;
+pub use trixter_osec_anchor_derive_serde::__erase;
 /// Borsh is the default serialization format for instructions and accounts.
 pub use borsh::de::BorshDeserialize as AnchorDeserialize;
 pub use borsh::ser::BorshSerialize as AnchorSerialize;
@@ -145,7 +145,7 @@ pub mod solana_program {
 }
 
 #[cfg(feature = "event-cpi")]
-pub use anchor_attribute_event::{emit_cpi, event_cpi};
+pub use trixter_osec_anchor_attribute_event::{emit_cpi, event_cpi};
 
 #[cfg(feature = "idl-build")]
 pub use idl::IdlBuild;
@@ -513,7 +513,7 @@ pub mod prelude {
     pub use crate::solana_program::program_error::ProgramError;
     pub use crate::solana_program::pubkey::Pubkey;
     pub use crate::solana_program::*;
-    pub use anchor_attribute_error::*;
+    pub use trixter_osec_anchor_attribute_error::*;
     pub use borsh;
     pub use error::*;
     pub use solana_clock::Clock;
@@ -540,7 +540,7 @@ pub mod prelude {
 /// Internal module used by macros and unstable apis.
 #[doc(hidden)]
 pub mod __private {
-    pub use anchor_attribute_account::ZeroCopyAccessor;
+    pub use trixter_osec_anchor_attribute_account::ZeroCopyAccessor;
     pub use base64;
     pub use bytemuck;
 
@@ -575,7 +575,7 @@ pub mod __private {
     #[cfg(feature = "lazy-account")]
     pub use crate::lazy::Lazy;
     #[cfg(feature = "lazy-account")]
-    pub use anchor_derive_serde::Lazy;
+    pub use trixter_osec_anchor_derive_serde::Lazy;
 
     /// Trait for compile-time type equality checking.
     /// Used to enforce that instruction argument types match the `#[instruction(...)]` attribute types.

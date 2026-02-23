@@ -1,9 +1,9 @@
 // WIP. This program has been checkpointed and is not production ready.
 
-use anchor_lang::prelude::*;
-use anchor_lang::solana_program::sysvar::instructions as tx_instructions;
-use anchor_spl::dex::{self, Dex};
-use anchor_spl::token::{self, Mint, Token, TokenAccount};
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::solana_program::sysvar::instructions as tx_instructions;
+use trixter_osec_anchor_spl::dex::{self, Dex};
+use trixter_osec_anchor_spl::token::{self, Mint, Token, TokenAccount};
 use lockup::program::Lockup;
 use registry::program::Registry;
 use registry::{Registrar, RewardVendorKind};

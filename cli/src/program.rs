@@ -1,4 +1,4 @@
-use anchor_lang_idl::types::Idl;
+use trixter_osec_anchor_lang_idl::types::Idl;
 use anyhow::{anyhow, bail, Result};
 use solana_client::send_and_confirm_transactions_in_parallel::{
     send_and_confirm_transactions_in_parallel_blocking_v2, SendAndConfirmConfigV2,

@@ -2,8 +2,8 @@
 //! https://docs.mango.markets/litepaper#token-sale.
 // #![warn(clippy::all)]
 
-use anchor_lang::prelude::*;
-use anchor_spl::token::{self, Burn, CloseAccount, Mint, MintTo, Token, TokenAccount, Transfer};
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_spl::token::{self, Burn, CloseAccount, Mint, MintTo, Token, TokenAccount, Transfer};
 
 use std::ops::Deref;
 

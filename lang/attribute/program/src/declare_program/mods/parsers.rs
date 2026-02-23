@@ -1,4 +1,4 @@
-use anchor_lang_idl::types::{Idl, IdlInstructionAccountItem, IdlInstructionAccounts};
+use trixter_osec_anchor_lang_idl::types::{Idl, IdlInstructionAccountItem, IdlInstructionAccounts};
 use heck::CamelCase;
 use quote::{format_ident, quote};
 

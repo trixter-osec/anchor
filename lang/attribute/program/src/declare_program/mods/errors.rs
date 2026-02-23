@@ -1,4 +1,4 @@
-use anchor_lang_idl::types::Idl;
+use trixter_osec_anchor_lang_idl::types::Idl;
 use quote::{format_ident, quote};
 
 pub fn gen_errors_mod(idl: &Idl) -> proc_macro2::TokenStream {

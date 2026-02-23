@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 declare_program!(external);
 
@@ -40,7 +40,7 @@ pub fn test_event_parser() {
 
 #[test]
 pub fn test_instruction_parser() {
-    use anchor_lang::solana_program::instruction::Instruction as SolanaInstruction;
+    use trixter_osec_anchor_lang::solana_program::instruction::Instruction as SolanaInstruction;
     use external::parsers::Instruction;
 
     // Incorrect program

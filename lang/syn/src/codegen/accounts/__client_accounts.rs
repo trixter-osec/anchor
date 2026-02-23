@@ -164,7 +164,7 @@ pub fn generate(
         /// `accounts` module (also generated), which re-exports this.
         pub(crate) mod #account_mod_name {
             use super::*;
-            use anchor_lang::prelude::borsh;
+            use trixter_osec_anchor_lang::prelude::borsh;
             #(#re_exports)*
 
             #struct_doc

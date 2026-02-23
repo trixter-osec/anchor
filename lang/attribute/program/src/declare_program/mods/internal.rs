@@ -1,5 +1,5 @@
-use anchor_lang_idl::types::{Idl, IdlInstructionAccountItem};
-use anchor_syn::{
+use trixter_osec_anchor_lang_idl::types::{Idl, IdlInstructionAccountItem};
+use trixter_osec_anchor_syn::{
     codegen::accounts::{__client_accounts, __cpi_client_accounts},
     parser::accounts,
     AccountsStruct,

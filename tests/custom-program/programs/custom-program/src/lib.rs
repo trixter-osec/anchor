@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 declare_id!("FdQ5d5kJDidxLP8qBm2d4G47QbDMWk6iWJ3QkYY2UAP7");
 

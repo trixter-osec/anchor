@@ -4,12 +4,12 @@ use crate::config::{
     SurfnetInfoResponse, SurfpoolConfig, TestValidator, ValidatorType, WithPath, SHUTDOWN_WAIT,
     STARTUP_WAIT, SURFPOOL_HOST,
 };
-use anchor_client::Cluster;
-use anchor_lang::prelude::UpgradeableLoaderState;
-use anchor_lang::solana_program::bpf_loader_upgradeable;
-use anchor_lang::AnchorDeserialize;
-use anchor_lang_idl::convert::convert_idl;
-use anchor_lang_idl::types::{Idl, IdlArrayLen, IdlDefinedFields, IdlType, IdlTypeDefTy};
+use trixter_osec_anchor_client::Cluster;
+use trixter_osec_anchor_lang::prelude::UpgradeableLoaderState;
+use trixter_osec_anchor_lang::solana_program::bpf_loader_upgradeable;
+use trixter_osec_anchor_lang::AnchorDeserialize;
+use trixter_osec_anchor_lang_idl::convert::convert_idl;
+use trixter_osec_anchor_lang_idl::types::{Idl, IdlArrayLen, IdlDefinedFields, IdlType, IdlTypeDefTy};
 use anyhow::{anyhow, bail, Context, Result};
 use checks::{check_anchor_version, check_deps, check_idl_build_feature, check_overflow};
 use clap::{CommandFactory, Parser};

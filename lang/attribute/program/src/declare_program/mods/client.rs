@@ -1,4 +1,4 @@
-use anchor_lang_idl::types::Idl;
+use trixter_osec_anchor_lang_idl::types::Idl;
 use quote::quote;
 
 use super::common::gen_accounts_common;

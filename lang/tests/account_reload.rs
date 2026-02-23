@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
@@ -84,7 +84,7 @@ fn reload_owner_changed_fails() {
 
 #[test]
 fn interface_reload_owner_unchanged_updates_data() {
-    use anchor_lang::accounts::interface_account::InterfaceAccount;
+    use trixter_osec_anchor_lang::accounts::interface_account::InterfaceAccount;
 
     let mut data: Vec<u8> = serialize_dummy(5);
     let mut lamports: u64 = 1;

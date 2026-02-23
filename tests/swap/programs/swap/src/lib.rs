@@ -6,9 +6,9 @@
 //! program create account instruction in the same transaction as the user's
 //! first trade. Then, the DEX will lazily initialize the open orders account.
 
-use anchor_lang::prelude::*;
-use anchor_spl::dex;
-use anchor_spl::token;
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_spl::dex;
+use trixter_osec_anchor_spl::token;
 use serum_dex::instruction::SelfTradeBehavior;
 use serum_dex::matching::{OrderType, Side as SerumSide};
 use serum_dex::state::MarketState;

@@ -57,7 +57,7 @@ use crate::{
 /// # Example
 ///
 /// ```
-/// use anchor_lang::prelude::*;
+/// use trixter_osec_anchor_lang::prelude::*;
 ///
 /// declare_id!("LazyAccount11111111111111111111111111111111");
 ///

@@ -1,4 +1,4 @@
-use anchor_lang_idl::types::{
+use trixter_osec_anchor_lang_idl::types::{
     Idl, IdlArrayLen, IdlDefinedFields, IdlField, IdlGenericArg, IdlInstructionAccountItem,
     IdlInstructionAccounts, IdlRepr, IdlSerialization, IdlType, IdlTypeDef, IdlTypeDefGeneric,
     IdlTypeDefTy,

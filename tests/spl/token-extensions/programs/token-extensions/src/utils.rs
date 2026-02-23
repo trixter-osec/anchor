@@ -1,4 +1,4 @@
-use anchor_lang::{
+use trixter_osec_anchor_lang::{
     prelude::Result,
     solana_program::{
         account_info::AccountInfo,
@@ -10,7 +10,7 @@ use anchor_lang::{
     },
     Lamports,
 };
-use anchor_spl::token_interface::spl_token_2022::{
+use trixter_osec_anchor_spl::token_interface::spl_token_2022::{
     extension::{BaseStateWithExtensions, Extension, StateWithExtensions},
     state::Mint,
 };

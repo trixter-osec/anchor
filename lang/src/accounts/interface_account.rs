@@ -39,7 +39,7 @@ use std::ops::{Deref, DerefMut};
 ///
 /// # Example
 /// ```ignore
-/// use anchor_lang::prelude::*;
+/// use trixter_osec_anchor_lang::prelude::*;
 /// use other_program::Auth;
 ///
 /// declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
@@ -96,8 +96,8 @@ use std::ops::{Deref, DerefMut};
 /// #[derive(Clone)]
 /// pub struct Mint(spl_token::state::Mint);
 ///
-/// // This is necessary so we can use "anchor_spl::token::Mint::LEN"
-/// // because rust does not resolve "anchor_spl::token::Mint::LEN" to
+/// // This is necessary so we can use "trixter_osec_anchor_spl::token::Mint::LEN"
+/// // because rust does not resolve "trixter_osec_anchor_spl::token::Mint::LEN" to
 /// // "spl_token::state::Mint::LEN" automatically
 /// impl Mint {
 ///     pub const LEN: usize = spl_token::state::Mint::LEN;
@@ -140,7 +140,7 @@ use std::ops::{Deref, DerefMut};
 ///
 /// Anchor provides wrapper types to access accounts owned by the token programs. Use
 /// ```ignore
-/// use anchor_spl::token_interface::TokenAccount;
+/// use trixter_osec_anchor_spl::token_interface::TokenAccount;
 ///
 /// #[derive(Accounts)]
 /// pub struct Example {
@@ -149,7 +149,7 @@ use std::ops::{Deref, DerefMut};
 /// ```
 /// to access token accounts and
 /// ```ignore
-/// use anchor_spl::token_interface::Mint;
+/// use trixter_osec_anchor_spl::token_interface::Mint;
 ///
 /// #[derive(Accounts)]
 /// pub struct Example {

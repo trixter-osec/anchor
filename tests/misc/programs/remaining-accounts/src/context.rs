@@ -1,6 +1,6 @@
 use crate::account::*;
-use anchor_lang::prelude::*;
-use anchor_spl::token::Token;
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_spl::token::Token;
 
 #[derive(Accounts)]
 pub struct TestInit<'info> {

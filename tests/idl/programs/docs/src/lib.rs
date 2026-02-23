@@ -1,6 +1,6 @@
 //! Testing the extraction of doc comments from the IDL.
 
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 declare_id!("Docs111111111111111111111111111111111111111");
 

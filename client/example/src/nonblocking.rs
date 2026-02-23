@@ -1,4 +1,4 @@
-use anchor_client::{Client, Cluster};
+use trixter_osec_anchor_client::{Client, Cluster};
 use anyhow::Result;
 use clap::Parser;
 use solana_commitment_config::CommitmentConfig;

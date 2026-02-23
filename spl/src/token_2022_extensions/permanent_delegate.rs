@@ -1,9 +1,9 @@
 // Avoiding AccountInfo deprecated msg in anchor context
 #![allow(deprecated)]
-use anchor_lang::solana_program::account_info::AccountInfo;
-use anchor_lang::solana_program::pubkey::Pubkey;
-use anchor_lang::Result;
-use anchor_lang::{context::CpiContext, Accounts};
+use trixter_osec_anchor_lang::solana_program::account_info::AccountInfo;
+use trixter_osec_anchor_lang::solana_program::pubkey::Pubkey;
+use trixter_osec_anchor_lang::Result;
+use trixter_osec_anchor_lang::{context::CpiContext, Accounts};
 use spl_token_2022_interface as spl_token_2022;
 
 pub fn permanent_delegate_initialize<'info>(

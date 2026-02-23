@@ -13,12 +13,12 @@ pub fn program(
     _args: proc_macro::TokenStream,
     input: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
-    let program = parse_macro_input!(input as anchor_syn::Program);
+    let program = parse_macro_input!(input as trixter_osec_anchor_syn::Program);
     let program_tokens = program.to_token_stream();
 
     #[cfg(feature = "idl-build")]
     {
-        use anchor_syn::idl::gen_idl_print_fn_program;
+        use trixter_osec_anchor_syn::idl::gen_idl_print_fn_program;
         let idl_tokens = gen_idl_print_fn_program(&program);
         return proc_macro::TokenStream::from(quote::quote! {
             #program_tokens
@@ -64,7 +64,7 @@ pub fn program(
 /// `anchor_lang` in scope:
 ///
 /// ```ignore
-/// use anchor_client::anchor_lang;
+/// use trixter_osec_anchor_client::anchor_lang;
 /// ```
 ///
 /// # Example
@@ -100,7 +100,7 @@ pub fn declare_program(input: proc_macro::TokenStream) -> proc_macro::TokenStrea
 /// # Example
 ///
 /// ```ignore
-/// use anchor_lang::prelude::*;
+/// use trixter_osec_anchor_lang::prelude::*;
 ///
 /// declare_id!("CustomDiscriminator111111111111111111111111");
 ///

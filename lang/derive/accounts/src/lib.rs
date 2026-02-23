@@ -506,7 +506,7 @@ use syn::parse_macro_input;
 ///                 <br><br>
 ///                 Example:
 ///                 <pre>
-/// use anchor_spl::{mint, token::{TokenAccount, Mint, Token}};
+/// use trixter_osec_anchor_spl::{mint, token::{TokenAccount, Mint, Token}};
 /// ...&#10;
 /// #[account(
 ///     init,
@@ -538,7 +538,7 @@ use syn::parse_macro_input;
 ///                 <br><br>
 ///                 Example:
 ///                 <pre>
-/// use anchor_spl::token::{Mint, Token};
+/// use trixter_osec_anchor_spl::token::{Mint, Token};
 /// ...&#10;
 /// #[account(
 ///     init,
@@ -574,7 +574,7 @@ use syn::parse_macro_input;
 ///                 <br><br>
 ///                 Example:
 ///                 <pre>
-/// use anchor_spl::{
+/// use trixter_osec_anchor_spl::{
 ///     associated_token::AssociatedToken,
 ///     mint,
 ///     token::{TokenAccount, Mint, Token}
@@ -610,7 +610,7 @@ use syn::parse_macro_input;
 ///                 <br><br>
 ///                 Example:
 ///                 <pre>
-/// use anchor_spl::token_interface::{TokenInterface, TokenAccount, Mint};
+/// use trixter_osec_anchor_spl::token_interface::{TokenInterface, TokenAccount, Mint};
 /// ...&#10;
 /// #[account(
 ///     mint::token_program = token_a_token_program,
@@ -648,7 +648,7 @@ use syn::parse_macro_input;
 /// </table>
 #[proc_macro_derive(Accounts, attributes(account, instruction))]
 pub fn derive_accounts(item: TokenStream) -> TokenStream {
-    parse_macro_input!(item as anchor_syn::AccountsStruct)
+    parse_macro_input!(item as trixter_osec_anchor_syn::AccountsStruct)
         .to_token_stream()
         .into()
 }

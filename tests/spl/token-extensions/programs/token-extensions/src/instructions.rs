@@ -1,6 +1,6 @@
-use anchor_lang::{prelude::*, solana_program::entrypoint::ProgramResult};
+use trixter_osec_anchor_lang::{prelude::*, solana_program::entrypoint::ProgramResult};
 
-use anchor_spl::{
+use trixter_osec_anchor_spl::{
     associated_token::AssociatedToken,
     token_2022::spl_token_2022::extension::{
         group_member_pointer::GroupMemberPointer, metadata_pointer::MetadataPointer,

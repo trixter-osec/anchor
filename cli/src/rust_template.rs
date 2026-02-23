@@ -68,7 +68,7 @@ fn create_program_template_single(name: &str, program_path: &Path) -> Files {
     vec![(
         program_path.join("src").join("lib.rs"),
         format!(
-            r#"use anchor_lang::prelude::*;
+            r#"use trixter_osec_anchor_lang::prelude::*;
 
 declare_id!("{}");
 
@@ -103,7 +103,7 @@ pub mod error;
 pub mod instructions;
 pub mod state;
 
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 pub use constants::*;
 pub use instructions::*;
@@ -126,7 +126,7 @@ pub mod {} {{
         ),
         (
             src_path.join("constants.rs"),
-            r#"use anchor_lang::prelude::*;
+            r#"use trixter_osec_anchor_lang::prelude::*;
 
 #[constant]
 pub const SEED: &str = "anchor";
@@ -135,7 +135,7 @@ pub const SEED: &str = "anchor";
         ),
         (
             src_path.join("error.rs"),
-            r#"use anchor_lang::prelude::*;
+            r#"use trixter_osec_anchor_lang::prelude::*;
 
 #[error_code]
 pub enum ErrorCode {
@@ -155,7 +155,7 @@ pub use initialize::*;
         ),
         (
             src_path.join("instructions").join("initialize.rs"),
-            r#"use anchor_lang::prelude::*;
+            r#"use trixter_osec_anchor_lang::prelude::*;
 
 #[derive(Accounts)]
 pub struct Initialize {}
@@ -765,7 +765,7 @@ mod test_initialize;
             format!(
                 r#"use std::str::FromStr;
 
-use anchor_client::{{
+use trixter_osec_anchor_client::{{
     solana_sdk::{{
         commitment_config::CommitmentConfig, pubkey::Pubkey, signature::read_keypair_file,
     }},

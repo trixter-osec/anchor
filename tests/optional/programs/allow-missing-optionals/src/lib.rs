@@ -1,6 +1,6 @@
 //! This tests that the `allow-missing-optionals` feature works
 
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 declare_id!("ErjUjtqKE5AGWUsjseSJCVLtddM6rhaMbDqmhzraF9h6");
 

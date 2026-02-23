@@ -31,7 +31,7 @@ pub fn anchor_serialize(input: TokenStream) -> TokenStream {
 
     #[cfg(feature = "idl-build")]
     {
-        use anchor_syn::idl::*;
+        use trixter_osec_anchor_syn::idl::*;
         use quote::quote;
         use syn::Item;
 

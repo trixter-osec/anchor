@@ -3,7 +3,7 @@ mod mods;
 
 use std::{env, fs, path::PathBuf};
 
-use anchor_lang_idl::{convert::convert_idl, types::Idl};
+use trixter_osec_anchor_lang_idl::{convert::convert_idl, types::Idl};
 use anyhow::anyhow;
 use quote::{quote, ToTokens};
 use syn::parse::{Parse, ParseStream};
@@ -79,7 +79,7 @@ fn gen_program(idl: &Idl, name: &syn::Ident) -> proc_macro2::TokenStream {
             #[cfg(all(not(target_os = "solana"), not(feature = "idl-build")))]
             use super::anchor_lang;
 
-            use anchor_lang::prelude::*;
+            use trixter_osec_anchor_lang::prelude::*;
             use accounts::*;
             use events::*;
             use types::*;

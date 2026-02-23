@@ -1,7 +1,7 @@
-//! This example demonstrates the use of the `anchor_spl::token` CPI client.
+//! This example demonstrates the use of the `trixter_osec_anchor_spl::token` CPI client.
 
-use anchor_lang::prelude::*;
-use anchor_spl::{
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_spl::{
     associated_token::AssociatedToken,
     token_2022::spl_token_2022,
     token_interface::{

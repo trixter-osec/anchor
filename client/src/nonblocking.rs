@@ -2,7 +2,7 @@ use crate::{
     AsSigner, ClientError, Config, EventContext, EventUnsubscriber, Program,
     ProgramAccountsIterator, RequestBuilder,
 };
-use anchor_lang::{prelude::Pubkey, AccountDeserialize, Discriminator};
+use trixter_osec_anchor_lang::{prelude::Pubkey, AccountDeserialize, Discriminator};
 use solana_commitment_config::CommitmentConfig;
 use solana_rpc_client::nonblocking::rpc_client::RpcClient as AsyncRpcClient;
 use solana_rpc_client_api::{config::RpcSendTransactionConfig, filter::RpcFilterType};

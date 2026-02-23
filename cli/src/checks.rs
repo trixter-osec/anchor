@@ -145,7 +145,7 @@ pub fn check_deps(cfg: &WithPath<Config>) -> Result<()> {
                 "WARNING: Adding `solana-program` as a separate dependency might cause conflicts.\n\
                 To solve, remove the `solana-program` dependency and use the exported crate from \
                 `anchor-lang`.\n\
-                `use solana_program` becomes `use anchor_lang::solana_program`.\n\
+                `use solana_program` becomes `use trixter_osec_anchor_lang::solana_program`.\n\
                 Program name: `{}`\n",
                 man.package().name()
             )

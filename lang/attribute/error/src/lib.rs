@@ -3,9 +3,9 @@ extern crate proc_macro;
 use proc_macro::TokenStream;
 use quote::quote;
 
-use anchor_syn::codegen;
-use anchor_syn::parser::error::{self as error_parser, ErrorInput};
-use anchor_syn::ErrorArgs;
+use trixter_osec_anchor_syn::codegen;
+use trixter_osec_anchor_syn::parser::error::{self as error_parser, ErrorInput};
+use trixter_osec_anchor_syn::ErrorArgs;
 use syn::{parse_macro_input, Expr};
 
 /// Generates `Error` and `type Result<T> = Result<T, Error>` types to be
@@ -18,7 +18,7 @@ use syn::{parse_macro_input, Expr};
 /// # Example
 ///
 /// ```ignore
-/// use anchor_lang::prelude::*;
+/// use trixter_osec_anchor_lang::prelude::*;
 ///
 /// #[program]
 /// mod errors {

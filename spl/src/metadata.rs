@@ -1,8 +1,8 @@
-use anchor_lang::context::CpiContext;
-use anchor_lang::error::ErrorCode;
-use anchor_lang::solana_program::account_info::AccountInfo;
-use anchor_lang::solana_program::pubkey::Pubkey;
-use anchor_lang::{system_program, Accounts, Result, ToAccountInfos};
+use trixter_osec_anchor_lang::context::CpiContext;
+use trixter_osec_anchor_lang::error::ErrorCode;
+use trixter_osec_anchor_lang::solana_program::account_info::AccountInfo;
+use trixter_osec_anchor_lang::solana_program::pubkey::Pubkey;
+use trixter_osec_anchor_lang::{system_program, Accounts, Result, ToAccountInfos};
 use std::ops::Deref;
 
 pub use mpl_token_metadata;

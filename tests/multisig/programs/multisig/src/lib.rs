@@ -17,9 +17,9 @@
 //! the `execute_transaction`, once enough (i.e. `threshold`) of the owners have
 //! signed.
 
-use anchor_lang::prelude::*;
-use anchor_lang::solana_program;
-use anchor_lang::solana_program::instruction::Instruction;
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::solana_program;
+use trixter_osec_anchor_lang::solana_program::instruction::Instruction;
 use std::convert::Into;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");

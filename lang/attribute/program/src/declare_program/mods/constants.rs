@@ -1,4 +1,4 @@
-use anchor_lang_idl::types::{Idl, IdlType};
+use trixter_osec_anchor_lang_idl::types::{Idl, IdlType};
 use quote::{format_ident, quote, ToTokens};
 
 use super::common::{convert_idl_type_to_str, gen_docs};

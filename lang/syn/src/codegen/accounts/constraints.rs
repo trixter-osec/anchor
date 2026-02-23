@@ -1651,8 +1651,8 @@ fn generate_get_token_account_space(mint: &Expr) -> proc_macro2::TokenStream {
         {
             let mint_info = #mint.to_account_info();
             if *mint_info.owner == ::anchor_spl::token_2022::Token2022::id() {
-                use ::anchor_spl::token_2022::spl_token_2022::extension::{BaseStateWithExtensions, ExtensionType, StateWithExtensions};
-                use ::anchor_spl::token_2022::spl_token_2022::state::{Account, Mint};
+                use ::trixter_osec_anchor_spl::token_2022::spl_token_2022::extension::{BaseStateWithExtensions, ExtensionType, StateWithExtensions};
+                use ::trixter_osec_anchor_spl::token_2022::spl_token_2022::state::{Account, Mint};
                 let mint_data = mint_info.try_borrow_data()?;
                 let mint_state = StateWithExtensions::<Mint>::unpack(&mint_data)?;
                 let mint_extensions = mint_state.get_extension_types()?;

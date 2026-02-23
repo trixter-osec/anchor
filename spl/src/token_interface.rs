@@ -1,6 +1,6 @@
-use anchor_lang::__private::bytemuck::Pod;
-use anchor_lang::solana_program::program_pack::Pack;
-use anchor_lang::solana_program::pubkey::Pubkey;
+use trixter_osec_anchor_lang::__private::bytemuck::Pod;
+use trixter_osec_anchor_lang::solana_program::program_pack::Pack;
+use trixter_osec_anchor_lang::solana_program::pubkey::Pubkey;
 use spl_token_2022::extension::ExtensionType;
 use spl_token_2022::extension::{BaseStateWithExtensions, Extension, StateWithExtensions};
 use std::ops::Deref;

@@ -1,7 +1,7 @@
 //! This example demonstrates the ability to use optional accounts in
 //! structs deriving `Accounts`.
 
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 pub use context::*;
 
 pub mod account;

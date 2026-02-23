@@ -9,7 +9,7 @@
 //! ```ignore
 //! use std::rc::Rc;
 //!
-//! use anchor_client::{
+//! use trixter_osec_anchor_client::{
 //!     solana_sdk::{
 //!         signature::{read_keypair_file, Keypair},
 //!         signer::Signer,
@@ -69,9 +69,9 @@
 //!
 //! [`RpcClient::new_mock`]: https://docs.rs/solana-rpc-client/3.0.0/solana_rpc_client/rpc_client/struct.RpcClient.html#method.new_mock
 
-use anchor_lang::solana_program::program_error::ProgramError;
-use anchor_lang::solana_program::pubkey::Pubkey;
-use anchor_lang::{AccountDeserialize, Discriminator, InstructionData, ToAccountMetas};
+use trixter_osec_anchor_lang::solana_program::program_error::ProgramError;
+use trixter_osec_anchor_lang::solana_program::pubkey::Pubkey;
+use trixter_osec_anchor_lang::{AccountDeserialize, Discriminator, InstructionData, ToAccountMetas};
 use futures::{Future, StreamExt};
 use regex::Regex;
 use solana_account_decoder::{UiAccount, UiAccountEncoding};
@@ -386,7 +386,7 @@ pub fn handle_program_log<T: anchor_lang::Event + anchor_lang::AnchorDeserialize
     self_program_str: &str,
     l: &str,
 ) -> Result<(Option<T>, Option<String>, bool), ClientError> {
-    use anchor_lang::__private::base64;
+    use trixter_osec_anchor_lang::__private::base64;
     use base64::engine::general_purpose::STANDARD;
     use base64::Engine;
 
@@ -748,7 +748,7 @@ mod tests {
 
     // Creating a mock struct that implements `anchor_lang::events`
     // for type inference in `test_logs`
-    use anchor_lang::prelude::*;
+    use trixter_osec_anchor_lang::prelude::*;
     #[derive(Debug, Clone, Copy)]
     #[event]
     pub struct MockEvent {}

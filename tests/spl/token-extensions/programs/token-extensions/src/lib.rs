@@ -4,7 +4,7 @@
 //!
 //! <https://spl.solana.com/token-2022/extensions>
 
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 pub mod instructions;
 pub mod utils;

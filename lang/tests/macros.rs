@@ -1,6 +1,6 @@
 use core::str::FromStr;
 
-use anchor_lang::solana_program::pubkey::Pubkey;
+use trixter_osec_anchor_lang::solana_program::pubkey::Pubkey;
 
 mod id {
     anchor_lang::declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");

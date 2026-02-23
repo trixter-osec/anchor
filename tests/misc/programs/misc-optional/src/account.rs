@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 macro_rules! size {
     ($name: ident, $size:expr) => {

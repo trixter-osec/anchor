@@ -1,5 +1,5 @@
-use anchor_lang::prelude::*;
-use anchor_spl::{token, token_interface};
+use trixter_osec_anchor_lang::prelude::*;
+use trixter_osec_anchor_spl::{token, token_interface};
 
 declare_id!("id11111111111111111111111111111111111111111");
 
@@ -485,7 +485,7 @@ mod wrapped {
     use super::*;
 
     #[cfg(feature = "idl-build")]
-    use anchor_lang::idl::types::*;
+    use trixter_osec_anchor_lang::idl::types::*;
 
     pub struct Feature(anchor_lang::solana_program::feature::Feature);
 

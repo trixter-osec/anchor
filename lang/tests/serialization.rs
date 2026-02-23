@@ -1,4 +1,4 @@
-use anchor_lang::{AnchorDeserialize, AnchorSerialize, Discriminator, InstructionData};
+use trixter_osec_anchor_lang::{AnchorDeserialize, AnchorSerialize, Discriminator, InstructionData};
 
 #[test]
 fn test_instruction_data() {

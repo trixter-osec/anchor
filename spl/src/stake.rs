@@ -1,4 +1,4 @@
-use anchor_lang::{
+use trixter_osec_anchor_lang::{
     context::CpiContext,
     solana_program::{account_info::AccountInfo, pubkey::Pubkey},
     Accounts, Result,
