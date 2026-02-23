@@ -16,7 +16,7 @@ build = ["regex"]
 convert = ["heck", "sha2"]
 
 [dependencies]
-anchor-lang-idl-spec = { path = "./spec", version = "0.1.0" }
+trixter-osec-anchor-lang-idl-spec = { path = "./spec", version = "0.1.0" }
 anyhow = "1"
 
 # `convert` feature only

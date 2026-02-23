@@ -11,12 +11,12 @@ edition = "2021"
 proc-macro = true
 
 [features]
-allow-missing-optionals = ["anchor-syn/allow-missing-optionals"]
-anchor-debug = ["anchor-syn/anchor-debug"]
-idl-build = ["anchor-syn/idl-build"]
-init-if-needed = ["anchor-syn/init-if-needed"]
+allow-missing-optionals = ["trixter-osec-anchor-syn/allow-missing-optionals"]
+anchor-debug = ["trixter-osec-anchor-syn/anchor-debug"]
+idl-build = ["trixter-osec-anchor-syn/idl-build"]
+init-if-needed = ["trixter-osec-anchor-syn/init-if-needed"]
 
 [dependencies]
-anchor-syn = { path = "../../syn", version = "0.32.1" }
+trixter-osec-anchor-syn = { path = "../../syn", version = "0.32.1" }
 quote = "1"
 syn = { version = "1", features = ["full"] }

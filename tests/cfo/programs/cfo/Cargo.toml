@@ -16,10 +16,10 @@ default = ["test"]
 test = []
 
 [dependencies]
-anchor-lang = { path = "../../../../lang" }
-anchor-spl = { path = "../../../../spl" }
+trixter-osec-anchor-lang = { path = "../../../../lang" }
+trixter-osec-anchor-spl = { path = "../../../../spl" }
 spl-token = { version = "3.5.0", features = ["no-entrypoint"] }
-swap = { path = "../../deps/swap/programs/swap", features = ["cpi"] }
-serum_dex = { path = "../../deps/openbook-dex/dex", features = ["no-entrypoint"] }
-registry = { path = "../../deps/stake/programs/registry", features = ["cpi"] }
-lockup = { path = "../../deps/stake/programs/lockup", features = ["cpi"] }
+trixter-osec-swap = { path = "../../deps/swap/programs/swap", features = ["cpi"] }
+trixter-osec-serum_dex = { path = "../../deps/openbook-dex/dex", features = ["no-entrypoint"] }
+trixter-osec-registry = { path = "../../deps/stake/programs/registry", features = ["cpi"] }
+trixter-osec-lockup = { path = "../../deps/stake/programs/lockup", features = ["cpi"] }
