@@ -43,11 +43,11 @@ git restore updates
 popd
 
 # Potential for collisions in `package.json` files, handle those separately
-# Replace only matching "version": "x.xx.x" and "@anchor-lang/core": "x.xx.x"
+# Replace only matching "version": "x.xx.x" and "@trixter-osec/core": "x.xx.x"
 git grep -l $old_version -- "**/package.json" | \
     xargs sed -E "${sedi[@]}" \
     -e "s/\"version\": \"$old_version\"/\"version\": \"$version\"/g" \
-    -e "s/@anchor-lang\/(.*)\": \"(.*)$old_version\"/@anchor-lang\/\1\": \"\2$version\"/g"
+    -e "s/@trixter-osec\/(.*)\": \"(.*)$old_version\"/@trixter-osec\/\1\": \"\2$version\"/g"
 
 # Insert version number into CHANGELOG
 sed "${sedi[@]}" -e \

@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import NodeWallet from "@anchor-lang/core/dist/cjs/nodewallet";
+import * as anchor from "@trixter-osec/core";
+import NodeWallet from "@trixter-osec/core/dist/cjs/nodewallet";
 
 import { TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
 import { assert } from "chai";

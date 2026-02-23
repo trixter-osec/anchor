@@ -1,12 +1,12 @@
 [package]
-name = "account-info"
+name = "trixter-osec-account-info"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "account_info"
+name = "trixter-osec-account_info"
 
 [features]
 no-entrypoint = []

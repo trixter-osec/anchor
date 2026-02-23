@@ -1,6 +1,6 @@
 const { assert } = require("chai");
 const { Token } = require("@solana/spl-token");
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const serumCmn = require("@project-serum/common");
 const { Market } = require("@project-serum/serum");
 const utf8 = anchor.utils.bytes.utf8;

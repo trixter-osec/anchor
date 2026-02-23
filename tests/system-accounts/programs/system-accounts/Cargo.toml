@@ -1,12 +1,12 @@
 [package]
-name = "system-accounts"
+name = "trixter-osec-system-accounts"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "system_accounts"
+name = "trixter-osec-system_accounts"
 
 [features]
 no-entrypoint = []

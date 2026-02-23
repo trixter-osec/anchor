@@ -1,6 +1,6 @@
-import { Native, AnchorProvider, setProvider } from "@anchor-lang/core";
-import { splAssociatedTokenAccountProgram } from "@anchor-lang/spl-associated-token-account";
-import { splTokenProgram } from "@anchor-lang/spl-token";
+import { Native, AnchorProvider, setProvider } from "@trixter-osec/core";
+import { splAssociatedTokenAccountProgram } from "@trixter-osec/spl-associated-token-account";
+import { splTokenProgram } from "@trixter-osec/spl-token";
 import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
 import * as assert from "assert";
 

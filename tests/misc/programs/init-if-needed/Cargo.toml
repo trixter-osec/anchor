@@ -1,12 +1,12 @@
 [package]
-name = "init-if-needed"
+name = "trixter-osec-init-if-needed"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "init_if_needed"
+name = "trixter-osec-init_if_needed"
 
 [features]
 no-entrypoint = []

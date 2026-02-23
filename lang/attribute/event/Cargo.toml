@@ -1,5 +1,5 @@
 [package]
-name = "anchor-attribute-event"
+name = "trixter-osec-anchor-attribute-event"
 version = "0.32.1"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"

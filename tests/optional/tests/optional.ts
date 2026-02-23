@@ -1,4 +1,4 @@
-import * as anchor from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
 import {
   Program,
   web3,
@@ -8,7 +8,7 @@ import {
   LangErrorMessage,
   translateError,
   parseIdlErrors,
-} from "@anchor-lang/core";
+} from "@trixter-osec/core";
 import { Optional } from "../target/types/optional";
 import { AllowMissingOptionals } from "../target/types/allow_missing_optionals";
 import { assert, expect } from "chai";

@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { Program, BN, IdlAccounts } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { Program, BN, IdlAccounts } from "@trixter-osec/core";
 import { PublicKey, Keypair, SystemProgram } from "@solana/web3.js";
 import { TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
 import { assert } from "chai";

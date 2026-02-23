@@ -1,12 +1,12 @@
 [package]
-name = "idl-commands-two"
+name = "trixter-osec-idl-commands-two"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "idl_commands_two"
+name = "trixter-osec-idl_commands_two"
 
 [features]
 no-entrypoint = []

@@ -2,7 +2,7 @@
 // immediately after a deploy.
 
 const serumCmn = require("@project-serum/common");
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const PublicKey = anchor.web3.PublicKey;
 
 module.exports = async function (provider) {

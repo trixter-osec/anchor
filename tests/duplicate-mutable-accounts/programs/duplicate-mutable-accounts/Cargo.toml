@@ -1,12 +1,12 @@
 [package]
-name = "duplicate-mutable-accounts"
+name = "trixter-osec-duplicate-mutable-accounts"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "duplicate_mutable_accounts"
+name = "trixter-osec-duplicate_mutable_accounts"
 
 [features]
 no-entrypoint = []

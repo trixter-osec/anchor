@@ -1,5 +1,5 @@
 const { assert } = require("chai");
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 
 describe("composite", () => {
   const provider = anchor.AnchorProvider.local();

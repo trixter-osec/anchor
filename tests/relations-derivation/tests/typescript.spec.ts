@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { AnchorProvider, Program } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { AnchorProvider, Program } from "@trixter-osec/core";
 import { PublicKey } from "@solana/web3.js";
 import { expect } from "chai";
 import { RelationsDerivation } from "../target/types/relations_derivation";

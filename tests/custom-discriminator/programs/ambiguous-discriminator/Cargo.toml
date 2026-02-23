@@ -1,12 +1,12 @@
 [package]
-name = "ambiguous-discriminator"
+name = "trixter-osec-ambiguous-discriminator"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "ambiguous_discriminator"
+name = "trixter-osec-ambiguous_discriminator"
 
 [features]
 default = []

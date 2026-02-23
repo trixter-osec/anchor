@@ -3,9 +3,9 @@
 // deserialized correctly but the tests are incomplete.
 
 import assert from "assert";
-import { splTokenLendingProgram } from "@anchor-lang/spl-token-lending";
-import { splTokenProgram } from "@anchor-lang/spl-token";
-import { BN } from "@anchor-lang/core";
+import { splTokenLendingProgram } from "@trixter-osec/spl-token-lending";
+import { splTokenProgram } from "@trixter-osec/spl-token";
+import { BN } from "@trixter-osec/core";
 import {
   Keypair,
   PublicKey,

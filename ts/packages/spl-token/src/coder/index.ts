@@ -1,4 +1,4 @@
-import { Idl, Coder } from "@anchor-lang/core";
+import { Idl, Coder } from "@trixter-osec/core";
 
 import { SplTokenAccountsCoder } from "./accounts";
 import { SplTokenEventsCoder } from "./events";

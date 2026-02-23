@@ -1,7 +1,7 @@
 import assert from "assert";
-import * as anchor from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
 import * as borsh from "borsh";
-import { Program } from "@anchor-lang/core";
+import { Program } from "@trixter-osec/core";
 import { Callee } from "../target/types/callee";
 import { Caller } from "../target/types/caller";
 import { ConfirmOptions } from "@solana/web3.js";

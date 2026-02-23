@@ -1,4 +1,4 @@
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const { assert } = require("chai");
 const nativeAssert = require("assert");
 const PublicKey = anchor.web3.PublicKey;

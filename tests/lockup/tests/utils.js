@@ -1,4 +1,4 @@
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const serumCmn = require("@project-serum/common");
 
 async function createBalanceSandbox(provider, r, registrySigner) {

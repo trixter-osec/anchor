@@ -1,4 +1,4 @@
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const splToken = require("@solana/spl-token");
 const { assert } = require("chai");
 

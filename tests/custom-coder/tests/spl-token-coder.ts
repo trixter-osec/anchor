@@ -1,5 +1,5 @@
-import { AnchorProvider, setProvider } from "@anchor-lang/core";
-import { splTokenProgram } from "@anchor-lang/spl-token";
+import { AnchorProvider, setProvider } from "@trixter-osec/core";
+import { splTokenProgram } from "@trixter-osec/spl-token";
 import { Keypair, SYSVAR_RENT_PUBKEY, PublicKey } from "@solana/web3.js";
 import BN from "bn.js";
 import { assert } from "chai";

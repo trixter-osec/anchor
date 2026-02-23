@@ -256,7 +256,7 @@ pub fn get_or_create_program_id(name: &str) -> Pubkey {
 pub fn deploy_js_script_host(cluster_url: &str, script_path: &str) -> String {
     format!(
         r#"
-const anchor = require('@anchor-lang/core');
+const anchor = require('@trixter-osec/core');
 
 // Deploy script defined by the user.
 const userScript = require("{script_path}");
@@ -279,7 +279,7 @@ main();
 
 pub fn deploy_ts_script_host(cluster_url: &str, script_path: &str) -> String {
     format!(
-        r#"import * as anchor from '@anchor-lang/core';
+        r#"import * as anchor from '@trixter-osec/core';
 
 // Deploy script defined by the user.
 const userScript = require("{script_path}");
@@ -305,7 +305,7 @@ pub fn deploy_script() -> &'static str {
 // single deploy script that's invoked from the CLI, injecting a provider
 // configured from the workspace's Anchor.toml.
 
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 
 module.exports = async function (provider) {
   // Configure client to use the provider.
@@ -321,7 +321,7 @@ pub fn ts_deploy_script() -> &'static str {
 // single deploy script that's invoked from the CLI, injecting a provider
 // configured from the workspace's Anchor.toml.
 
-import * as anchor from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
 
 module.exports = async function (provider: anchor.AnchorProvider) {
   // Configure client to use the provider.
@@ -334,7 +334,7 @@ module.exports = async function (provider: anchor.AnchorProvider) {
 
 pub fn mocha(name: &str) -> String {
     format!(
-        r#"const anchor = require("@anchor-lang/core");
+        r#"const anchor = require("@trixter-osec/core");
 
 describe("{}", () => {{
   // Configure the client to use the local cluster.
@@ -355,7 +355,7 @@ describe("{}", () => {{
 
 pub fn jest(name: &str) -> String {
     format!(
-        r#"const anchor = require("@anchor-lang/core");
+        r#"const anchor = require("@trixter-osec/core");
 
 describe("{}", () => {{
   // Configure the client to use the local cluster.
@@ -384,7 +384,7 @@ pub fn package_json(jest: bool, license: String) -> String {
     "lint": "prettier */*.js \"*/**/*{{.js,.ts}}\" --check"
   }},
   "dependencies": {{
-    "@anchor-lang/core": "^{VERSION}"
+    "@trixter-osec/core": "^{VERSION}"
   }},
   "devDependencies": {{
     "jest": "^29.0.3",
@@ -402,7 +402,7 @@ pub fn package_json(jest: bool, license: String) -> String {
     "lint": "prettier */*.js \"*/**/*{{.js,.ts}}\" --check"
   }},
   "dependencies": {{
-    "@anchor-lang/core": "^{VERSION}"
+    "@trixter-osec/core": "^{VERSION}"
   }},
   "devDependencies": {{
     "chai": "^4.3.4",
@@ -425,7 +425,7 @@ pub fn ts_package_json(jest: bool, license: String) -> String {
     "lint": "prettier */*.js \"*/**/*{{.js,.ts}}\" --check"
   }},
   "dependencies": {{
-    "@anchor-lang/core": "^{VERSION}"
+    "@trixter-osec/core": "^{VERSION}"
   }},
   "devDependencies": {{
     "@types/bn.js": "^5.1.0",
@@ -447,7 +447,7 @@ pub fn ts_package_json(jest: bool, license: String) -> String {
     "lint": "prettier */*.js \"*/**/*{{.js,.ts}}\" --check"
   }},
   "dependencies": {{
-    "@anchor-lang/core": "^{VERSION}"
+    "@trixter-osec/core": "^{VERSION}"
   }},
   "devDependencies": {{
     "chai": "^4.3.4",
@@ -467,8 +467,8 @@ pub fn ts_package_json(jest: bool, license: String) -> String {
 
 pub fn ts_mocha(name: &str) -> String {
     format!(
-        r#"import * as anchor from "@anchor-lang/core";
-import {{ Program }} from "@anchor-lang/core";
+        r#"import * as anchor from "@trixter-osec/core";
+import {{ Program }} from "@trixter-osec/core";
 import {{ {} }} from "../target/types/{}";
 
 describe("{}", () => {{
@@ -494,8 +494,8 @@ describe("{}", () => {{
 
 pub fn ts_jest(name: &str) -> String {
     format!(
-        r#"import * as anchor from "@anchor-lang/core";
-import {{ Program }} from "@anchor-lang/core";
+        r#"import * as anchor from "@trixter-osec/core";
+import {{ Program }} from "@trixter-osec/core";
 import {{ {} }} from "../target/types/{}";
 
 describe("{}", () => {{
@@ -577,7 +577,7 @@ pub fn node_shell(
 ) -> Result<String> {
     let mut eval_string = format!(
         r#"
-const anchor = require('@anchor-lang/core');
+const anchor = require('@trixter-osec/core');
 const web3 = anchor.web3;
 const PublicKey = anchor.web3.PublicKey;
 const Keypair = anchor.web3.Keypair;

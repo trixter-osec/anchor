@@ -1,12 +1,12 @@
 [package]
-name = "zero-copy"
+name = "trixter-osec-zero-copy"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "zero_copy"
+name = "trixter-osec-zero_copy"
 
 [features]
 no-entrypoint = []

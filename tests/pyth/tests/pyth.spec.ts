@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { BN, Program, web3 } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { BN, Program, web3 } from "@trixter-osec/core";
 import { assert } from "chai";
 import { createPriceFeed, setFeedPrice, getFeedData } from "./oracleUtils";
 

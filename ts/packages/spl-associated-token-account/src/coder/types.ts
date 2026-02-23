@@ -1,4 +1,4 @@
-import { Idl, TypesCoder } from "@anchor-lang/core";
+import { Idl, TypesCoder } from "@trixter-osec/core";
 
 export class SplAssociatedTokenAccountTypesCoder implements TypesCoder {
   constructor(_idl: Idl) {}

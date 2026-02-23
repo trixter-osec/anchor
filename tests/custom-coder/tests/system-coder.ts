@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { Native } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { Native } from "@trixter-osec/core";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import {
   Keypair,

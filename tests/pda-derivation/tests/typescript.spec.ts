@@ -1,7 +1,7 @@
-import * as anchor from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
 import BN from "bn.js";
 import { Keypair, PublicKey } from "@solana/web3.js";
-import { Program } from "@anchor-lang/core";
+import { Program } from "@trixter-osec/core";
 import { PdaDerivation } from "../target/types/pda_derivation";
 import { expect } from "chai";
 const encode = anchor.utils.bytes.utf8.encode;

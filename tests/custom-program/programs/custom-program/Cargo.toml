@@ -1,12 +1,12 @@
 [package]
-name = "custom-program"
+name = "trixter-osec-custom-program"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "custom_program"
+name = "trixter-osec-custom_program"
 
 [features]
 no-entrypoint = []

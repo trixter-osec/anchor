@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { Program } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { Program } from "@trixter-osec/core";
 import { AccountCommand } from "../target/types/account_command";
 import { assert } from "chai";
 import { execSync } from "child_process";

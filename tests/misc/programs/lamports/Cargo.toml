@@ -1,5 +1,5 @@
 [package]
-name = "lamports"
+name = "trixter-osec-lamports"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"

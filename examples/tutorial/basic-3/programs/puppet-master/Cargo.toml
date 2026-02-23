@@ -1,12 +1,12 @@
 [package]
-name = "puppet-master"
+name = "trixter-osec-puppet-master"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "puppet_master"
+name = "trixter-osec-puppet_master"
 
 [features]
 no-entrypoint = []

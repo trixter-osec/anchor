@@ -1,9 +1,9 @@
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const { assert } = require("chai");
 const {
   splTokenProgram,
   SPL_TOKEN_PROGRAM_ID,
-} = require("@anchor-lang/spl-token");
+} = require("@trixter-osec/spl-token");
 
 describe("program", () => {
   const provider = anchor.AnchorProvider.local();

@@ -1,12 +1,12 @@
 [package]
-name = "token-wrapper"
+name = "trixter-osec-token-wrapper"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "token_wrapper"
+name = "trixter-osec-token_wrapper"
 
 [features]
 no-entrypoint = []

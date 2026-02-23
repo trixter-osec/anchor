@@ -1,12 +1,12 @@
 [package]
-name = "spl-associated-token"
+name = "trixter-osec-spl-associated-token"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "spl_associated_token"
+name = "trixter-osec-spl_associated_token"
 
 [features]
 no-entrypoint = []

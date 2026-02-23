@@ -11,6 +11,6 @@ cd ts/packages/anchor-errors && yarn --frozen-lockfile && yarn build && yarn lin
 cd ts/packages/anchor && yarn --frozen-lockfile && yarn build:node && yarn link && cd ../../../
 cd ts/packages/spl-associated-token-account && yarn --frozen-lockfile && yarn build:node && yarn link && cd ../../../
 cd ts/packages/spl-token && yarn --frozen-lockfile && yarn build:node && yarn link && cd ../../../
-cd examples/tutorial && yarn link @anchor-lang/core @anchor-lang/borsh && yarn --frozen-lockfile && cd ../../
-cd tests && yarn link @anchor-lang/core @anchor-lang/borsh @anchor-lang/spl-associated-token-account @anchor-lang/spl-token && yarn --frozen-lockfile && cd ..
+cd examples/tutorial && yarn link @trixter-osec/core @trixter-osec/borsh && yarn --frozen-lockfile && cd ../../
+cd tests && yarn link @trixter-osec/core @trixter-osec/borsh @trixter-osec/spl-associated-token-account @trixter-osec/spl-token && yarn --frozen-lockfile && cd ..
 cargo install --path cli anchor-cli --locked --force --debug

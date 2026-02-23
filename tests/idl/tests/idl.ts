@@ -1,4 +1,4 @@
-import * as anchor from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
 import BN from "bn.js";
 import { assert } from "chai";
 

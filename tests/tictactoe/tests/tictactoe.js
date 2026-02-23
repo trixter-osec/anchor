@@ -1,4 +1,4 @@
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 
 describe("tictactoe", () => {
   anchor.setProvider(anchor.AnchorProvider.env());

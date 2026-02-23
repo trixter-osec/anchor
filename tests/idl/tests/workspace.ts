@@ -1,4 +1,4 @@
-import * as anchor from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
 import { assert } from "chai";
 
 describe("Workspace", () => {

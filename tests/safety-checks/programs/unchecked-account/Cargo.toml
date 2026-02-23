@@ -1,12 +1,12 @@
 [package]
-name = "unchecked-account"
+name = "trixter-osec-unchecked-account"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "unchecked_account"
+name = "trixter-osec-unchecked_account"
 
 [features]
 no-entrypoint = []

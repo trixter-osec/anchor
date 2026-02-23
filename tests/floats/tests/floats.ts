@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { Program, getProvider } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { Program, getProvider } from "@trixter-osec/core";
 import { Keypair, SystemProgram } from "@solana/web3.js";
 import { Floats } from "../target/types/floats";
 import { assert } from "chai";

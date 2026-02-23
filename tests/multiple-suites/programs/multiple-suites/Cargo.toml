@@ -1,12 +1,12 @@
 [package]
-name = "multiple-suites"
+name = "trixter-osec-multiple-suites"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "multiple_suites"
+name = "trixter-osec-multiple_suites"
 
 [features]
 no-entrypoint = []

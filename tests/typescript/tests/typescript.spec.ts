@@ -1,4 +1,4 @@
-import * as anchor from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
 
 describe("typescript", () => {
   // Configure the client to use the local cluster.

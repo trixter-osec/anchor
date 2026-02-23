@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { AnchorError, Program } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { AnchorError, Program } from "@trixter-osec/core";
 import { assert } from "chai";
 import { Realloc } from "../target/types/realloc";
 

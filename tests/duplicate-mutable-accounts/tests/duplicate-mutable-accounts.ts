@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { Program, AnchorError } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { Program, AnchorError } from "@trixter-osec/core";
 import { DuplicateMutableAccounts } from "../target/types/duplicate_mutable_accounts";
 import { assert } from "chai";
 

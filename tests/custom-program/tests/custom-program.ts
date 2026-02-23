@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { AnchorError, Program } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { AnchorError, Program } from "@trixter-osec/core";
 import { CustomProgram } from "../target/types/custom_program";
 import { assert } from "chai";
 

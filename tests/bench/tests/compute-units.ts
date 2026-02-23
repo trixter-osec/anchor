@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import * as token from "@anchor-lang/spl-token";
+import * as anchor from "@trixter-osec/core";
+import * as token from "@trixter-osec/spl-token";
 
 import { Bench } from "../target/types/bench";
 import { BenchData, ComputeUnits } from "../scripts/utils";

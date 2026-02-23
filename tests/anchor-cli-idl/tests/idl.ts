@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { Program } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { Program } from "@trixter-osec/core";
 import { IdlCommandsOne } from "../target/types/idl_commands_one";
 import { IdlCommandsTwo } from "../target/types/idl_commands_two";
 import { assert } from "chai";

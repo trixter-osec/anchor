@@ -1,5 +1,5 @@
 [package]
-name = "new"
+name = "trixter-osec-new"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"

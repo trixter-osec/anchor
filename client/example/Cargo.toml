@@ -1,5 +1,5 @@
 [package]
-name = "example"
+name = "trixter-osec-example"
 version = "0.1.0"
 authors = ["Armani Ferrante <armaniferrante@gmail.com>"]
 edition = "2021"

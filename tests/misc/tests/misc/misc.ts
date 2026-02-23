@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { Program, AnchorError, Wallet } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { Program, AnchorError, Wallet } from "@trixter-osec/core";
 import {
   PublicKey,
   Keypair,

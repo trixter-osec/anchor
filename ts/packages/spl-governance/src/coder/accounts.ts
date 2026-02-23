@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as B from "@native-to-anchor/buffer-layout";
-import { AccountsCoder, Idl } from "@anchor-lang/core";
-import { IdlTypeDef } from "@anchor-lang/core/dist/cjs/idl";
+import { AccountsCoder, Idl } from "@trixter-osec/core";
+import { IdlTypeDef } from "@trixter-osec/core/dist/cjs/idl";
 
 export class SplGovernanceAccountsCoder<A extends string = string>
   implements AccountsCoder

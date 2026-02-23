@@ -1,6 +1,6 @@
 import { createHash } from "crypto";
-import { splNameServiceProgram } from "@anchor-lang/spl-name-service";
-import { BN } from "@anchor-lang/core";
+import { splNameServiceProgram } from "@trixter-osec/spl-name-service";
+import { BN } from "@trixter-osec/core";
 
 import { SPL_NAME_SERVICE_PROGRAM_ID } from "../constants";
 import { confirmTx, getProvider, loadKp, test } from "../utils";

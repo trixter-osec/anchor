@@ -1,4 +1,4 @@
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const serumCmn = require("@project-serum/common");
 const TokenInstructions = require("@project-serum/serum").TokenInstructions;
 const utils = require("../../deps/stake/tests/utils");

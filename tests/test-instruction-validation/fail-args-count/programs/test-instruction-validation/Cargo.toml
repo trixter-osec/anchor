@@ -1,12 +1,12 @@
 [package]
-name = "test-instruction-validation"
+name = "trixter-osec-test-instruction-validation"
 version = "0.1.0"
 description = "Test for instruction parameter validation"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "test_instruction_validation"
+name = "trixter-osec-test_instruction_validation"
 
 [features]
 default = []

@@ -1,5 +1,5 @@
 const assert = require("assert");
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const { SystemProgram } = anchor.web3;
 
 describe("basic-2", () => {

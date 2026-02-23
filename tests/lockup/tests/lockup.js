@@ -1,4 +1,4 @@
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 const serumCmn = require("@project-serum/common");
 const { TOKEN_PROGRAM_ID } = require("@solana/spl-token");
 const utils = require("./utils");

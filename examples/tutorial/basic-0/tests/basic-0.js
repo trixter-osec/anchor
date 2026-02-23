@@ -1,4 +1,4 @@
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 
 describe("basic-0", () => {
   // Configure the client to use the local cluster.

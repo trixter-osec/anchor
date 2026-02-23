@@ -31,7 +31,7 @@ export default {
     }),
   ],
   external: [
-    "@anchor-lang/borsh",
+    "@trixter-osec/borsh",
     "@solana/web3.js",
     "bn.js",
     "bs58",

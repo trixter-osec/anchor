@@ -1,12 +1,12 @@
 [package]
-name = "basic-2"
+name = "trixter-osec-basic-2"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "basic_2"
+name = "trixter-osec-basic_2"
 
 [features]
 no-entrypoint = []

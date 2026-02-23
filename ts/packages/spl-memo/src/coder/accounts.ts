@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { AccountsCoder, Idl } from "@anchor-lang/core";
-import { IdlTypeDef } from "@anchor-lang/core/dist/cjs/idl";
+import { AccountsCoder, Idl } from "@trixter-osec/core";
+import { IdlTypeDef } from "@trixter-osec/core/dist/cjs/idl";
 
 export class SplMemoAccountsCoder<A extends string = string>
   implements AccountsCoder

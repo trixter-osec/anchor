@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { Program, AnchorError } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { Program, AnchorError } from "@trixter-osec/core";
 import { Keypair, Transaction, TransactionInstruction } from "@solana/web3.js";
 import { TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
 import { assert, expect } from "chai";

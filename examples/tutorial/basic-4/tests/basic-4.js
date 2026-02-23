@@ -1,5 +1,5 @@
 const assert = require("assert");
-const anchor = require("@anchor-lang/core");
+const anchor = require("@trixter-osec/core");
 
 describe("basic-4", () => {
   const provider = anchor.AnchorProvider.local();

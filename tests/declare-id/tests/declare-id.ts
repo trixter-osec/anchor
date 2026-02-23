@@ -1,5 +1,5 @@
-import * as anchor from "@anchor-lang/core";
-import { AnchorError, Program } from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
+import { AnchorError, Program } from "@trixter-osec/core";
 import splToken from "@solana/spl-token";
 import { DeclareId } from "../target/types/declare_id";
 import { assert } from "chai";

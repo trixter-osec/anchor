@@ -1,5 +1,5 @@
 [package]
-name = "auction-house"
+name = "trixter-osec-auction-house"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,7 +7,7 @@ edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "auction_house"
+name = "trixter-osec-auction_house"
 
 [features]
 no-entrypoint = []

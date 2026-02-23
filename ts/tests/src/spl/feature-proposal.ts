@@ -1,6 +1,6 @@
-import { splFeatureProposalProgram } from "@anchor-lang/spl-feature-proposal";
-import { splTokenProgram } from "@anchor-lang/spl-token";
-import { BN } from "@anchor-lang/core";
+import { splFeatureProposalProgram } from "@trixter-osec/spl-feature-proposal";
+import { splTokenProgram } from "@trixter-osec/spl-token";
+import { BN } from "@trixter-osec/core";
 import {
   Keypair,
   PublicKey,

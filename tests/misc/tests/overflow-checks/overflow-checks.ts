@@ -1,4 +1,4 @@
-import * as anchor from "@anchor-lang/core";
+import * as anchor from "@trixter-osec/core";
 
 import { OverflowChecks } from "../../target/types/overflow_checks";
 

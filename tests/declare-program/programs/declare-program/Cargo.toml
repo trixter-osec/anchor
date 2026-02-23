@@ -1,12 +1,12 @@
 [package]
-name = "declare-program"
+name = "trixter-osec-declare-program"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "declare_program"
+name = "trixter-osec-declare_program"
 
 [features]
 no-entrypoint = []

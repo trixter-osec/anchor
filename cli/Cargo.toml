@@ -1,5 +1,5 @@
 [package]
-name = "anchor-cli"
+name = "trixter-osec-anchor-cli"
 version = "0.32.1"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 edition = "2021"
@@ -8,7 +8,7 @@ description = "Anchor CLI"
 license = "Apache-2.0"
 
 [[bin]]
-name = "anchor"
+name = "trixter-osec-anchor"
 path = "src/bin/main.rs"
 
 [features]

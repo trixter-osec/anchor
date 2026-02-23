@@ -5,7 +5,7 @@ import {
   BN,
   getProvider,
   setProvider,
-} from "@anchor-lang/core";
+} from "@trixter-osec/core";
 import {
   Transaction,
   Keypair,
