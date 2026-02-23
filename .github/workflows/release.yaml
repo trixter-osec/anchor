@@ -164,8 +164,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args:
-            SOLANA_CLI: v2.3.0
-            ANCHOR_CLI: ${{ github.ref_name }}
+          - SOLANA_CLI=v2.3.0
+          - ANCHOR_CLI=${{ github.ref_name }}
           provenance: mode=max
           sbom: true
 
