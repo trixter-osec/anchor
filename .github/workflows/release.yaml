@@ -17,6 +17,9 @@ jobs:
       name: release
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Verify signed tag
         env:
@@ -43,7 +46,10 @@ jobs:
           [[ -n "$signer" ]] || { echo "$out"; echo "Could not extract signer fingerprint"; exit 1; }
 
           for f in "${allowed[@]}"; do
-            [[ "$signer" == "$f" ]] && { echo "OK: $GITHUB_REF_NAME signed by trusted key $signer"; exit 0; }
+            if [[ "$signer" == "$f" ]]; then
+              echo "OK: $GITHUB_REF_NAME signed by trusted key $signer"
+              exit 0
+            fi
           done
 
           echo "$out"
