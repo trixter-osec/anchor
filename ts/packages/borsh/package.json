@@ -2,6 +2,10 @@
   "name": "@trixter-osec/borsh",
   "version": "0.32.1",
   "description": "Anchor Borsh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trixter-osec/anchor.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
