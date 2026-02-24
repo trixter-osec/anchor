@@ -24,7 +24,7 @@ jobs:
       - name: Verify signed tag
         env:
           RELEASE_MANAGERS: ${{ vars.RELEASE_MANAGERS }}
-          GITHUB_REF_NAME: ${{ github.ref_name }}
+          GITHUB_REF: ${{ github.ref }}
         run: |
           set -euo pipefail
 
@@ -33,27 +33,25 @@ jobs:
 
           IFS=',' read -ra rms <<< "${RELEASE_MANAGERS}"
           for u in "${rms[@]}"; do
-            u="$(echo "$u" | xargs)"  # trim
-            [[ -n "$u" ]] || continue
             curl -fsSL "https://github.com/${u}.gpg" | gpg --batch --import >/dev/null
           done
 
           mapfile -t allowed < <(gpg --batch --with-colons --fingerprint | awk -F: '$1=="fpr"{print $10}')
           ((${#allowed[@]})) || { echo "No allowed GPG keys imported"; exit 1; }
 
-          out="$(git verify-tag --raw "$GITHUB_REF_NAME" 2>&1)" || { echo "$out"; exit 1; }
+          out="$(git verify-tag --raw "$GITHUB_REF" 2>&1)" || { echo "$out"; exit 1; }
           signer="$(echo "$out" | awk '/^\[GNUPG:\] VALIDSIG /{print $3; exit}')"
           [[ -n "$signer" ]] || { echo "$out"; echo "Could not extract signer fingerprint"; exit 1; }
 
           for f in "${allowed[@]}"; do
             if [[ "$signer" == "$f" ]]; then
-              echo "OK: $GITHUB_REF_NAME signed by trusted key $signer"
+              echo "OK: $GITHUB_REF signed by trusted key $signer"
               exit 0
             fi
           done
 
           echo "$out"
-          echo "FAIL: $GITHUB_REF_NAME signed by untrusted key $signer"
+          echo "FAIL: $GITHUB_REF signed by untrusted key $signer"
           exit 1
 
   publish-crates:
