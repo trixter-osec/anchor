@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v.*"
 
 env:
   DIST: dist-${{ github.ref_name }}
@@ -21,7 +21,7 @@ jobs:
       tag_version: ${{ steps.info.outputs.version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
 
@@ -95,13 +95,15 @@ jobs:
     environment:
       name: release
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
 
       - name: Authenticate with crates.io
         id: auth
-        uses: rust-lang/crates-io-auth-action@v1
+        uses: rust-lang/crates-io-auth-action@b7e9a28eded4986ec6b1fa40eeee8f8f165559ec # v1.0.3
 
       - name: Publish crates
         env:
@@ -123,13 +125,13 @@ jobs:
                 | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .version'
             )"
 
-            if cargo info "$name" | grep -q "version: $version"; then
+            if cargo search "$name" --limit 1 | grep -q "$version"; then
               echo "The crate $1 is already up to date, skipping"
               popd >/dev/null
               return 0
             fi
 
-            echo "Publishing $1"
+            echo "Publishing $1 (${name}@${version})"
             cargo publish --locked
 
             echo "Waiting for crates.io index to update"
@@ -155,11 +157,11 @@ jobs:
           #publish client
           #publish cli
 
-      - uses: actions/attest-build-provenance@v3
+      - uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
         with:
           subject-path: target/package/*.crate
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           if-no-files-found: ignore
           name: published-crates
@@ -175,11 +177,11 @@ jobs:
     environment:
       name: release
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: "24"
+          node-version: "22"
           registry-url: "https://registry.npmjs.org"
 
       - name: Enable corepack (yarn)
@@ -202,10 +204,9 @@ jobs:
               return 0
             fi
 
-            echo "Publishing $dir"
+            echo "Publishing $dir (${name}@${version})"
 
-            # TODO: verify if we can really lock this
-            yarn --frozen-lockfile
+            yarn
             local dirname="$(basename $dir)"
             if [[ "$dirname" == spl-* ]]; then
               yarn build:npm
@@ -219,8 +220,8 @@ jobs:
 
           base="ts/packages"
 
-          #publish "$base/anchor-errors"
           publish "$base/borsh"
+          publish "$base/anchor-errors"
           publish "$base/anchor"
           publish "$base/spl-associated-token-account"
           #publish "$base/spl-binary-option"
@@ -252,20 +253,20 @@ jobs:
     env:
       IMAGE_NAME: trixterosec/anchor
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
 
       - name: Docker metadata
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
         with:
           images: ${{ env.IMAGE_NAME }}
           tags: |
@@ -274,7 +275,7 @@ jobs:
 
       - name: Build and push
         id: build
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
         with:
           context: docker/build
           push: true
@@ -287,86 +288,96 @@ jobs:
           provenance: mode=max
           sbom: true
 
-      - name: Attest
-        uses: actions/attest-build-provenance@v3
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
         id: attest
         with:
           subject-name: ${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.build.outputs.digest }}
           push-to-registry: false # provenance: mode=max above already pushes it to Dockerhub
 
-  # build:
-  #   name: Build
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     matrix:
-  #       target:
-  #         - aarch64-apple-darwin
-  #         - x86_64-unknown-linux-gnu
-  #         - x86_64-apple-darwin
-  #         - x86_64-pc-windows-msvc
-  #       include:
-  #         - target: aarch64-apple-darwin
-  #           os: macos-latest
+  build-cli:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    needs: verify-tag
+    if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
 
-  #         - target: x86_64-unknown-linux-gnu
-  #           os: ubuntu-latest
+    strategy:
+      matrix:
+        target:
+          - aarch64-apple-darwin
+          - x86_64-unknown-linux-gnu
+          - x86_64-apple-darwin
+          - x86_64-pc-windows-msvc
+        include:
+          - target: aarch64-apple-darwin
+            os: macos-latest
 
-  #         - target: x86_64-apple-darwin
-  #           os: macos-latest
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
 
-  #         - target: x86_64-pc-windows-msvc
-  #           os: windows-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v4
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
 
-  #     - uses: dtolnay/rust-toolchain@master
-  #       with:
-  #         toolchain: stable
-  #         target: ${{ matrix.target }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-  #     - name: Install dependencies (Linux)
-  #       if: runner.os == 'Linux'
-  #       run: sudo apt-get update && sudo apt-get install -y libudev-dev
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+          target: ${{ matrix.target }}
 
-  #     - name: Build release binary
-  #       run: cargo build --package anchor-cli --release --locked --target ${{ matrix.target }}
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libudev-dev
 
-  #     - name: Prepare
-  #       if: startsWith(github.ref, 'refs/tags/')
-  #       id: prepare
-  #       shell: bash
-  #       run: |
-  #         version=$(echo $GITHUB_REF_NAME | cut -dv -f2)
-  #         ext=""
-  #         [[ "${{ matrix.os }}" == windows-latest ]] && ext=".exe"
+      - name: Build release binary
+        run: cargo build --package anchor-cli --release --locked --target ${{ matrix.target }}
 
-  #         mkdir $DIST
-  #         mv "target/${{ matrix.target }}/release/anchor$ext" $DIST/anchor-$version-${{ matrix.target }}$ext
+      - name: Prepare
+        id: prepare
+        shell: bash
+        run: |
+          version=$(echo $GITHUB_REF_NAME | cut -dv -f2)
+          ext=""
+          [[ "${{ matrix.os }}" == windows-latest ]] && ext=".exe"
 
-  #         echo "version=$version" >> $GITHUB_OUTPUT
+          mkdir $DIST
+          mv "target/${{ matrix.target }}/release/anchor$ext" $DIST/anchor-$version-${{ matrix.target }}$ext
 
-  #     - uses: actions/upload-artifact@v4
-  #       if: startsWith(github.ref, 'refs/tags/')
-  #       with:
-  #         name: anchor-${{ steps.prepare.outputs.version }}-${{ matrix.target }}
-  #         path: ${{ env.DIST }}
-  #         overwrite: true
-  #         retention-days: 1
+          echo "version=$version" >> $GITHUB_OUTPUT
 
-  # upload:
-  #   name: Upload binaries to release
-  #   if: startsWith(github.ref, 'refs/tags/')
-  #   needs: [build]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
+        with:
+          subject-path: ${{ env.DIST }}/anchor-${{ steps.prepare.outputs.version }}-${{ matrix.target }}*
 
-  #     - uses: actions/download-artifact@v4
-  #       with:
-  #         path: ${{ env.DIST }}
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: anchor-${{ steps.prepare.outputs.version }}-${{ matrix.target }}
+          path: ${{ env.DIST }}
+          overwrite: true
+          retention-days: 1
 
-  #     - name: Upload
-  #       shell: bash
-  #       run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} gh release upload $GITHUB_REF_NAME $DIST/*/* --clobber
+  upload-cli:
+    name: Upload binaries to release
+    runs-on: ubuntu-latest
+    needs: [verify-tag, build-cli]
+    if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          path: ${{ env.DIST }}
+
+      - name: Upload
+        shell: bash
+        run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} gh release upload $GITHUB_REF_NAME $DIST/*/* --clobber

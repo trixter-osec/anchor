@@ -3,6 +3,10 @@
   "version": "0.40.4",
   "description": "Anchor error codes",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trixter-osec/anchor.git"
+  },
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js"
