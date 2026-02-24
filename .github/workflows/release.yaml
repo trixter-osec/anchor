@@ -45,8 +45,8 @@ jobs:
             curl -fsSL "https://github.com/${u}.gpg" | gpg --batch --import >/dev/null
           done
 
-          echo "Verifying the tag: ${{ steps.vars.outputs.version_tag }}"
-          git verify-tag -v "${{ steps.vars.outputs.version_tag }}" 2>&1 | tee /tmp/verify-output.txt || exit 1;
+          echo "Verifying the tag: ${{ steps.info.outputs.version_tag }}"
+          git verify-tag -v "${{ steps.info.outputs.version_tag }}" 2>&1 | tee /tmp/verify-output.txt || exit 1;
 
           # SSH verification output typically includes the key fingerprint
           # Use GNU grep with Perl regex for cleaner extraction (Linux environment)
