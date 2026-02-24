@@ -193,7 +193,8 @@ jobs:
 
             echo "Publishing $dir"
 
-            yarn
+            # TODO: verify if we can really lock this
+            yarn --frozen-lockfile
             local dirname="$(basename $dir)"
             if [[ "$dirname" == spl-* ]]; then
               yarn build:npm
@@ -207,6 +208,9 @@ jobs:
 
           base="ts/packages"
 
+          #publish "$base/anchor-errors"
+          publish "$base/borsh"
+          publish "$base/anchor"
           publish "$base/spl-associated-token-account"
           #publish "$base/spl-binary-option"
           #publish "$base/spl-binary-oracle-pair"
@@ -220,9 +224,6 @@ jobs:
           #publish "$base/spl-token"
           #publish "$base/spl-token-lending"
           #publish "$base/spl-token-swap"
-          publish "$base/borsh"
-          #publish "$base/anchor-errors"
-          #publish "$base/anchor"
 
   # TODO: typedocs
 
