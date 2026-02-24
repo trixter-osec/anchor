@@ -155,8 +155,8 @@ jobs:
           publish lang/attribute/account
           publish lang/attribute/constant
           publish lang/attribute/error
-          publish lang/attribute/program
-          publish lang/attribute/event
+          #publish lang/attribute/program
+          #publish lang/attribute/event
           #publish lang
           #publish spl
           #publish client
