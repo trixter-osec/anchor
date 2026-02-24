@@ -217,14 +217,14 @@ cpi = ["no-entrypoint"]
 no-entrypoint = []
 no-idl = []
 no-log-ix-name = []
-idl-build = ["anchor-lang/idl-build"]
+idl-build = ["trixter-osec-anchor-lang/idl-build"]
 anchor-debug = []
 custom-heap = []
 custom-panic = []
 {2}
 
 [dependencies]
-anchor-lang = "{3}"
+trixter-osec-anchor-lang = "{3}"
 {4}
 
 [lints.rust]
@@ -807,7 +807,7 @@ fn create_program_template_mollusk_test(name: &str, tests_path: &Path) -> Files 
             r#"#![cfg(feature = "test-sbf")]
 
 use {{
-    anchor_lang::{{solana_program::instruction::Instruction, InstructionData, ToAccountMetas}},
+    trixter_osec_anchor_lang::{{solana_program::instruction::Instruction, InstructionData, ToAccountMetas}},
     mollusk_svm::{{result::Check, Mollusk}},
 }};
 

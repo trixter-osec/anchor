@@ -18,7 +18,7 @@ pub fn create<'info>(ctx: CpiContext<'_, '_, '_, 'info, Create<'info>>) -> Resul
         ctx.accounts.mint.key,
         ctx.accounts.token_program.key,
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.payer,
@@ -42,7 +42,7 @@ pub fn create_idempotent<'info>(
         ctx.accounts.mint.key,
         ctx.accounts.token_program.key,
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.payer,
@@ -72,7 +72,7 @@ type CreateIdempotent<'info> = Create<'info>;
 #[derive(Clone)]
 pub struct AssociatedToken;
 
-impl anchor_lang::Id for AssociatedToken {
+impl trixter_osec_anchor_lang::Id for AssociatedToken {
     fn id() -> Pubkey {
         ID
     }

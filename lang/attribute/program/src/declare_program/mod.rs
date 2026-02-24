@@ -75,9 +75,9 @@ fn gen_program(idl: &Idl, name: &syn::Ident) -> proc_macro2::TokenStream {
         #docs
         pub mod #name {
             #[cfg(any(target_os = "solana", feature = "idl-build"))]
-            use ::anchor_lang;
+            use ::trixter_osec_anchor_lang;
             #[cfg(all(not(target_os = "solana"), not(feature = "idl-build")))]
-            use super::anchor_lang;
+            use super::trixter_osec_anchor_lang;
 
             use trixter_osec_anchor_lang::prelude::*;
             use accounts::*;

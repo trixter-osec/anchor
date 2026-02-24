@@ -16,10 +16,10 @@ pub mod lamports {
             let pda_balance_before = pda.get_lamports();
 
             // Transfer to the PDA
-            anchor_lang::system_program::transfer(
+            trixter_osec_anchor_lang::system_program::transfer(
                 CpiContext::new(
                     ctx.accounts.system_program.key(),
-                    anchor_lang::system_program::Transfer {
+                    trixter_osec_anchor_lang::system_program::Transfer {
                         from: signer.to_account_info(),
                         to: pda.to_account_info(),
                     },

@@ -105,7 +105,7 @@ impl<C: Deref<Target = impl Signer> + Clone> Program<C> {
     /// Subscribe to program logs.
     ///
     /// Returns an [`EventUnsubscriber`] to unsubscribe and close connection gracefully.
-    pub async fn on<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
+    pub async fn on<T: trixter_osec_anchor_lang::Event + trixter_osec_anchor_lang::AnchorDeserialize>(
         &self,
         f: impl FnMut(&EventContext, T) + Send + 'static,
     ) -> Result<EventUnsubscriber<'_>, ClientError> {

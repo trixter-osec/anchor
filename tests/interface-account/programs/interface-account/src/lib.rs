@@ -22,20 +22,20 @@ mod interface {
     #[derive(Clone)]
     pub struct ExpectedAccount(new::ExpectedAccount);
 
-    impl anchor_lang::AccountDeserialize for ExpectedAccount {
-        fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+    impl trixter_osec_anchor_lang::AccountDeserialize for ExpectedAccount {
+        fn try_deserialize(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
             new::ExpectedAccount::try_deserialize(buf).map(Self)
         }
 
-        fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+        fn try_deserialize_unchecked(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
             new::ExpectedAccount::try_deserialize_unchecked(buf).map(Self)
         }
     }
 
-    impl anchor_lang::AccountSerialize for ExpectedAccount {}
+    impl trixter_osec_anchor_lang::AccountSerialize for ExpectedAccount {}
 
-    impl anchor_lang::Owners for ExpectedAccount {
-        fn owners() -> &'static [anchor_lang::prelude::Pubkey] {
+    impl trixter_osec_anchor_lang::Owners for ExpectedAccount {
+        fn owners() -> &'static [trixter_osec_anchor_lang::prelude::Pubkey] {
             &[old::ID_CONST, new::ID_CONST]
         }
     }
@@ -44,8 +44,8 @@ mod interface {
     mod idl_impls {
         use super::ExpectedAccount;
 
-        impl anchor_lang::IdlBuild for ExpectedAccount {}
-        impl anchor_lang::Discriminator for ExpectedAccount {
+        impl trixter_osec_anchor_lang::IdlBuild for ExpectedAccount {}
+        impl trixter_osec_anchor_lang::Discriminator for ExpectedAccount {
             const DISCRIMINATOR: &'static [u8] = &[];
         }
     }

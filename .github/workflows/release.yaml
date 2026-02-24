@@ -111,7 +111,7 @@ jobs:
         env:
           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
         run: |
-          set -euo pipefail
+          set -xeuo pipefail
 
           publish() {
             local dir="$1"
@@ -143,21 +143,21 @@ jobs:
           }
 
           publish idl/spec
-          #publish idl
+          publish idl
           publish lang/syn
-          #publish lang/derive/accounts
-          #publish lang/derive/serde
-          #publish lang/derive/space
-          #publish lang/attribute/access-control
-          #publish lang/attribute/account
-          #publish lang/attribute/constant
-          #publish lang/attribute/error
-          #publish lang/attribute/program
-          #publish lang/attribute/event
-          #publish lang
-          #publish spl
-          #publish client
-          #publish cli
+          publish lang/derive/accounts
+          publish lang/derive/serde
+          publish lang/derive/space
+          publish lang/attribute/access-control
+          publish lang/attribute/account
+          publish lang/attribute/constant
+          publish lang/attribute/error
+          publish lang/attribute/program
+          publish lang/attribute/event
+          publish lang
+          publish spl
+          publish client
+          publish cli
 
       - name: Check for crate artifacts
         id: crate-artifacts
@@ -204,7 +204,7 @@ jobs:
         run: corepack enable
 
       - run: |
-          set -euo pipefail
+          set -xeuo pipefail
 
           publish() {
             local dir="$1"

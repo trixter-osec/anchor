@@ -4,7 +4,7 @@ description:
   Learn how to use Anchor's Rust client library to interact with Solana programs
 ---
 
-The [`anchor-client`](https://docs.rs/anchor-client/latest/anchor_client/) crate
+The [`anchor-client`](https://docs.rs/anchor-client/latest/trixter_osec_anchor_client/) crate
 is the Rust client library for interacting with Anchor programs. You can find
 the source code [here](https://github.com/coral-xyz/anchor/tree/0e5285aecdf410fa0779b7cd09a47f235882c156/client).
 
@@ -22,7 +22,7 @@ The program has two instructions:
 - `increment` – Increments the value stored on the counter account
 
 ```rust title="lib.rs"
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 declare_id!("6khKp4BeJpCjBY1Eh39ybiqbfRnrn2UzWeUARjQLXYRC");
 
@@ -162,14 +162,14 @@ Below is the `src/main.rs` file for interacting with the program:
 1. The `declare_program!` macro - Generates client modules for the program using
    the IDL file
 
-2. The `anchor_client` crate - Provides utilities for interacting with the
+2. The `trixter_osec_anchor_client` crate - Provides utilities for interacting with the
    program, including:
    - Building program instructions
    - Sending transactions
    - Fetching program accounts
 
 ```rust title="src/main.rs"
-use anchor_client::{
+use trixter_osec_anchor_client::{
     solana_client::rpc_client::RpcClient,
     solana_sdk::{
         commitment_config::CommitmentConfig, native_token::LAMPORTS_PER_SOL, signature::Keypair,
@@ -178,7 +178,7 @@ use anchor_client::{
     solana_signer::Signer,
     Client, Cluster,
 };
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 use std::rc::Rc;
 
 declare_program!(example);
@@ -263,7 +263,7 @@ edition = "2021"
 
 [dependencies]
 anchor-client = { version = "0.40.4", features = ["async"] }
-anchor-lang = "0.40.4"
+trixter-osec-anchor-lang = "0.40.4"
 anyhow = "1.0.93"
 tokio = { version = "1.0", features = ["full"] }
 ```

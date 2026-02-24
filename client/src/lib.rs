@@ -1,6 +1,6 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
-//! An RPC client to interact with Solana programs written in [`anchor_lang`].
+//! An RPC client to interact with Solana programs written in [`trixter_osec_anchor_lang`].
 //!
 //! # Examples
 //!
@@ -108,7 +108,7 @@ use tokio::{
     task::JoinHandle,
 };
 
-pub use anchor_lang;
+pub use trixter_osec_anchor_lang;
 pub use cluster::Cluster;
 #[cfg(feature = "async")]
 pub use nonblocking::ThreadSafeSigner;
@@ -311,7 +311,7 @@ impl<C: Deref<Target = impl Signer> + Clone> Program<C> {
         Ok(())
     }
 
-    async fn on_internal<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
+    async fn on_internal<T: trixter_osec_anchor_lang::Event + trixter_osec_anchor_lang::AnchorDeserialize>(
         &self,
         mut f: impl FnMut(&EventContext, T) + Send + 'static,
     ) -> Result<
@@ -382,7 +382,7 @@ impl<T> Iterator for ProgramAccountsIterator<T> {
     }
 }
 
-pub fn handle_program_log<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
+pub fn handle_program_log<T: trixter_osec_anchor_lang::Event + trixter_osec_anchor_lang::AnchorDeserialize>(
     self_program_str: &str,
     l: &str,
 ) -> Result<(Option<T>, Option<String>, bool), ClientError> {
@@ -488,7 +488,7 @@ pub enum ClientError {
     #[error("Account not found")]
     AccountNotFound,
     #[error("{0}")]
-    AnchorError(#[from] anchor_lang::error::Error),
+    AnchorError(#[from] trixter_osec_anchor_lang::error::Error),
     #[error("{0}")]
     ProgramError(#[from] ProgramError),
     #[error("{0}")]
@@ -684,7 +684,7 @@ impl<C: Deref<Target = impl Signer> + Clone, S: AsSigner> RequestBuilder<'_, C, 
     }
 }
 
-fn parse_logs_response<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
+fn parse_logs_response<T: trixter_osec_anchor_lang::Event + trixter_osec_anchor_lang::AnchorDeserialize>(
     logs: RpcResponse<RpcLogsResponse>,
     program_id_str: &str,
 ) -> Result<Vec<T>, ClientError> {
@@ -746,7 +746,7 @@ fn parse_logs_response<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
 mod tests {
     use solana_rpc_client_api::response::RpcResponseContext;
 
-    // Creating a mock struct that implements `anchor_lang::events`
+    // Creating a mock struct that implements `trixter_osec_anchor_lang::events`
     // for type inference in `test_logs`
     use trixter_osec_anchor_lang::prelude::*;
     #[derive(Debug, Clone, Copy)]

@@ -9,13 +9,13 @@
 
   <p>
     <a href="https://github.com/coral-xyz/anchor/actions"><img alt="Build Status" src="https://github.com/coral-xyz/anchor/actions/workflows/tests.yaml/badge.svg" /></a>
-    <a href="https://anchor-lang.com"><img alt="Tutorials" src="https://img.shields.io/badge/docs-tutorials-blueviolet" /></a>
+    <a href="https://trixter-osec-anchor-lang.com"><img alt="Tutorials" src="https://img.shields.io/badge/docs-tutorials-blueviolet" /></a>
     <a href="https://discord.gg/NHHGSXAnXk"><img alt="Discord Chat" src="https://img.shields.io/discord/889577356681945098?color=blueviolet" /></a>
     <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/github/license/coral-xyz/anchor?color=blueviolet" /></a>
   </p>
 </div>
 
-[Anchor](https://www.anchor-lang.com/) is a framework providing several convenient developer tools for writing Solana programs (sometimes called 'smart contracts').
+[Anchor](https://www.trixter-osec-anchor-lang.com/) is a framework providing several convenient developer tools for writing Solana programs (sometimes called 'smart contracts').
 
 - Rust eDSL for writing Solana programs
 - [IDL](https://en.wikipedia.org/wiki/Interface_description_language) specification
@@ -29,19 +29,19 @@ Anchor is the most popular framework for Solana programs.
 
 ## Getting Started
 
-For a quickstart guide and in depth tutorials, see the [Anchor book](https://book.anchor-lang.com) and the [Anchor documentation](https://anchor-lang.com).
+For a quickstart guide and in depth tutorials, see the [Anchor book](https://book.trixter-osec-anchor-lang.com) and the [Anchor documentation](https://trixter-osec-anchor-lang.com).
 
-To jump straight to examples, go [here](https://github.com/coral-xyz/anchor/tree/master/examples). For the latest Rust and TypeScript API documentation, see [docs.rs](https://docs.rs/anchor-lang) and the [typedoc](https://www.anchor-lang.com/docs/clients/typescript).
+To jump straight to examples, go [here](https://github.com/coral-xyz/anchor/tree/master/examples). For the latest Rust and TypeScript API documentation, see [docs.rs](https://docs.rs/trixter-osec-anchor-lang) and the [typedoc](https://www.trixter-osec-anchor-lang.com/docs/clients/typescript).
 
 ## Packages
 
 | Package                 | Description                                              | Version                                                                                                                          | Docs                                                                                                            |
 | :---------------------- | :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| `anchor-lang`           | Rust primitives for writing programs on Solana           | [![Crates.io](https://img.shields.io/crates/v/anchor-lang?color=blue)](https://crates.io/crates/anchor-lang)                     | [![Docs.rs](https://docs.rs/anchor-lang/badge.svg)](https://docs.rs/anchor-lang)                                |
+| `trixter-osec-anchor-lang`           | Rust primitives for writing programs on Solana           | [![Crates.io](https://img.shields.io/crates/v/trixter-osec-anchor-lang?color=blue)](https://crates.io/crates/trixter-osec-anchor-lang)                     | [![Docs.rs](https://docs.rs/trixter-osec-anchor-lang/badge.svg)](https://docs.rs/trixter-osec-anchor-lang)                                |
 | `anchor-spl`            | CPI clients for SPL programs on Solana                   | [![crates](https://img.shields.io/crates/v/anchor-spl?color=blue)](https://crates.io/crates/anchor-spl)                          | [![Docs.rs](https://docs.rs/anchor-spl/badge.svg)](https://docs.rs/anchor-spl)                                  |
 | `anchor-client`         | Rust client for Anchor programs                          | [![crates](https://img.shields.io/crates/v/anchor-client?color=blue)](https://crates.io/crates/anchor-client)                    | [![Docs.rs](https://docs.rs/anchor-client/badge.svg)](https://docs.rs/anchor-client)                            |
 | `@trixter-osec/core`     | TypeScript client for Anchor programs                    | [![npm](https://img.shields.io/npm/v/@trixter-osec/core.svg?color=blue)](https://www.npmjs.com/package/@trixter-osec/core)         | [![Docs](https://img.shields.io/badge/docs-typedoc-blue)](https://coral-xyz.github.io/anchor/ts/index.html)     |
-| `@trixter-osec/cli` | CLI to support building and managing an Anchor workspace | [![npm](https://img.shields.io/npm/v/@trixter-osec/cli.svg?color=blue)](https://www.npmjs.com/package/@trixter-osec/core-cli) | [![Docs](https://img.shields.io/badge/docs-typedoc-blue)](https://www.anchor-lang.com/docs/references/cli) |
+| `@trixter-osec/cli` | CLI to support building and managing an Anchor workspace | [![npm](https://img.shields.io/npm/v/@trixter-osec/cli.svg?color=blue)](https://www.npmjs.com/package/@trixter-osec/core-cli) | [![Docs](https://img.shields.io/badge/docs-typedoc-blue)](https://www.trixter-osec-anchor-lang.com/docs/references/cli) |
 
 ## Note
 
@@ -54,7 +54,7 @@ Here's a counter program, where only the designated `authority`
 can increment the count.
 
 ```rust
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 

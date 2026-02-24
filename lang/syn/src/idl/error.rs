@@ -17,7 +17,7 @@ pub fn gen_idl_print_fn_error(error: &Error) -> TokenStream {
             let offset = &args.offset;
             quote! { #offset }
         }
-        None => quote! { ::anchor_lang::error::ERROR_CODE_OFFSET },
+        None => quote! { ::trixter_osec_anchor_lang::error::ERROR_CODE_OFFSET },
     };
 
     let error_codes = error

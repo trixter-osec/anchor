@@ -13,7 +13,7 @@ pub fn non_transferable_mint_initialize<'info>(
         ctx.accounts.token_program_id.key,
         ctx.accounts.mint.key,
     )?;
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.token_program_id, ctx.accounts.mint],
         ctx.signer_seeds,

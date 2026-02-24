@@ -22,7 +22,7 @@ pub fn approve_collection_authority<'info>(
         update_authority: *ctx.accounts.update_authority.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -47,7 +47,7 @@ pub fn bubblegum_set_collection_size<'info>(
             set_collection_size_args: mpl_token_metadata::types::SetCollectionSizeArgs { size },
         },
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -71,7 +71,7 @@ pub fn burn_edition_nft<'info>(
         spl_token_program: *ctx.accounts.spl_token.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -108,7 +108,7 @@ pub fn burn_nft<'info>(
         token_account: *ctx.accounts.token.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -142,7 +142,7 @@ pub fn create_metadata_accounts_v3<'info>(
             is_mutable,
         },
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -169,7 +169,7 @@ pub fn update_metadata_accounts_v2<'info>(
             is_mutable,
         },
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -195,7 +195,7 @@ pub fn create_master_edition_v3<'info>(
     .instruction(
         mpl_token_metadata::instructions::CreateMasterEditionV3InstructionArgs { max_supply },
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -229,7 +229,7 @@ pub fn mint_new_edition_from_master_edition_via_token<'info>(
                 mpl_token_metadata::types::MintNewEditionFromMasterEditionViaTokenArgs { edition },
         },
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -248,7 +248,7 @@ pub fn revoke_collection_authority<'info>(
         revoke_authority: *ctx.accounts.revoke_authority.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -272,7 +272,7 @@ pub fn set_collection_size<'info>(
             set_collection_size_args: mpl_token_metadata::types::SetCollectionSizeArgs { size },
         },
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -294,7 +294,7 @@ pub fn verify_collection<'info>(
         payer: *ctx.accounts.payer.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -316,7 +316,7 @@ pub fn verify_sized_collection_item<'info>(
         payer: *ctx.accounts.payer.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -339,7 +339,7 @@ pub fn set_and_verify_collection<'info>(
         update_authority: *ctx.accounts.update_authority.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -362,7 +362,7 @@ pub fn set_and_verify_sized_collection_item<'info>(
         update_authority: *ctx.accounts.update_authority.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -381,7 +381,7 @@ pub fn freeze_delegated_account<'info>(
         token_program: *ctx.accounts.token_program.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -400,7 +400,7 @@ pub fn thaw_delegated_account<'info>(
         token_program: *ctx.accounts.token_program.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -417,7 +417,7 @@ pub fn update_primary_sale_happened_via_token<'info>(
         token: *ctx.accounts.token.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -436,7 +436,7 @@ pub fn set_token_standard<'info>(
         update_authority: *ctx.accounts.update_authority.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -450,7 +450,7 @@ pub fn sign_metadata<'info>(ctx: CpiContext<'_, '_, '_, 'info, SignMetadata<'inf
         metadata: *ctx.accounts.metadata.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -466,7 +466,7 @@ pub fn remove_creator_verification<'info>(
         metadata: *ctx.accounts.metadata.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -494,7 +494,7 @@ pub fn utilize<'info>(
         use_authority_record,
     }
     .instruction(mpl_token_metadata::instructions::UtilizeInstructionArgs { number_of_uses });
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -515,7 +515,7 @@ pub fn unverify_collection<'info>(
         metadata: *ctx.accounts.metadata.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -537,7 +537,7 @@ pub fn unverify_sized_collection_item<'info>(
         payer: *ctx.accounts.payer.key,
     }
     .instruction();
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -779,8 +779,8 @@ pub struct UnverifySizedCollectionItem<'info> {
 #[derive(Clone, Debug, PartialEq)]
 pub struct MetadataAccount(mpl_token_metadata::accounts::Metadata);
 
-impl anchor_lang::AccountDeserialize for MetadataAccount {
-    fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl trixter_osec_anchor_lang::AccountDeserialize for MetadataAccount {
+    fn try_deserialize(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         let md = Self::try_deserialize_unchecked(buf)?;
         if md.key != mpl_token_metadata::types::Key::MetadataV1 {
             return Err(ErrorCode::AccountNotInitialized.into());
@@ -788,15 +788,15 @@ impl anchor_lang::AccountDeserialize for MetadataAccount {
         Ok(md)
     }
 
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         let md = mpl_token_metadata::accounts::Metadata::safe_deserialize(buf)?;
         Ok(Self(md))
     }
 }
 
-impl anchor_lang::AccountSerialize for MetadataAccount {}
+impl trixter_osec_anchor_lang::AccountSerialize for MetadataAccount {}
 
-impl anchor_lang::Owner for MetadataAccount {
+impl trixter_osec_anchor_lang::Owner for MetadataAccount {
     fn owner() -> Pubkey {
         ID
     }
@@ -812,8 +812,8 @@ impl Deref for MetadataAccount {
 #[derive(Clone, Debug, PartialEq)]
 pub struct MasterEditionAccount(mpl_token_metadata::accounts::MasterEdition);
 
-impl anchor_lang::AccountDeserialize for MasterEditionAccount {
-    fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl trixter_osec_anchor_lang::AccountDeserialize for MasterEditionAccount {
+    fn try_deserialize(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         let me = Self::try_deserialize_unchecked(buf)?;
         if me.key != mpl_token_metadata::types::Key::MasterEditionV2 {
             return Err(ErrorCode::AccountNotInitialized.into());
@@ -821,7 +821,7 @@ impl anchor_lang::AccountDeserialize for MasterEditionAccount {
         Ok(me)
     }
 
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         let result = mpl_token_metadata::accounts::MasterEdition::safe_deserialize(buf)?;
         Ok(Self(result))
     }
@@ -834,9 +834,9 @@ impl Deref for MasterEditionAccount {
     }
 }
 
-impl anchor_lang::AccountSerialize for MasterEditionAccount {}
+impl trixter_osec_anchor_lang::AccountSerialize for MasterEditionAccount {}
 
-impl anchor_lang::Owner for MasterEditionAccount {
+impl trixter_osec_anchor_lang::Owner for MasterEditionAccount {
     fn owner() -> Pubkey {
         ID
     }
@@ -848,8 +848,8 @@ pub struct TokenRecordAccount(mpl_token_metadata::accounts::TokenRecord);
 impl TokenRecordAccount {
     pub const LEN: usize = mpl_token_metadata::accounts::TokenRecord::LEN;
 }
-impl anchor_lang::AccountDeserialize for TokenRecordAccount {
-    fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl trixter_osec_anchor_lang::AccountDeserialize for TokenRecordAccount {
+    fn try_deserialize(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         let tr = Self::try_deserialize_unchecked(buf)?;
         if tr.key != mpl_token_metadata::types::Key::TokenRecord {
             return Err(ErrorCode::AccountNotInitialized.into());
@@ -857,15 +857,15 @@ impl anchor_lang::AccountDeserialize for TokenRecordAccount {
         Ok(tr)
     }
 
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         let tr = mpl_token_metadata::accounts::TokenRecord::safe_deserialize(buf)?;
         Ok(Self(tr))
     }
 }
 
-impl anchor_lang::AccountSerialize for TokenRecordAccount {}
+impl trixter_osec_anchor_lang::AccountSerialize for TokenRecordAccount {}
 
-impl anchor_lang::Owner for TokenRecordAccount {
+impl trixter_osec_anchor_lang::Owner for TokenRecordAccount {
     fn owner() -> Pubkey {
         ID
     }
@@ -881,7 +881,7 @@ impl Deref for TokenRecordAccount {
 #[derive(Clone)]
 pub struct Metadata;
 
-impl anchor_lang::Id for Metadata {
+impl trixter_osec_anchor_lang::Id for Metadata {
     fn id() -> Pubkey {
         ID
     }

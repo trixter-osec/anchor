@@ -14,7 +14,7 @@ pub fn build_memo<'info>(ctx: CpiContext<'_, '_, '_, 'info, BuildMemo>, memo: &[
             .map(|account| account.key)
             .collect::<Vec<_>>(),
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &ctx.remaining_accounts,
         ctx.signer_seeds,
@@ -28,7 +28,7 @@ pub struct BuildMemo {}
 #[derive(Clone)]
 pub struct Memo;
 
-impl anchor_lang::Id for Memo {
+impl trixter_osec_anchor_lang::Id for Memo {
     fn id() -> Pubkey {
         ID
     }

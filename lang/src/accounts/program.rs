@@ -86,10 +86,10 @@ use std::ops::Deref;
 ///
 /// # Out of the Box Types
 ///
-/// Between the [`anchor_lang`](https://docs.rs/anchor-lang/latest/anchor_lang) and [`anchor_spl`](https://docs.rs/anchor_spl/latest/anchor_spl) crates,
+/// Between the [`trixter_osec_anchor_lang`](https://docs.rs/trixter-osec-anchor-lang/latest/trixter_osec_anchor_lang) and [`anchor_spl`](https://docs.rs/anchor_spl/latest/anchor_spl) crates,
 /// the following `Program` types are provided out of the box:
 ///
-/// - [`System`](https://docs.rs/anchor-lang/latest/anchor_lang/struct.System.html)
+/// - [`System`](https://docs.rs/trixter-osec-anchor-lang/latest/trixter_osec_anchor_lang/struct.System.html)
 /// - [`AssociatedToken`](https://docs.rs/anchor-spl/latest/anchor_spl/associated_token/struct.AssociatedToken.html)
 /// - [`Token`](https://docs.rs/anchor-spl/latest/anchor_spl/token/struct.Token.html)
 ///

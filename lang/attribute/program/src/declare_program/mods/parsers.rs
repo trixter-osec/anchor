@@ -58,7 +58,7 @@ fn gen_account(idl: &Idl) -> proc_macro2::TokenStream {
         }
 
         impl TryFrom<&[u8]> for Account {
-            type Error = anchor_lang::error::Error;
+            type Error = trixter_osec_anchor_lang::error::Error;
 
             fn try_from(value: &[u8]) -> Result<Self> {
                 #(#if_statements)*
@@ -104,7 +104,7 @@ fn gen_event(idl: &Idl) -> proc_macro2::TokenStream {
         }
 
         impl TryFrom<&[u8]> for Event {
-            type Error = anchor_lang::error::Error;
+            type Error = trixter_osec_anchor_lang::error::Error;
 
             fn try_from(value: &[u8]) -> Result<Self> {
                 #(#if_statements)*
@@ -205,21 +205,21 @@ fn gen_instruction(idl: &Idl) -> proc_macro2::TokenStream {
             .collect::<Vec<_>>()
     };
 
-    let solana_instruction = quote!(anchor_lang::solana_program::instruction::Instruction);
+    let solana_instruction = quote!(trixter_osec_anchor_lang::solana_program::instruction::Instruction);
     let program_id = get_canonical_program_id();
 
     quote! {
         /// An enum that includes all instructions of the declared program.
         ///
         /// See [`Self::parse`] to create an instance from
-        /// [`anchor_lang::solana_program::instruction::Instruction`].
+        /// [`trixter_osec_anchor_lang::solana_program::instruction::Instruction`].
         pub enum Instruction {
             #(#variants,)*
         }
 
         impl Instruction {
             ///  Parse an instruction based on the given
-            /// [`anchor_lang::solana_program::instruction::Instruction`].
+            /// [`trixter_osec_anchor_lang::solana_program::instruction::Instruction`].
             ///
             /// This method checks:
             ///
@@ -239,7 +239,7 @@ fn gen_instruction(idl: &Idl) -> proc_macro2::TokenStream {
         }
 
         impl TryFrom<&#solana_instruction> for Instruction {
-            type Error = anchor_lang::error::Error;
+            type Error = trixter_osec_anchor_lang::error::Error;
 
             fn try_from(ix: &#solana_instruction) -> Result<Self> {
                 if ix.program_id != #program_id {

@@ -33,7 +33,7 @@ fn impl_idl_build(
     type_def: Result<(TokenStream, Vec<syn::TypePath>)>,
 ) -> TokenStream {
     let idl = get_idl_module_path();
-    let idl_build_trait = quote!(anchor_lang::idl::build::IdlBuild);
+    let idl_build_trait = quote!(trixter_osec_anchor_lang::idl::build::IdlBuild);
     let (impl_generics, ty_generics, where_clause) = generics.split_for_impl();
 
     let (idl_type_def, insert_defined) = match type_def {

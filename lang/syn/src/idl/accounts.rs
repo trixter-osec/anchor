@@ -49,7 +49,7 @@ pub fn gen_idl_build_impl_accounts_struct(accounts: &AccountsStruct) -> TokenStr
                     // is supported.
                     //
                     // TODO: Remove this once either `bincode` serialization is supported or
-                    // we wrap the type in order to implement `IdlBuild` in `anchor-lang`.
+                    // we wrap the type in order to implement `IdlBuild` in `trixter-osec-anchor-lang`.
                         if !ty
                             .account_type_path
                             .path
@@ -169,8 +169,8 @@ fn get_address(acc: &Field) -> TokenStream {
                 quote! { None }
             } else {
                 let id_trait = matches!(acc.ty, Ty::Program(_))
-                    .then(|| quote!(anchor_lang::Id))
-                    .unwrap_or_else(|| quote!(anchor_lang::solana_program::sysvar::SysvarId));
+                    .then(|| quote!(trixter_osec_anchor_lang::Id))
+                    .unwrap_or_else(|| quote!(trixter_osec_anchor_lang::solana_program::sysvar::SysvarId));
                 quote! { Some(<#ty as #id_trait>::id().to_string()) }
             }
         }

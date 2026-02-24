@@ -46,13 +46,13 @@ impl AccountSerialize for ProgramData {
 
 impl Owner for ProgramData {
     fn owner() -> crate::solana_program::pubkey::Pubkey {
-        anchor_lang::solana_program::bpf_loader_upgradeable::ID
+        trixter_osec_anchor_lang::solana_program::bpf_loader_upgradeable::ID
     }
 }
 
 impl Owner for UpgradeableLoaderState {
     fn owner() -> Pubkey {
-        anchor_lang::solana_program::bpf_loader_upgradeable::ID
+        trixter_osec_anchor_lang::solana_program::bpf_loader_upgradeable::ID
     }
 }
 

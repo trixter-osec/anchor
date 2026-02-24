@@ -54,7 +54,7 @@ trixter-osec-anchor-derive-accounts = { path = "./derive/accounts", version = "0
 trixter-osec-anchor-derive-serde = { path = "./derive/serde", version = "0.40.4" }
 trixter-osec-anchor-derive-space = { path = "./derive/space", version = "0.40.4" }
 
-# `anchor-lang-idl` should only be included with `idl-build` feature
+# `trixter-osec-anchor-lang-idl` should only be included with `idl-build` feature
 trixter-osec-anchor-lang-idl = { path = "../idl", version = "0.1.2", optional = true }
 
 base64 = "0.21"

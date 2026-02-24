@@ -41,7 +41,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                 _ => quote! {
                     let mut return_data = Vec::with_capacity(256);
                     result.serialize(&mut return_data).unwrap();
-                    anchor_lang::solana_program::program::set_return_data(&return_data);
+                    trixter_osec_anchor_lang::solana_program::program::set_return_data(&return_data);
                 },
             };
 
@@ -103,18 +103,18 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                     __program_id: &Pubkey,
                     __accounts: &'info[AccountInfo<'info>],
                     __ix_data: &[u8],
-                ) -> anchor_lang::Result<()> {
+                ) -> trixter_osec_anchor_lang::Result<()> {
                     #[cfg(not(feature = "no-log-ix-name"))]
-                    anchor_lang::prelude::msg!(#ix_name_log);
+                    trixter_osec_anchor_lang::prelude::msg!(#ix_name_log);
 
                     #param_validation
                     // Deserialize data.
                     let ix = instruction::#ix_name::deserialize(&mut &__ix_data[..])
-                        .map_err(|_| anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
+                        .map_err(|_| trixter_osec_anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
                     let instruction::#variant_arm = ix;
 
                     // Bump collector.
-                    let mut __bumps = <#anchor as anchor_lang::Bumps>::Bumps::default();
+                    let mut __bumps = <#anchor as trixter_osec_anchor_lang::Bumps>::Bumps::default();
 
                     let mut __reallocs = std::collections::BTreeSet::new();
 
@@ -130,7 +130,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
 
                     // Invoke user defined handler.
                     let result = #program_name::#ix_method_name(
-                        anchor_lang::context::Context::new(
+                        trixter_osec_anchor_lang::context::Context::new(
                             __program_id,
                             &mut __accounts,
                             __remaining_accounts,
@@ -185,18 +185,18 @@ fn generate_event_cpi_mod() -> proc_macro2::TokenStream {
                     program_id: &Pubkey,
                     accounts: &[AccountInfo],
                     event_data: &[u8],
-                ) -> anchor_lang::Result<()> {
+                ) -> trixter_osec_anchor_lang::Result<()> {
                     let given_event_authority = next_account_info(&mut accounts.iter())?;
                     if !given_event_authority.is_signer {
-                        return Err(anchor_lang::error::Error::from(
-                            anchor_lang::error::ErrorCode::ConstraintSigner,
+                        return Err(trixter_osec_anchor_lang::error::Error::from(
+                            trixter_osec_anchor_lang::error::ErrorCode::ConstraintSigner,
                         )
                         .with_account_name(#authority_name));
                     }
 
                     if given_event_authority.key() != crate::EVENT_AUTHORITY_AND_BUMP.0 {
-                        return Err(anchor_lang::error::Error::from(
-                            anchor_lang::error::ErrorCode::ConstraintSeeds,
+                        return Err(trixter_osec_anchor_lang::error::Error::from(
+                            trixter_osec_anchor_lang::error::ErrorCode::ConstraintSeeds,
                         )
                         .with_account_name(#authority_name)
                         .with_pubkeys((given_event_authority.key(), crate::EVENT_AUTHORITY_AND_BUMP.0)));

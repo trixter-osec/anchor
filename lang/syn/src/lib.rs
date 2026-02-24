@@ -483,22 +483,22 @@ impl Field {
     pub fn container_ty(&self) -> proc_macro2::TokenStream {
         match &self.ty {
             Ty::Account(_) => quote! {
-                anchor_lang::accounts::account::Account
+                trixter_osec_anchor_lang::accounts::account::Account
             },
             Ty::LazyAccount(_) => quote! {
-                anchor_lang::accounts::lazy_account::LazyAccount
+                trixter_osec_anchor_lang::accounts::lazy_account::LazyAccount
             },
             Ty::AccountLoader(_) => quote! {
-                anchor_lang::accounts::account_loader::AccountLoader
+                trixter_osec_anchor_lang::accounts::account_loader::AccountLoader
             },
             Ty::Migration(_) => quote! {
-                anchor_lang::accounts::migration::Migration
+                trixter_osec_anchor_lang::accounts::migration::Migration
             },
-            Ty::Sysvar(_) => quote! { anchor_lang::accounts::sysvar::Sysvar },
-            Ty::Program(_) => quote! { anchor_lang::accounts::program::Program },
-            Ty::Interface(_) => quote! { anchor_lang::accounts::interface::Interface },
+            Ty::Sysvar(_) => quote! { trixter_osec_anchor_lang::accounts::sysvar::Sysvar },
+            Ty::Program(_) => quote! { trixter_osec_anchor_lang::accounts::program::Program },
+            Ty::Interface(_) => quote! { trixter_osec_anchor_lang::accounts::interface::Interface },
             Ty::InterfaceAccount(_) => {
-                quote! { anchor_lang::accounts::interface_account::InterfaceAccount }
+                quote! { trixter_osec_anchor_lang::accounts::interface_account::InterfaceAccount }
             }
             Ty::AccountInfo => quote! {},
             Ty::UncheckedAccount => quote! {},

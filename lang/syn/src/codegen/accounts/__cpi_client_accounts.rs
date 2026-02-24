@@ -66,12 +66,12 @@ pub fn generate(
                 if f.is_optional {
                     quote! {
                         #docs
-                        pub #name: Option<anchor_lang::solana_program::account_info::AccountInfo<'info>>
+                        pub #name: Option<trixter_osec_anchor_lang::solana_program::account_info::AccountInfo<'info>>
                     }
                 } else {
                     quote! {
                         #docs
-                        pub #name: anchor_lang::solana_program::account_info::AccountInfo<'info>
+                        pub #name: trixter_osec_anchor_lang::solana_program::account_info::AccountInfo<'info>
                     }
                 }
             }
@@ -98,21 +98,21 @@ pub fn generate(
                     true => quote! {true},
                 };
                 let meta = match f.constraints.is_mutable() {
-                    false => quote! { anchor_lang::solana_program::instruction::AccountMeta::new_readonly },
-                    true => quote! { anchor_lang::solana_program::instruction::AccountMeta::new },
+                    false => quote! { trixter_osec_anchor_lang::solana_program::instruction::AccountMeta::new_readonly },
+                    true => quote! { trixter_osec_anchor_lang::solana_program::instruction::AccountMeta::new },
                 };
                 let name = &f.ident;
                 if f.is_optional {
                     quote! {
                         if let Some(#name) = &self.#name {
-                            account_metas.push(#meta(anchor_lang::Key::key(#name), #is_signer));
+                            account_metas.push(#meta(trixter_osec_anchor_lang::Key::key(#name), #is_signer));
                         } else {
-                            account_metas.push(anchor_lang::solana_program::instruction::AccountMeta::new_readonly(#program_id, false));
+                            account_metas.push(trixter_osec_anchor_lang::solana_program::instruction::AccountMeta::new_readonly(#program_id, false));
                         }
                     }
                 } else {
                     quote! {
-                        account_metas.push(#meta(anchor_lang::Key::key(&self.#name), #is_signer));
+                        account_metas.push(#meta(trixter_osec_anchor_lang::Key::key(&self.#name), #is_signer));
                     }
                 }
             }
@@ -125,7 +125,7 @@ pub fn generate(
         .map(|f: &AccountField| {
             let name = &f.ident();
             quote! {
-                account_infos.extend(anchor_lang::ToAccountInfos::to_account_infos(&self.#name));
+                account_infos.extend(trixter_osec_anchor_lang::ToAccountInfos::to_account_infos(&self.#name));
             }
         })
         .collect();
@@ -187,8 +187,8 @@ pub fn generate(
             }
 
             #[automatically_derived]
-            impl #generics anchor_lang::ToAccountMetas for #name #generics {
-                fn to_account_metas(&self, is_signer: Option<bool>) -> Vec<anchor_lang::solana_program::instruction::AccountMeta> {
+            impl #generics trixter_osec_anchor_lang::ToAccountMetas for #name #generics {
+                fn to_account_metas(&self, is_signer: Option<bool>) -> Vec<trixter_osec_anchor_lang::solana_program::instruction::AccountMeta> {
                     let mut account_metas = vec![];
                     #(#account_struct_metas)*
                     account_metas
@@ -196,8 +196,8 @@ pub fn generate(
             }
 
             #[automatically_derived]
-            impl<'info> anchor_lang::ToAccountInfos<'info> for #name #generics {
-                fn to_account_infos(&self) -> Vec<anchor_lang::solana_program::account_info::AccountInfo<'info>> {
+            impl<'info> trixter_osec_anchor_lang::ToAccountInfos<'info> for #name #generics {
+                fn to_account_infos(&self) -> Vec<trixter_osec_anchor_lang::solana_program::account_info::AccountInfo<'info>> {
                     let mut account_infos = vec![];
                     #(#account_struct_infos)*
                     account_infos

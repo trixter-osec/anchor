@@ -6,7 +6,7 @@
 //! <https://spl.solana.com/token-2022/extensions#transfer-hook>
 
 use {
-    anchor_lang::prelude::*,
+    trixter_osec_anchor_lang::prelude::*,
     anchor_spl::{
         token_2022::{
             spl_token_2022::{

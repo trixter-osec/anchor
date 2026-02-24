@@ -63,7 +63,7 @@ pub fn error_code(
     proc_macro::TokenStream::from(error)
 }
 
-/// Generates an [`Error::AnchorError`](../../anchor_lang/error/enum.Error.html) that includes file and line information.
+/// Generates an [`Error::AnchorError`](../../trixter_osec_anchor_lang/error/enum.Error.html) that includes file and line information.
 ///
 /// # Example
 /// ```rust,ignore
@@ -92,10 +92,10 @@ fn create_error(error_code: Expr, source: bool, account_name: Option<Expr>) -> T
     let error_origin = match (source, account_name) {
         (false, None) => quote! { None },
         (false, Some(account_name)) => quote! {
-            Some(anchor_lang::error::ErrorOrigin::AccountName(#account_name.to_string()))
+            Some(trixter_osec_anchor_lang::error::ErrorOrigin::AccountName(#account_name.to_string()))
         },
         (true, _) => quote! {
-            Some(anchor_lang::error::ErrorOrigin::Source(anchor_lang::error::Source {
+            Some(trixter_osec_anchor_lang::error::ErrorOrigin::Source(trixter_osec_anchor_lang::error::Source {
                 filename: file!(),
                 line: line!()
             }))
@@ -103,8 +103,8 @@ fn create_error(error_code: Expr, source: bool, account_name: Option<Expr>) -> T
     };
 
     TokenStream::from(quote! {
-        anchor_lang::error::Error::from(
-            anchor_lang::error::AnchorError {
+        trixter_osec_anchor_lang::error::Error::from(
+            trixter_osec_anchor_lang::error::AnchorError {
                 error_name: #error_code.name(),
                 error_code_number: #error_code.into(),
                 error_msg: #error_code.to_string(),

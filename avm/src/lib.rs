@@ -273,9 +273,9 @@ fn get_anchor_version_from_commit(commit: &str) -> Result<Version> {
         ));
     };
 
-    let anchor_cli_cargo_toml = response.text()?;
-    let anchor_cli_manifest = Manifest::from_str(&anchor_cli_cargo_toml)?;
-    let mut version = anchor_cli_manifest.package().version().parse::<Version>()?;
+    let trixter_osec_anchor_cli_cargo_toml = response.text()?;
+    let trixter_osec_anchor_cli_manifest = Manifest::from_str(&trixter_osec_anchor_cli_cargo_toml)?;
+    let mut version = trixter_osec_anchor_cli_manifest.package().version().parse::<Version>()?;
     version.pre = Prerelease::new(commit)?;
 
     Ok(version)

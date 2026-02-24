@@ -2,7 +2,7 @@ pub mod utils;
 
 use {
     crate::utils::*,
-    anchor_lang::{
+    trixter_osec_anchor_lang::{
         prelude::*,
         solana_program::{
             program::{invoke, invoke_signed},

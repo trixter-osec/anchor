@@ -6,36 +6,36 @@ macro_rules! vote_weight_record {
         #[derive(Clone)]
         pub struct VoterWeightRecord(spl_governance_addin_api::voter_weight::VoterWeightRecord);
 
-        impl anchor_lang::AccountDeserialize for VoterWeightRecord {
-            fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+        impl trixter_osec_anchor_lang::AccountDeserialize for VoterWeightRecord {
+            fn try_deserialize(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
                 let mut data = buf;
                 let vwr: spl_governance_addin_api::voter_weight::VoterWeightRecord =
-                    anchor_lang::AnchorDeserialize::deserialize(&mut data)
-                        .map_err(|_| anchor_lang::error::ErrorCode::AccountDidNotDeserialize)?;
-                if !anchor_lang::solana_program::program_pack::IsInitialized::is_initialized(&vwr) {
-                    return Err(anchor_lang::error::ErrorCode::AccountDidNotSerialize.into());
+                    trixter_osec_anchor_lang::AnchorDeserialize::deserialize(&mut data)
+                        .map_err(|_| trixter_osec_anchor_lang::error::ErrorCode::AccountDidNotDeserialize)?;
+                if !trixter_osec_anchor_lang::solana_program::program_pack::IsInitialized::is_initialized(&vwr) {
+                    return Err(trixter_osec_anchor_lang::error::ErrorCode::AccountDidNotSerialize.into());
                 }
                 Ok(VoterWeightRecord(vwr))
             }
 
-            fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+            fn try_deserialize_unchecked(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
                 let mut data = buf;
                 let vwr: spl_governance_addin_api::voter_weight::VoterWeightRecord =
-                    anchor_lang::AnchorDeserialize::deserialize(&mut data)
-                        .map_err(|_| anchor_lang::error::ErrorCode::AccountDidNotDeserialize)?;
+                    trixter_osec_anchor_lang::AnchorDeserialize::deserialize(&mut data)
+                        .map_err(|_| trixter_osec_anchor_lang::error::ErrorCode::AccountDidNotDeserialize)?;
                 Ok(VoterWeightRecord(vwr))
             }
         }
 
-        impl anchor_lang::AccountSerialize for VoterWeightRecord {
-            fn try_serialize<W: std::io::Write>(&self, writer: &mut W) -> anchor_lang::Result<()> {
-                anchor_lang::AnchorSerialize::serialize(&self.0, writer)
-                    .map_err(|_| anchor_lang::error::ErrorCode::AccountDidNotSerialize)?;
+        impl trixter_osec_anchor_lang::AccountSerialize for VoterWeightRecord {
+            fn try_serialize<W: std::io::Write>(&self, writer: &mut W) -> trixter_osec_anchor_lang::Result<()> {
+                trixter_osec_anchor_lang::AnchorSerialize::serialize(&self.0, writer)
+                    .map_err(|_| trixter_osec_anchor_lang::error::ErrorCode::AccountDidNotSerialize)?;
                 Ok(())
             }
         }
 
-        impl anchor_lang::Owner for VoterWeightRecord {
+        impl trixter_osec_anchor_lang::Owner for VoterWeightRecord {
             fn owner() -> Pubkey {
                 $id
             }
@@ -56,10 +56,10 @@ macro_rules! vote_weight_record {
         }
 
         #[cfg(feature = "idl-build")]
-        impl anchor_lang::IdlBuild for VoterWeightRecord {}
+        impl trixter_osec_anchor_lang::IdlBuild for VoterWeightRecord {}
 
         #[cfg(feature = "idl-build")]
-        impl anchor_lang::Discriminator for VoterWeightRecord {
+        impl trixter_osec_anchor_lang::Discriminator for VoterWeightRecord {
             const DISCRIMINATOR: &'static [u8] = &[];
         }
     };

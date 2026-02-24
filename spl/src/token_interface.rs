@@ -14,8 +14,8 @@ static IDS: [Pubkey; 2] = [spl_token_interface::ID, spl_token_2022_interface::ID
 #[derive(Clone, Debug, Default, PartialEq, Copy)]
 pub struct TokenAccount(spl_token_2022::state::Account);
 
-impl anchor_lang::AccountDeserialize for TokenAccount {
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl trixter_osec_anchor_lang::AccountDeserialize for TokenAccount {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         spl_token_2022::extension::StateWithExtensions::<spl_token_2022::state::Account>::unpack(
             buf,
         )
@@ -24,9 +24,9 @@ impl anchor_lang::AccountDeserialize for TokenAccount {
     }
 }
 
-impl anchor_lang::AccountSerialize for TokenAccount {}
+impl trixter_osec_anchor_lang::AccountSerialize for TokenAccount {}
 
-impl anchor_lang::Owners for TokenAccount {
+impl trixter_osec_anchor_lang::Owners for TokenAccount {
     fn owners() -> &'static [Pubkey] {
         &IDS
     }
@@ -43,17 +43,17 @@ impl Deref for TokenAccount {
 #[derive(Clone, Debug, Default, PartialEq, Copy)]
 pub struct Mint(spl_token_2022::state::Mint);
 
-impl anchor_lang::AccountDeserialize for Mint {
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl trixter_osec_anchor_lang::AccountDeserialize for Mint {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         spl_token_2022::extension::StateWithExtensions::<spl_token_2022::state::Mint>::unpack(buf)
             .map(|t| Mint(t.base))
             .map_err(Into::into)
     }
 }
 
-impl anchor_lang::AccountSerialize for Mint {}
+impl trixter_osec_anchor_lang::AccountSerialize for Mint {}
 
-impl anchor_lang::Owners for Mint {
+impl trixter_osec_anchor_lang::Owners for Mint {
     fn owners() -> &'static [Pubkey] {
         &IDS
     }
@@ -70,7 +70,7 @@ impl Deref for Mint {
 #[derive(Clone)]
 pub struct TokenInterface;
 
-impl anchor_lang::Ids for TokenInterface {
+impl trixter_osec_anchor_lang::Ids for TokenInterface {
     fn ids() -> &'static [Pubkey] {
         &IDS
     }
@@ -78,7 +78,7 @@ impl anchor_lang::Ids for TokenInterface {
 
 pub type ExtensionsVec = Vec<ExtensionType>;
 
-pub fn find_mint_account_size(extensions: Option<&ExtensionsVec>) -> anchor_lang::Result<usize> {
+pub fn find_mint_account_size(extensions: Option<&ExtensionsVec>) -> trixter_osec_anchor_lang::Result<usize> {
     if let Some(extensions) = extensions {
         Ok(ExtensionType::try_calculate_account_len::<
             spl_token_2022::state::Mint,
@@ -89,8 +89,8 @@ pub fn find_mint_account_size(extensions: Option<&ExtensionsVec>) -> anchor_lang
 }
 
 pub fn get_mint_extension_data<T: Extension + Pod>(
-    account: &anchor_lang::solana_program::account_info::AccountInfo,
-) -> anchor_lang::Result<T> {
+    account: &trixter_osec_anchor_lang::solana_program::account_info::AccountInfo,
+) -> trixter_osec_anchor_lang::Result<T> {
     let mint_data = account.data.borrow();
     let mint_with_extension =
         StateWithExtensions::<spl_token_2022::state::Mint>::unpack(&mint_data)?;

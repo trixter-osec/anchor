@@ -91,7 +91,7 @@ pub mod error;
 pub mod instructions;
 pub mod state;
 
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 pub use constants::*;
 pub use instructions::*;
@@ -112,7 +112,7 @@ pub mod my_project {
 **Instruction handler** (`instructions/initialize.rs`):
 
 ```rust filename="instructions/initialize.rs"
-use anchor_lang::prelude::*;
+use trixter_osec_anchor_lang::prelude::*;
 
 #[derive(Accounts)]
 pub struct Initialize {}
@@ -181,7 +181,7 @@ The Rust test file will be at `/tests/src/test_initialize.rs`.
 ```rust filename="test_initialize.rs"
 use std::str::FromStr;
 
-use anchor_client::{
+use trixter_osec_anchor_client::{
     solana_sdk::{
         commitment_config::CommitmentConfig, pubkey::Pubkey, signature::read_keypair_file,
     },

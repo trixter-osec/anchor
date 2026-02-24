@@ -1,6 +1,6 @@
 #
 # Docker image to generate deterministic, verifiable builds of Anchor programs.
-# This must be run *after* a given ANCHOR_CLI version is published and a git tag
+# This must be run *after* a given trixter_osec_anchor_cli version is published and a git tag
 # is released on GitHub.
 #
 
@@ -9,7 +9,7 @@ FROM ubuntu:22.04@sha256:1ec65b2719518e27d4d25f104d93f9fac60dc437f81452302406825
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG SOLANA_CLI
-ARG ANCHOR_CLI
+ARG trixter_osec_anchor_cli
 ARG NODE_VERSION="v20.18.0"
 
 ENV HOME="/root"
@@ -41,7 +41,7 @@ RUN . $NVM_DIR/nvm.sh && \
 RUN sh -c "$(curl -sSfL https://release.anza.xyz/${SOLANA_CLI}/install)"
 
 # Install anchor.
-RUN cargo install --git https://github.com/coral-xyz/anchor --tag ${ANCHOR_CLI} anchor-cli --locked
+RUN cargo install --git https://github.com/coral-xyz/anchor --tag ${trixter_osec_anchor_cli} anchor-cli --locked
 
 # Build a dummy program to bootstrap the BPF SDK (doing this speeds up builds).
 RUN mkdir -p /tmp && cd tmp && anchor init dummy && cd dummy && anchor build

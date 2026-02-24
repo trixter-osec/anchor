@@ -17,7 +17,7 @@ pub fn metadata_pointer_initialize<'info>(
         authority,
         metadata_address,
     )?;
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.token_program_id, ctx.accounts.mint],
         ctx.signer_seeds,

@@ -33,7 +33,7 @@ pub fn authorize<'info>(
     if let Some(c) = custodian {
         account_infos.push(c);
     }
-    anchor_lang::solana_program::program::invoke_signed(&ix, &account_infos, ctx.signer_seeds)
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(&ix, &account_infos, ctx.signer_seeds)
         .map_err(Into::into)
 }
 
@@ -59,7 +59,7 @@ pub fn withdraw<'info>(
     if let Some(c) = custodian {
         account_infos.push(c);
     }
-    anchor_lang::solana_program::program::invoke_signed(&ix, &account_infos, ctx.signer_seeds)
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(&ix, &account_infos, ctx.signer_seeds)
         .map_err(Into::into)
 }
 
@@ -67,7 +67,7 @@ pub fn deactivate_stake<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, DeactivateStake<'info>>,
 ) -> Result<()> {
     let ix = stake::instruction::deactivate_stake(ctx.accounts.stake.key, ctx.accounts.staker.key);
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.stake, ctx.accounts.clock, ctx.accounts.staker],
         ctx.signer_seeds,
@@ -127,19 +127,19 @@ pub struct DeactivateStake<'info> {
 #[derive(Clone)]
 pub struct StakeAccount(StakeStateV2);
 
-impl anchor_lang::AccountDeserialize for StakeAccount {
-    fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl trixter_osec_anchor_lang::AccountDeserialize for StakeAccount {
+    fn try_deserialize(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         Self::try_deserialize_unchecked(buf)
     }
 
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> trixter_osec_anchor_lang::Result<Self> {
         StakeStateV2::deserialize(buf).map(Self).map_err(Into::into)
     }
 }
 
-impl anchor_lang::AccountSerialize for StakeAccount {}
+impl trixter_osec_anchor_lang::AccountSerialize for StakeAccount {}
 
-impl anchor_lang::Owner for StakeAccount {
+impl trixter_osec_anchor_lang::Owner for StakeAccount {
     fn owner() -> Pubkey {
         ID
     }
@@ -156,7 +156,7 @@ impl Deref for StakeAccount {
 #[derive(Clone)]
 pub struct Stake;
 
-impl anchor_lang::Id for Stake {
+impl trixter_osec_anchor_lang::Id for Stake {
     fn id() -> Pubkey {
         ID
     }

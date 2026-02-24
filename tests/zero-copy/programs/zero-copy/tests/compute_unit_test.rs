@@ -1,8 +1,8 @@
 #![cfg(feature = "test-sbf")]
 
 use {
-    anchor_client::{
-        anchor_lang::Discriminator,
+    trixter_osec_anchor_client::{
+        trixter_osec_anchor_lang::Discriminator,
         solana_account::Account,
         solana_sdk::{
             commitment_config::CommitmentConfig,

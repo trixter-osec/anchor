@@ -1,7 +1,7 @@
-use anchor_cli::Opts;
+use trixter_osec_anchor_cli::Opts;
 use anyhow::Result;
 use clap::Parser;
 
 fn main() -> Result<()> {
-    anchor_cli::entry(Opts::parse())
+    trixter_osec_anchor_cli::entry(Opts::parse())
 }

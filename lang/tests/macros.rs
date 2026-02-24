@@ -3,7 +3,7 @@ use core::str::FromStr;
 use trixter_osec_anchor_lang::solana_program::pubkey::Pubkey;
 
 mod id {
-    anchor_lang::declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+    trixter_osec_anchor_lang::declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 }
 
 #[test]
@@ -17,8 +17,8 @@ fn test_declare_id() {
 }
 
 mod pk {
-    pub(super) const PUBKEY: anchor_lang::solana_program::pubkey::Pubkey =
-        anchor_lang::pubkey!("A7yUYJNEVYRLE4QWsnc9rE9JRsm7DfqEmLscQVwkffAk");
+    pub(super) const PUBKEY: trixter_osec_anchor_lang::solana_program::pubkey::Pubkey =
+        trixter_osec_anchor_lang::pubkey!("A7yUYJNEVYRLE4QWsnc9rE9JRsm7DfqEmLscQVwkffAk");
 }
 
 #[test]

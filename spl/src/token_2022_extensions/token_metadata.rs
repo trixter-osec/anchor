@@ -24,7 +24,7 @@ pub fn token_metadata_initialize<'info>(
         symbol,
         uri,
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.program_id,
@@ -57,7 +57,7 @@ pub fn token_metadata_update_authority<'info>(
         ctx.accounts.current_authority.key,
         new_authority,
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.program_id,
@@ -89,7 +89,7 @@ pub fn token_metadata_update_field<'info>(
         field,
         value,
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.program_id,

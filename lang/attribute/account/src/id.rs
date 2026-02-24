@@ -1,6 +1,6 @@
 //! Copied from solana/sdk/macro so that Anchor programs don't need to specify
 //! `solana_program` as an additional crate dependency, but instead can access
-//! it via `anchor_lang::declare_id`.
+//! it via `trixter_osec_anchor_lang::declare_id`.
 //!
 //! Convenience macro to declare a static public key and functions to interact with it
 //!
@@ -42,7 +42,7 @@ fn id_to_tokens(
         #[cfg(feature = "event-cpi")]
         quote! {
             pub const EVENT_AUTHORITY_AND_BUMP: (#pubkey_type, u8) = {
-                let (address, bump) = anchor_lang::derive_program_address(&[b"__event_authority"], &ID_CONST.to_bytes());
+                let (address, bump) = trixter_osec_anchor_lang::derive_program_address(&[b"__event_authority"], &ID_CONST.to_bytes());
                 (#pubkey_type::new_from_array(address), bump)
             };
         }
@@ -87,7 +87,7 @@ impl Parse for Pubkey {
     fn parse(input: ParseStream) -> Result<Self> {
         parse_id(
             input,
-            quote! { anchor_lang::solana_program::pubkey::Pubkey },
+            quote! { trixter_osec_anchor_lang::solana_program::pubkey::Pubkey },
         )
         .map(Self)
     }
@@ -106,7 +106,7 @@ impl Parse for Id {
     fn parse(input: ParseStream) -> Result<Self> {
         parse_id(
             input,
-            quote! { anchor_lang::solana_program::pubkey::Pubkey },
+            quote! { trixter_osec_anchor_lang::solana_program::pubkey::Pubkey },
         )
         .map(Self)
     }
@@ -116,7 +116,7 @@ impl ToTokens for Id {
     fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream) {
         id_to_tokens(
             &self.0,
-            quote! { anchor_lang::solana_program::pubkey::Pubkey },
+            quote! { trixter_osec_anchor_lang::solana_program::pubkey::Pubkey },
             tokens,
         )
     }

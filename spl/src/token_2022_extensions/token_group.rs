@@ -18,7 +18,7 @@ pub fn token_group_initialize<'info>(
         update_authority,
         max_size,
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.program_id,
@@ -50,7 +50,7 @@ pub fn token_member_initialize<'info>(
         ctx.accounts.group.key,
         ctx.accounts.group_update_authority.key,
     );
-    anchor_lang::solana_program::program::invoke_signed(
+    trixter_osec_anchor_lang::solana_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.program_id,

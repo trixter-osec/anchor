@@ -23,7 +23,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                 let method_name = &ix.ident;
                 let args: Vec<&syn::PatType> = ix.args.iter().map(|arg| &arg.raw_arg).collect();
                 let discriminator = match generate_ix_variant_name(&name_str) {
-                    Ok(name) => quote! { <instruction::#name as anchor_lang::Discriminator>::DISCRIMINATOR },
+                    Ok(name) => quote! { <instruction::#name as trixter_osec_anchor_lang::Discriminator>::DISCRIMINATOR },
                     Err(e) => {
                         let err = e.to_string();
                         return quote! { compile_error!(concat!("error generating ix variant name: `", #err, "`")) };
@@ -32,9 +32,9 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                 let ret_type = &ix.returns.ty.to_token_stream();
                 let ix_cfgs = &ix.cfgs;
                 let (method_ret, maybe_return) = match ret_type.to_string().as_str() {
-                    "()" => (quote! {anchor_lang::Result<()> }, quote! { Ok(()) }),
+                    "()" => (quote! {trixter_osec_anchor_lang::Result<()> }, quote! { Ok(()) }),
                     _ => (
-                        quote! { anchor_lang::Result<crate::cpi::Return::<#ret_type>> },
+                        quote! { trixter_osec_anchor_lang::Result<crate::cpi::Return::<#ret_type>> },
                         quote! { Ok(crate::cpi::Return::<#ret_type> { phantom: crate::cpi::PhantomData }) }
                     )
                 };
@@ -42,7 +42,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                 quote! {
                     #(#ix_cfgs)*
                     pub fn #method_name<'a, 'b, 'c, 'info>(
-                        ctx: anchor_lang::context::CpiContext<'a, 'b, 'c, 'info, #accounts_ident<'info>>,
+                        ctx: trixter_osec_anchor_lang::context::CpiContext<'a, 'b, 'c, 'info, #accounts_ident<'info>>,
                         #(#args),*
                     ) -> #method_ret {
                         let ix = {
@@ -50,16 +50,16 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                             let mut data = Vec::with_capacity(256);
                             data.extend_from_slice(#discriminator);
                             AnchorSerialize::serialize(&ix, &mut data)
-                                .map_err(|_| anchor_lang::error::ErrorCode::InstructionDidNotSerialize)?;
+                                .map_err(|_| trixter_osec_anchor_lang::error::ErrorCode::InstructionDidNotSerialize)?;
                             let accounts = ctx.to_account_metas(None);
-                            anchor_lang::solana_program::instruction::Instruction {
+                            trixter_osec_anchor_lang::solana_program::instruction::Instruction {
                                 program_id: ctx.program_id,
                                 accounts,
                                 data,
                             }
                         };
                         let mut acc_infos = ctx.to_account_infos();
-                        anchor_lang::solana_program::program::invoke_signed(
+                        trixter_osec_anchor_lang::solana_program::program::invoke_signed(
                             &ix,
                             &acc_infos,
                             ctx.signer_seeds,
@@ -91,7 +91,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
 
             impl<T: AnchorDeserialize> Return<T> {
                 pub fn get(&self) -> T {
-                    let (_key, data) = anchor_lang::solana_program::program::get_return_data().unwrap();
+                    let (_key, data) = trixter_osec_anchor_lang::solana_program::program::get_return_data().unwrap();
                     T::try_from_slice(&data).unwrap()
                 }
             }

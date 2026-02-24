@@ -18,12 +18,12 @@
 //! generating clients from IDL is the same.
 //!
 //! For detailed tutorials and examples on how to use Anchor, see the guided
-//! [tutorials](https://anchor-lang.com) or examples in the GitHub
+//! [tutorials](https://trixter-osec-anchor-lang.com) or examples in the GitHub
 //! [repository](https://github.com/coral-xyz/anchor).
 //!
 //! Presented here are the Rust primitives for building on Solana.
 
-extern crate self as anchor_lang;
+extern crate self as trixter_osec_anchor_lang;
 
 use crate::solana_program::account_info::AccountInfo;
 use crate::solana_program::instruction::AccountMeta;
@@ -488,7 +488,7 @@ impl Key for Pubkey {
 }
 
 /// The prelude contains all commonly used components of the crate.
-/// All programs should include it via `anchor_lang::prelude::*;`.
+/// All programs should include it via `trixter_osec_anchor_lang::prelude::*;`.
 pub mod prelude {
     pub use super::{
         access_control, account, accounts::account::Account,
@@ -506,8 +506,8 @@ pub mod prelude {
         DuplicateMutableAccountKeys, Id, InitSpace, Key, Lamports, Owner, Owners, ProgramData,
         Result, Space, ToAccountInfo, ToAccountInfos, ToAccountMetas,
     };
-    // Re-export the crate as anchor_lang for declare_program! macro
-    pub use crate as anchor_lang;
+    // Re-export the crate as trixter_osec_anchor_lang for declare_program! macro
+    pub use crate as trixter_osec_anchor_lang;
     pub use crate::solana_program::account_info::{next_account_info, AccountInfo};
     pub use crate::solana_program::instruction::AccountMeta;
     pub use crate::solana_program::program_error::ProgramError;
@@ -627,12 +627,12 @@ pub mod __private {
 macro_rules! require {
     ($invariant:expr, $error:tt $(,)?) => {
         if !($invariant) {
-            return Err(anchor_lang::error!($crate::ErrorCode::$error));
+            return Err(trixter_osec_anchor_lang::error!($crate::ErrorCode::$error));
         }
     };
     ($invariant:expr, $error:expr $(,)?) => {
         if !($invariant) {
-            return Err(anchor_lang::error!($error));
+            return Err(trixter_osec_anchor_lang::error!($error));
         }
     };
 }
@@ -661,7 +661,7 @@ macro_rules! require_eq {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 != $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireEqViolated)
+            return Err(error!(trixter_osec_anchor_lang::error::ErrorCode::RequireEqViolated)
                 .with_values(($value1, $value2)));
         }
     };
@@ -691,7 +691,7 @@ macro_rules! require_neq {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 == $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireNeqViolated)
+            return Err(error!(trixter_osec_anchor_lang::error::ErrorCode::RequireNeqViolated)
                 .with_values(($value1, $value2)));
         }
     };
@@ -721,7 +721,7 @@ macro_rules! require_keys_eq {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 != $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireKeysEqViolated)
+            return Err(error!(trixter_osec_anchor_lang::error::ErrorCode::RequireKeysEqViolated)
                 .with_pubkeys(($value1, $value2)));
         }
     };
@@ -752,7 +752,7 @@ macro_rules! require_keys_neq {
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 == $value2 {
             return Err(
-                error!(anchor_lang::error::ErrorCode::RequireKeysNeqViolated)
+                error!(trixter_osec_anchor_lang::error::ErrorCode::RequireKeysNeqViolated)
                     .with_pubkeys(($value1, $value2)),
             );
         }
@@ -783,7 +783,7 @@ macro_rules! require_gt {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 <= $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireGtViolated)
+            return Err(error!(trixter_osec_anchor_lang::error::ErrorCode::RequireGtViolated)
                 .with_values(($value1, $value2)));
         }
     };
@@ -811,7 +811,7 @@ macro_rules! require_gte {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 < $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireGteViolated)
+            return Err(error!(trixter_osec_anchor_lang::error::ErrorCode::RequireGteViolated)
                 .with_values(($value1, $value2)));
         }
     };
@@ -836,10 +836,10 @@ macro_rules! require_gte {
 #[macro_export]
 macro_rules! err {
     ($error:tt $(,)?) => {
-        Err(anchor_lang::error!($crate::ErrorCode::$error))
+        Err(trixter_osec_anchor_lang::error!($crate::ErrorCode::$error))
     };
     ($error:expr $(,)?) => {
-        Err(anchor_lang::error!($error))
+        Err(trixter_osec_anchor_lang::error!($error))
     };
 }
 
@@ -847,7 +847,7 @@ macro_rules! err {
 #[macro_export]
 macro_rules! source {
     () => {
-        anchor_lang::error::Source {
+        trixter_osec_anchor_lang::error::Source {
             filename: file!(),
             line: line!(),
         }

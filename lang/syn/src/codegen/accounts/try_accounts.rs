@@ -24,8 +24,8 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                     let ty = &s.raw_field.ty;
                     quote! {
                         #[cfg(feature = "anchor-debug")]
-                        ::anchor_lang::solana_program::log::sol_log(stringify!(#name));
-                        let #name: #ty = anchor_lang::Accounts::try_accounts(__program_id, __accounts, __ix_data, &mut __bumps.#name, __reallocs)?;
+                        ::trixter_osec_anchor_lang::solana_program::log::sol_log(stringify!(#name));
+                        let #name: #ty = trixter_osec_anchor_lang::Accounts::try_accounts(__program_id, __accounts, __ix_data, &mut __bumps.#name, __reallocs)?;
                     }
                 }
                 AccountField::Field(f) => {
@@ -42,7 +42,7 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                             let empty_behavior = if cfg!(feature = "allow-missing-optionals") {
                                 quote!{ None }
                             } else {
-                                quote!{ return Err(anchor_lang::error::ErrorCode::AccountNotEnoughKeys.into()); }
+                                quote!{ return Err(trixter_osec_anchor_lang::error::ErrorCode::AccountNotEnoughKeys.into()); }
                             };
                             quote! {
                                 let #name = if __accounts.is_empty() {
@@ -59,7 +59,7 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                         } else {
                             quote!{
                                 if __accounts.is_empty() {
-                                    return Err(anchor_lang::error::ErrorCode::AccountNotEnoughKeys.into());
+                                    return Err(trixter_osec_anchor_lang::error::ErrorCode::AccountNotEnoughKeys.into());
                                 }
                                 let #name = &__accounts[0];
                                 *__accounts = &__accounts[1..];
@@ -72,15 +72,15 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                         // Generate the deprecation call if it is an AccountInfo
                         let warning = if matches!(f.ty, Ty::AccountInfo) {
                             quote_spanned! { f.ty_span =>
-                                ::anchor_lang::deprecated_account_info_usage();
+                                ::trixter_osec_anchor_lang::deprecated_account_info_usage();
                             }
                         } else {
                             quote! {}
                         };
                         quote! {
                             #[cfg(feature = "anchor-debug")]
-                            ::anchor_lang::solana_program::log::sol_log(stringify!(#typed_name));
-                            let #typed_name = anchor_lang::Accounts::try_accounts(__program_id, __accounts, __ix_data, __bumps, __reallocs)
+                            ::trixter_osec_anchor_lang::solana_program::log::sol_log(stringify!(#typed_name));
+                            let #typed_name = trixter_osec_anchor_lang::Accounts::try_accounts(__program_id, __accounts, __ix_data, __bumps, __reallocs)
                                 .map_err(|e| e.with_account_name(#name))?;
                             #warning
                         }
@@ -112,14 +112,14 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                 .collect();
             quote! {
                 let mut __ix_data = __ix_data;
-                #[derive(anchor_lang::AnchorSerialize, anchor_lang::AnchorDeserialize)]
+                #[derive(trixter_osec_anchor_lang::AnchorSerialize, trixter_osec_anchor_lang::AnchorDeserialize)]
                 struct __Args {
                     #strct_inner
                 }
                 let __Args {
                     #(#field_names),*
                 } = __Args::deserialize(&mut __ix_data)
-                    .map_err(|_| anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
+                    .map_err(|_| trixter_osec_anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
             }
         }
     };
@@ -168,7 +168,7 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                             #[inline(always)]
                             pub fn #method_name<__T>(_arg: &__T)
                             where
-                                __T: anchor_lang::__private::IsSameType<#ty>,
+                                __T: trixter_osec_anchor_lang::__private::IsSameType<#ty>,
                             {}
                         }
                     } else {
@@ -229,15 +229,15 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
     quote! {
         #param_count_const
         #[automatically_derived]
-        impl<#combined_generics> anchor_lang::Accounts<#trait_generics, #bumps_struct_name> for #name<#struct_generics> #where_clause {
+        impl<#combined_generics> trixter_osec_anchor_lang::Accounts<#trait_generics, #bumps_struct_name> for #name<#struct_generics> #where_clause {
             #[inline(never)]
             fn try_accounts(
-                __program_id: &anchor_lang::solana_program::pubkey::Pubkey,
-                __accounts: &mut &#trait_generics [anchor_lang::solana_program::account_info::AccountInfo<#trait_generics>],
+                __program_id: &trixter_osec_anchor_lang::solana_program::pubkey::Pubkey,
+                __accounts: &mut &#trait_generics [trixter_osec_anchor_lang::solana_program::account_info::AccountInfo<#trait_generics>],
                 __ix_data: &[u8],
                 __bumps: &mut #bumps_struct_name,
-                __reallocs: &mut std::collections::BTreeSet<anchor_lang::solana_program::pubkey::Pubkey>,
-            ) -> anchor_lang::Result<Self> {
+                __reallocs: &mut std::collections::BTreeSet<trixter_osec_anchor_lang::solana_program::pubkey::Pubkey>,
+            ) -> trixter_osec_anchor_lang::Result<Self> {
                 // Deserialize instruction, if declared.
                 #ix_de
                 // Deserialize each account.
@@ -385,8 +385,8 @@ fn generate_duplicate_mutable_checks(accs: &AccountsStruct) -> proc_macro2::Toke
             quote! {
                 for key in #composite_name.duplicate_mutable_account_keys() {
                     if !__mutable_accounts.insert(key) {
-                        return Err(anchor_lang::error::Error::from(
-                            anchor_lang::error::ErrorCode::ConstraintDuplicateMutableAccount
+                        return Err(trixter_osec_anchor_lang::error::Error::from(
+                            trixter_osec_anchor_lang::error::ErrorCode::ConstraintDuplicateMutableAccount
                         ).with_account_name(format!("{}", key)));
                     }
                 }
@@ -404,8 +404,8 @@ fn generate_duplicate_mutable_checks(accs: &AccountsStruct) -> proc_macro2::Toke
                 if let Some(key) = #field_keys {
                     // Check for duplicates and insert the key and account name
                     if !__mutable_accounts.insert(key) {
-                        return Err(anchor_lang::error::Error::from(
-                            anchor_lang::error::ErrorCode::ConstraintDuplicateMutableAccount
+                        return Err(trixter_osec_anchor_lang::error::Error::from(
+                            trixter_osec_anchor_lang::error::ErrorCode::ConstraintDuplicateMutableAccount
                         ).with_account_name(#field_name_strs));
                     }
                 }

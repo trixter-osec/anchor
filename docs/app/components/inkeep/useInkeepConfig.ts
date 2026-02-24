@@ -52,7 +52,7 @@ const baseSettings: InkeepBaseSettings = {
   },
   transformSource: source => {
     const urlPatterns = {
-      anchorDocs: "https://www.anchor-lang.com/docs",
+      anchorDocs: "https://www.trixter-osec-anchor-lang.com/docs",
       solanaDocs: "solana.com",
       stackExchange: "https://solana.stackexchange.com/",
       anzaDocs: "https://docs.anza.xyz/",

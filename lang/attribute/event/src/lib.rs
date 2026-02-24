@@ -45,7 +45,7 @@ pub fn event(
         #[derive(AnchorSerialize, AnchorDeserialize)]
         #event_strct
 
-        impl anchor_lang::Event for #event_name {
+        impl trixter_osec_anchor_lang::Event for #event_name {
             fn data(&self) -> Vec<u8> {
                 let mut data = Vec::with_capacity(256);
                 data.extend_from_slice(#event_name::DISCRIMINATOR);
@@ -54,7 +54,7 @@ pub fn event(
             }
         }
 
-        impl anchor_lang::Discriminator for #event_name {
+        impl trixter_osec_anchor_lang::Discriminator for #event_name {
             const DISCRIMINATOR: &'static [u8] = #discriminator;
         }
     };
@@ -103,7 +103,7 @@ pub fn emit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let data: proc_macro2::TokenStream = input.into();
     proc_macro::TokenStream::from(quote! {
         {
-            anchor_lang::solana_program::log::sol_log_data(&[&anchor_lang::Event::data(&#data)]);
+            trixter_osec_anchor_lang::solana_program::log::sol_log_data(&[&trixter_osec_anchor_lang::Event::data(&#data)]);
         }
     })
 }
@@ -165,30 +165,30 @@ pub fn emit_cpi(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
         {
             let authority_info = ctx.accounts.#authority_name.to_account_info();
 
-            let disc = anchor_lang::event::EVENT_IX_TAG_LE;
-            let inner_data = anchor_lang::Event::data(&#event_struct);
+            let disc = trixter_osec_anchor_lang::event::EVENT_IX_TAG_LE;
+            let inner_data = trixter_osec_anchor_lang::Event::data(&#event_struct);
             let ix_data: Vec<u8> = disc
                 .into_iter()
                 .map(|b| *b)
                 .chain(inner_data.into_iter())
                 .collect();
 
-            let ix = anchor_lang::solana_program::instruction::Instruction::new_with_bytes(
+            let ix = trixter_osec_anchor_lang::solana_program::instruction::Instruction::new_with_bytes(
                 crate::ID,
                 &ix_data,
                 vec![
-                    anchor_lang::solana_program::instruction::AccountMeta::new_readonly(
+                    trixter_osec_anchor_lang::solana_program::instruction::AccountMeta::new_readonly(
                         *authority_info.key,
                         true,
                     ),
                 ],
             );
-            anchor_lang::solana_program::program::invoke_signed(
+            trixter_osec_anchor_lang::solana_program::program::invoke_signed(
                 &ix,
                 &[authority_info],
                 &[&[#authority_seeds, &[crate::EVENT_AUTHORITY_AND_BUMP.1]]],
             )
-            .map_err(anchor_lang::error::Error::from)?;
+            .map_err(trixter_osec_anchor_lang::error::Error::from)?;
         }
     })
 }

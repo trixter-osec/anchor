@@ -60,11 +60,11 @@ pub fn program(
 ///
 /// # Off-chain usage
 ///
-/// When using in off-chain environments, for example via `anchor_client`, you must have
-/// `anchor_lang` in scope:
+/// When using in off-chain environments, for example via `trixter_osec_anchor_client`, you must have
+/// `trixter_osec_anchor_lang` in scope:
 ///
 /// ```ignore
-/// use trixter_osec_anchor_client::anchor_lang;
+/// use trixter_osec_anchor_client::trixter_osec_anchor_lang;
 /// ```
 ///
 /// # Example

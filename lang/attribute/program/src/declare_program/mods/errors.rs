@@ -26,7 +26,7 @@ pub fn gen_errors_mod(idl: &Idl) -> proc_macro2::TokenStream {
         pub mod errors {
             use super::*;
 
-            #[anchor_lang::error_code(offset = 0)]
+            #[trixter_osec_anchor_lang::error_code(offset = 0)]
             pub enum ProgramError {
                 #(#errors)*
             }
