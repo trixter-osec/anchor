@@ -1,5 +1,5 @@
 [package]
-name = "anchor-attribute-event"
+name = "trixter-osec-anchor-attribute-event"
 version = "0.32.1"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
@@ -10,14 +10,15 @@ edition = "2021"
 
 [lib]
 proc-macro = true
+name = "anchor_attribute_event"
 
 [features]
-anchor-debug = ["anchor-syn/anchor-debug"]
-event-cpi = ["anchor-syn/event-cpi"]
-idl-build = ["anchor-syn/idl-build"]
+anchor-debug = ["trixter-osec-anchor-syn/anchor-debug"]
+event-cpi = ["trixter-osec-anchor-syn/event-cpi"]
+idl-build = ["trixter-osec-anchor-syn/idl-build"]
 
 [dependencies]
-anchor-syn = { path = "../../syn", version = "0.32.1", features = ["hash"] }
+trixter-osec-anchor-syn = { path = "../../syn", version = "0.32.1", features = ["hash"] }
 proc-macro2 = "1"
 quote = "1"
 syn = { version = "1", features = ["full"] }

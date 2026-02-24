@@ -129,277 +129,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "anchor-attribute-access-control"
-version = "0.32.1"
-dependencies = [
- "anchor-syn",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-attribute-account"
-version = "0.32.1"
-dependencies = [
- "anchor-syn",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-attribute-constant"
-version = "0.32.1"
-dependencies = [
- "anchor-syn",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-attribute-error"
-version = "0.32.1"
-dependencies = [
- "anchor-syn",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-attribute-event"
-version = "0.32.1"
-dependencies = [
- "anchor-syn",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-attribute-program"
-version = "0.32.1"
-dependencies = [
- "anchor-lang-idl",
- "anchor-syn",
- "anyhow",
- "heck 0.3.3",
- "proc-macro2",
- "quote",
- "serde_json",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-cli"
-version = "0.32.1"
-dependencies = [
- "anchor-client",
- "anchor-lang",
- "anchor-lang-idl",
- "anyhow",
- "base64 0.21.7",
- "bincode",
- "cargo_toml",
- "chrono",
- "clap 4.5.17",
- "clap_complete",
- "console 0.15.11",
- "dirs",
- "ed25519-dalek",
- "flate2",
- "heck 0.4.1",
- "pathdiff",
- "portpicker",
- "regex",
- "reqwest 0.11.27",
- "semver",
- "serde",
- "serde_json",
- "shellexpand",
- "solana-cli-config",
- "solana-client",
- "solana-clock",
- "solana-commitment-config",
- "solana-compute-budget-interface",
- "solana-faucet",
- "solana-instruction",
- "solana-keypair",
- "solana-loader-v3-interface",
- "solana-message",
- "solana-packet",
- "solana-pubkey 4.0.0",
- "solana-pubsub-client",
- "solana-rpc-client",
- "solana-rpc-client-api",
- "solana-sdk-ids",
- "solana-signature",
- "solana-signer",
- "solana-system-interface",
- "solana-transaction",
- "syn 1.0.109",
- "tar",
- "tempfile",
- "tiny-bip39",
- "toml 0.7.8",
- "walkdir",
-]
-
-[[package]]
-name = "anchor-client"
-version = "0.32.1"
-dependencies = [
- "anchor-lang",
- "anyhow",
- "futures",
- "regex",
- "serde",
- "solana-account",
- "solana-account-decoder",
- "solana-commitment-config",
- "solana-instruction",
- "solana-program",
- "solana-pubsub-client",
- "solana-rpc-client",
- "solana-rpc-client-api",
- "solana-signature",
- "solana-signer",
- "solana-transaction",
- "thiserror 1.0.66",
- "tokio",
- "url",
-]
-
-[[package]]
-name = "anchor-derive-accounts"
-version = "0.32.1"
-dependencies = [
- "anchor-syn",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-derive-serde"
-version = "0.32.1"
-dependencies = [
- "anchor-syn",
- "proc-macro-crate 3.4.0",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-derive-space"
-version = "0.32.1"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "anchor-lang"
-version = "0.32.1"
-dependencies = [
- "anchor-attribute-access-control",
- "anchor-attribute-account",
- "anchor-attribute-constant",
- "anchor-attribute-error",
- "anchor-attribute-event",
- "anchor-attribute-program",
- "anchor-derive-accounts",
- "anchor-derive-serde",
- "anchor-derive-space",
- "anchor-lang-idl",
- "base64 0.21.7",
- "bincode",
- "borsh 1.5.7",
- "bytemuck",
- "const-crypto",
- "solana-account-info",
- "solana-clock",
- "solana-cpi",
- "solana-define-syscall 3.0.0",
- "solana-feature-gate-interface",
- "solana-instruction",
- "solana-instructions-sysvar",
- "solana-invoke",
- "solana-loader-v3-interface",
- "solana-msg",
- "solana-program-entrypoint",
- "solana-program-error",
- "solana-program-memory",
- "solana-program-option",
- "solana-program-pack",
- "solana-pubkey 4.0.0",
- "solana-sdk-ids",
- "solana-stake-interface",
- "solana-system-interface",
- "solana-sysvar",
- "solana-sysvar-id",
- "thiserror 1.0.66",
-]
-
-[[package]]
-name = "anchor-lang-idl"
-version = "0.1.2"
-dependencies = [
- "anchor-lang-idl-spec",
- "anyhow",
- "heck 0.3.3",
- "regex",
- "serde",
- "serde_json",
- "sha2",
-]
-
-[[package]]
-name = "anchor-lang-idl-spec"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "serde",
-]
-
-[[package]]
-name = "anchor-spl"
-version = "0.32.1"
-dependencies = [
- "anchor-lang",
- "base64ct",
- "borsh 1.5.7",
- "mpl-token-metadata",
- "solana-stake-interface",
- "solana-sysvar",
- "spl-associated-token-account-interface",
- "spl-memo-interface",
- "spl-pod",
- "spl-token-2022-interface",
- "spl-token-group-interface",
- "spl-token-interface",
- "spl-token-metadata-interface",
-]
-
-[[package]]
-name = "anchor-syn"
-version = "0.32.1"
-dependencies = [
- "anyhow",
- "bs58",
- "cargo_toml",
- "heck 0.3.3",
- "proc-macro2",
- "quote",
- "serde",
- "serde_json",
- "sha2",
- "syn 1.0.109",
- "thiserror 1.0.66",
-]
-
-[[package]]
 name = "android_system_properties"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -593,23 +322,6 @@ name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
-
-[[package]]
-name = "avm"
-version = "0.32.1"
-dependencies = [
- "anyhow",
- "cargo_toml",
- "cfg-if",
- "chrono",
- "clap 4.5.17",
- "clap_complete",
- "dirs",
- "reqwest 0.11.27",
- "semver",
- "serde",
- "tempfile",
-]
 
 [[package]]
 name = "base16ct"
@@ -6825,6 +6537,294 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0955b8137a1df6f1a2e9a37d8a6656291ff0297c1a97c24e0d8425fe2312f79a"
 dependencies = [
  "once_cell",
+]
+
+[[package]]
+name = "trixter-osec-anchor-attribute-access-control"
+version = "0.32.1"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+ "trixter-osec-anchor-syn",
+]
+
+[[package]]
+name = "trixter-osec-anchor-attribute-account"
+version = "0.32.1"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+ "trixter-osec-anchor-syn",
+]
+
+[[package]]
+name = "trixter-osec-anchor-attribute-constant"
+version = "0.32.1"
+dependencies = [
+ "quote",
+ "syn 1.0.109",
+ "trixter-osec-anchor-syn",
+]
+
+[[package]]
+name = "trixter-osec-anchor-attribute-error"
+version = "0.32.1"
+dependencies = [
+ "quote",
+ "syn 1.0.109",
+ "trixter-osec-anchor-syn",
+]
+
+[[package]]
+name = "trixter-osec-anchor-attribute-event"
+version = "0.32.1"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+ "trixter-osec-anchor-syn",
+]
+
+[[package]]
+name = "trixter-osec-anchor-attribute-program"
+version = "0.32.1"
+dependencies = [
+ "anyhow",
+ "heck 0.3.3",
+ "proc-macro2",
+ "quote",
+ "serde_json",
+ "syn 1.0.109",
+ "trixter-osec-anchor-lang-idl",
+ "trixter-osec-anchor-syn",
+]
+
+[[package]]
+name = "trixter-osec-anchor-cli"
+version = "0.32.1"
+dependencies = [
+ "anyhow",
+ "base64 0.21.7",
+ "bincode",
+ "cargo_toml",
+ "chrono",
+ "clap 4.5.17",
+ "clap_complete",
+ "console 0.15.11",
+ "dirs",
+ "ed25519-dalek",
+ "flate2",
+ "heck 0.4.1",
+ "pathdiff",
+ "portpicker",
+ "regex",
+ "reqwest 0.11.27",
+ "semver",
+ "serde",
+ "serde_json",
+ "shellexpand",
+ "solana-cli-config",
+ "solana-client",
+ "solana-clock",
+ "solana-commitment-config",
+ "solana-compute-budget-interface",
+ "solana-faucet",
+ "solana-instruction",
+ "solana-keypair",
+ "solana-loader-v3-interface",
+ "solana-message",
+ "solana-packet",
+ "solana-pubkey 4.0.0",
+ "solana-pubsub-client",
+ "solana-rpc-client",
+ "solana-rpc-client-api",
+ "solana-sdk-ids",
+ "solana-signature",
+ "solana-signer",
+ "solana-system-interface",
+ "solana-transaction",
+ "syn 1.0.109",
+ "tar",
+ "tempfile",
+ "tiny-bip39",
+ "toml 0.7.8",
+ "trixter-osec-anchor-client",
+ "trixter-osec-anchor-lang",
+ "trixter-osec-anchor-lang-idl",
+ "walkdir",
+]
+
+[[package]]
+name = "trixter-osec-anchor-client"
+version = "0.32.1"
+dependencies = [
+ "anyhow",
+ "futures",
+ "regex",
+ "serde",
+ "solana-account",
+ "solana-account-decoder",
+ "solana-commitment-config",
+ "solana-instruction",
+ "solana-program",
+ "solana-pubsub-client",
+ "solana-rpc-client",
+ "solana-rpc-client-api",
+ "solana-signature",
+ "solana-signer",
+ "solana-transaction",
+ "thiserror 1.0.66",
+ "tokio",
+ "trixter-osec-anchor-lang",
+ "url",
+]
+
+[[package]]
+name = "trixter-osec-anchor-derive-accounts"
+version = "0.32.1"
+dependencies = [
+ "quote",
+ "syn 1.0.109",
+ "trixter-osec-anchor-syn",
+]
+
+[[package]]
+name = "trixter-osec-anchor-derive-serde"
+version = "0.32.1"
+dependencies = [
+ "proc-macro-crate 3.4.0",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+ "trixter-osec-anchor-syn",
+]
+
+[[package]]
+name = "trixter-osec-anchor-derive-space"
+version = "0.32.1"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "trixter-osec-anchor-lang"
+version = "0.32.1"
+dependencies = [
+ "base64 0.21.7",
+ "bincode",
+ "borsh 1.5.7",
+ "bytemuck",
+ "const-crypto",
+ "solana-account-info",
+ "solana-clock",
+ "solana-cpi",
+ "solana-define-syscall 3.0.0",
+ "solana-feature-gate-interface",
+ "solana-instruction",
+ "solana-instructions-sysvar",
+ "solana-invoke",
+ "solana-loader-v3-interface",
+ "solana-msg",
+ "solana-program-entrypoint",
+ "solana-program-error",
+ "solana-program-memory",
+ "solana-program-option",
+ "solana-program-pack",
+ "solana-pubkey 4.0.0",
+ "solana-sdk-ids",
+ "solana-stake-interface",
+ "solana-system-interface",
+ "solana-sysvar",
+ "solana-sysvar-id",
+ "thiserror 1.0.66",
+ "trixter-osec-anchor-attribute-access-control",
+ "trixter-osec-anchor-attribute-account",
+ "trixter-osec-anchor-attribute-constant",
+ "trixter-osec-anchor-attribute-error",
+ "trixter-osec-anchor-attribute-event",
+ "trixter-osec-anchor-attribute-program",
+ "trixter-osec-anchor-derive-accounts",
+ "trixter-osec-anchor-derive-serde",
+ "trixter-osec-anchor-derive-space",
+ "trixter-osec-anchor-lang-idl",
+]
+
+[[package]]
+name = "trixter-osec-anchor-lang-idl"
+version = "0.1.2"
+dependencies = [
+ "anyhow",
+ "heck 0.3.3",
+ "regex",
+ "serde",
+ "serde_json",
+ "sha2",
+ "trixter-osec-anchor-lang-idl-spec",
+]
+
+[[package]]
+name = "trixter-osec-anchor-lang-idl-spec"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "serde",
+]
+
+[[package]]
+name = "trixter-osec-anchor-spl"
+version = "0.32.1"
+dependencies = [
+ "base64ct",
+ "borsh 1.5.7",
+ "mpl-token-metadata",
+ "solana-stake-interface",
+ "solana-sysvar",
+ "spl-associated-token-account-interface",
+ "spl-memo-interface",
+ "spl-pod",
+ "spl-token-2022-interface",
+ "spl-token-group-interface",
+ "spl-token-interface",
+ "spl-token-metadata-interface",
+ "trixter-osec-anchor-lang",
+]
+
+[[package]]
+name = "trixter-osec-anchor-syn"
+version = "0.32.1"
+dependencies = [
+ "anyhow",
+ "bs58",
+ "cargo_toml",
+ "heck 0.3.3",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "serde_json",
+ "sha2",
+ "syn 1.0.109",
+ "thiserror 1.0.66",
+]
+
+[[package]]
+name = "trixter-osec-avm"
+version = "0.32.1"
+dependencies = [
+ "anyhow",
+ "cargo_toml",
+ "cfg-if",
+ "chrono",
+ "clap 4.5.17",
+ "clap_complete",
+ "dirs",
+ "reqwest 0.11.27",
+ "semver",
+ "serde",
+ "tempfile",
 ]
 
 [[package]]

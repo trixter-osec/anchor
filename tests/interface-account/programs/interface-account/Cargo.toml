@@ -13,9 +13,9 @@ default = []
 cpi = ["no-entrypoint"]
 no-entrypoint = []
 no-idl = []
-idl-build = ["anchor-lang/idl-build"]
+idl-build = ["trixter-osec-anchor-lang/idl-build"]
 
 [dependencies]
-anchor-lang = { path = "../../../../lang" }
+trixter-osec-anchor-lang = { path = "../../../../lang" }
 new = { path = "../new", features = ["cpi"] }
 old = { path = "../old", features = ["cpi"] }

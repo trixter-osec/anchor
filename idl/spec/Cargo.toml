@@ -1,5 +1,5 @@
 [package]
-name = "anchor-lang-idl-spec"
+name = "trixter-osec-anchor-lang-idl-spec"
 version = "0.1.0"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
@@ -10,6 +10,9 @@ description = "Anchor framework IDL spec"
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
+
+[lib]
+name = "anchor_lang_idl_spec"
 
 [dependencies]
 anyhow = "1"

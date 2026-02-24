@@ -1,5 +1,5 @@
 [package]
-name = "anchor-derive-space"
+name = "trixter-osec-anchor-derive-space"
 version = "0.32.1"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
@@ -9,6 +9,7 @@ edition = "2021"
 
 [lib]
 proc-macro = true
+name = "anchor_derive_space"
 
 [dependencies]
 proc-macro2 = "1"

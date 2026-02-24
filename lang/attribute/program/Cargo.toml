@@ -1,5 +1,5 @@
 [package]
-name = "anchor-attribute-program"
+name = "trixter-osec-anchor-attribute-program"
 version = "0.32.1"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
@@ -9,14 +9,15 @@ edition = "2021"
 
 [lib]
 proc-macro = true
+name = "anchor_attribute_program"
 
 [features]
-anchor-debug = ["anchor-syn/anchor-debug"]
-idl-build = ["anchor-syn/idl-build"]
+anchor-debug = ["trixter-osec-anchor-syn/anchor-debug"]
+idl-build = ["trixter-osec-anchor-syn/idl-build"]
 
 [dependencies]
-anchor-lang-idl = { path = "../../../idl", version = "0.1.2", features = ["convert"] }
-anchor-syn = { path = "../../syn", version = "0.32.1" }
+trixter-osec-anchor-lang-idl = { path = "../../../idl", version = "0.1.2", features = ["convert"] }
+trixter-osec-anchor-syn = { path = "../../syn", version = "0.32.1" }
 anyhow = "1"
 heck = "0.3"
 proc-macro2 = "1"

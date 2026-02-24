@@ -1,5 +1,5 @@
 [package]
-name = "anchor-lang-idl"
+name = "trixter-osec-anchor-lang-idl"
 version = "0.1.2"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
@@ -11,12 +11,15 @@ description = "Anchor framework IDL"
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
+[lib]
+name = "anchor_lang_idl"
+
 [features]
 build = ["regex"]
 convert = ["heck", "sha2"]
 
 [dependencies]
-anchor-lang-idl-spec = { path = "./spec", version = "0.1.0" }
+trixter-osec-anchor-lang-idl-spec = { path = "./spec", version = "0.1.0" }
 anyhow = "1"
 
 # `convert` feature only
