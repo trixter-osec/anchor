@@ -1,5 +1,5 @@
 {
-  "name": "@anchor-lang/errors",
+  "name": "@trixter-osec/errors",
   "version": "0.32.1",
   "description": "Anchor error codes",
   "main": "dist/index.js",

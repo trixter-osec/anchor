@@ -1,6 +1,6 @@
-import { splStatelessAsksProgram } from "@anchor-lang/spl-stateless-asks";
-import { splTokenProgram } from "@anchor-lang/spl-token";
-import { BN } from "@anchor-lang/core";
+import { splStatelessAsksProgram } from "@trixter-osec/spl-stateless-asks";
+import { splTokenProgram } from "@trixter-osec/spl-token";
+import { BN } from "@trixter-osec/core";
 import { Keypair, PublicKey } from "@solana/web3.js";
 
 import {

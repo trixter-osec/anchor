@@ -1,6 +1,6 @@
 // @ts-nocheck
 import * as B from "@native-to-anchor/buffer-layout";
-import { Idl, InstructionCoder } from "@anchor-lang/core";
+import { Idl, InstructionCoder } from "@trixter-osec/core";
 
 export class SplTokenSwapInstructionCoder implements InstructionCoder {
   constructor(_idl: Idl) {}

@@ -1,7 +1,7 @@
 import assert from "assert";
-import { splBinaryOraclePairProgram } from "@anchor-lang/spl-binary-oracle-pair";
-import { splTokenProgram } from "@anchor-lang/spl-token";
-import { BN } from "@anchor-lang/core";
+import { splBinaryOraclePairProgram } from "@trixter-osec/spl-binary-oracle-pair";
+import { splTokenProgram } from "@trixter-osec/spl-token";
+import { BN } from "@trixter-osec/core";
 import {
   Keypair,
   PublicKey,

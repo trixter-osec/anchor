@@ -1,5 +1,5 @@
-import { Idl, Event, EventCoder } from "@anchor-lang/core";
-import { IdlEvent } from "@anchor-lang/core/dist/cjs/idl";
+import { Idl, Event, EventCoder } from "@trixter-osec/core";
+import { IdlEvent } from "@trixter-osec/core/dist/cjs/idl";
 
 export class SplTokenLendingEventsCoder implements EventCoder {
   constructor(_idl: Idl) {}

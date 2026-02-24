@@ -1,7 +1,7 @@
 import assert from "assert";
-import { splTokenProgram } from "@anchor-lang/spl-token";
+import { splTokenProgram } from "@trixter-osec/spl-token";
 import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
-import { BN } from "@anchor-lang/core";
+import { BN } from "@trixter-osec/core";
 
 import { NATIVE_MINT_PK, SPL_TOKEN_PROGRAM_ID } from "../constants";
 import {

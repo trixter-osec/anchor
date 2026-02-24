@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Idl, InstructionCoder } from "@anchor-lang/core";
+import { Idl, InstructionCoder } from "@trixter-osec/core";
 
 export class SplMemoInstructionCoder implements InstructionCoder {
   constructor(_idl: Idl) {}

@@ -1,5 +1,5 @@
 {
-  "name": "@anchor-lang/monorepo",
+  "name": "@trixter-osec/monorepo",
   "private": true,
   "workspaces": [
     "packages/*",

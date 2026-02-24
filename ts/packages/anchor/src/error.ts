@@ -1,5 +1,5 @@
 import { PublicKey } from "@solana/web3.js";
-import * as errors from "@anchor-lang/errors";
+import * as errors from "@trixter-osec/errors";
 import * as features from "./utils/features.js";
 
 export class IdlError extends Error {

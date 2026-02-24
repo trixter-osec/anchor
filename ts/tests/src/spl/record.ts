@@ -1,7 +1,7 @@
 import assert from "assert";
-import { splRecordProgram } from "@anchor-lang/spl-record";
+import { splRecordProgram } from "@trixter-osec/spl-record";
 import { Keypair, PublicKey } from "@solana/web3.js";
-import { BN } from "@anchor-lang/core";
+import { BN } from "@trixter-osec/core";
 
 import { SPL_RECORD_PROGRAM_ID } from "../constants";
 import {

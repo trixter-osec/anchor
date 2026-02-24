@@ -1,5 +1,5 @@
 import { PublicKey } from "@solana/web3.js";
-import { Program, AnchorProvider } from "@anchor-lang/core";
+import { Program, AnchorProvider } from "@trixter-osec/core";
 
 import { SplTokenSwapCoder } from "./coder";
 
