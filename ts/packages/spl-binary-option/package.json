@@ -27,7 +27,7 @@
     "watch": "tsc -p tsconfig.cjs.json --watch"
   },
   "dependencies": {
-    "@trixter-osec/core": "=0.32.1",
+    "@trixter-osec/core": "=0.40.4",
     "@native-to-anchor/buffer-layout": "=0.1.0"
   },
   "devDependencies": {

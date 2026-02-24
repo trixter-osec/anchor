@@ -1,6 +1,6 @@
 [package]
 name = "trixter-osec-anchor-attribute-program"
-version = "0.32.1"
+version = "0.40.4"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
 license = "Apache-2.0"
@@ -16,7 +16,7 @@ idl-build = ["trixter-osec-anchor-syn/idl-build"]
 
 [dependencies]
 trixter-osec-anchor-lang-idl = { path = "../../../idl", version = "0.1.2", features = ["convert"] }
-trixter-osec-anchor-syn = { path = "../../syn", version = "0.32.1" }
+trixter-osec-anchor-syn = { path = "../../syn", version = "0.40.4" }
 anyhow = "1"
 heck = "0.3"
 proc-macro2 = "1"

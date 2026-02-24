@@ -1,6 +1,6 @@
 [package]
 name = "trixter-osec-anchor-lang"
-version = "0.32.1"
+version = "0.40.4"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
 edition = "2021"
@@ -44,15 +44,15 @@ lazy-account = [
 ]
 
 [dependencies]
-trixter-osec-anchor-attribute-access-control = { path = "./attribute/access-control", version = "0.32.1" }
-trixter-osec-anchor-attribute-account = { path = "./attribute/account", version = "0.32.1" }
-trixter-osec-anchor-attribute-constant = { path = "./attribute/constant", version = "0.32.1" }
-trixter-osec-anchor-attribute-error = { path = "./attribute/error", version = "0.32.1" }
-trixter-osec-anchor-attribute-event = { path = "./attribute/event", version = "0.32.1" }
-trixter-osec-anchor-attribute-program = { path = "./attribute/program", version = "0.32.1" }
-trixter-osec-anchor-derive-accounts = { path = "./derive/accounts", version = "0.32.1" }
-trixter-osec-anchor-derive-serde = { path = "./derive/serde", version = "0.32.1" }
-trixter-osec-anchor-derive-space = { path = "./derive/space", version = "0.32.1" }
+trixter-osec-anchor-attribute-access-control = { path = "./attribute/access-control", version = "0.40.4" }
+trixter-osec-anchor-attribute-account = { path = "./attribute/account", version = "0.40.4" }
+trixter-osec-anchor-attribute-constant = { path = "./attribute/constant", version = "0.40.4" }
+trixter-osec-anchor-attribute-error = { path = "./attribute/error", version = "0.40.4" }
+trixter-osec-anchor-attribute-event = { path = "./attribute/event", version = "0.40.4" }
+trixter-osec-anchor-attribute-program = { path = "./attribute/program", version = "0.40.4" }
+trixter-osec-anchor-derive-accounts = { path = "./derive/accounts", version = "0.40.4" }
+trixter-osec-anchor-derive-serde = { path = "./derive/serde", version = "0.40.4" }
+trixter-osec-anchor-derive-space = { path = "./derive/space", version = "0.40.4" }
 
 # `anchor-lang-idl` should only be included with `idl-build` feature
 trixter-osec-anchor-lang-idl = { path = "../idl", version = "0.1.2", optional = true }
