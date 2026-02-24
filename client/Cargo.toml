@@ -1,6 +1,6 @@
 [package]
 name = "trixter-osec-anchor-client"
-version = "0.32.1"
+version = "0.41.0"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 edition = "2021"
 license = "Apache-2.0"
@@ -19,7 +19,7 @@ debug = []
 mock = []
 
 [dependencies]
-trixter-osec-anchor-lang = { path = "../lang", version = "0.32.1" }
+trixter-osec-anchor-lang = { path = "../lang", version = "0.41.0" }
 anyhow = "1"
 futures = "0.3"
 regex = "1"

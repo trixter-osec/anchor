@@ -1,6 +1,6 @@
 [package]
 name = "trixter-osec-anchor-attribute-access-control"
-version = "0.32.1"
+version = "0.41.0"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
 license = "Apache-2.0"
@@ -15,7 +15,7 @@ name = "anchor_attribute_access_control"
 anchor-debug = ["trixter-osec-anchor-syn/anchor-debug"]
 
 [dependencies]
-trixter-osec-anchor-syn = { path = "../../syn", version = "0.32.1" }
+trixter-osec-anchor-syn = { path = "../../syn", version = "0.41.0" }
 proc-macro2 = "1"
 quote = "1"
 syn = { version = "1", features = ["full"] }
