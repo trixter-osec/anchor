@@ -1,6 +1,6 @@
 [package]
 name = "trixter-osec-anchor-spl"
-version = "0.41.0"
+version = "0.41.5"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 edition = "2021"
 license = "Apache-2.0"
@@ -34,7 +34,7 @@ token_2022_extensions = [
 ]
 
 [dependencies]
-trixter-osec-anchor-lang = { path = "../lang", version = "0.41.0", features = ["derive"] }
+trixter-osec-anchor-lang = { path = "../lang", version = "0.41.5", features = ["derive"] }
 # FIXME(edition2024): Not used directly, but upstream crates resolve to this version,
 # which uses Edition 2024
 base64ct = { version = "<1.8.0", optional = true }

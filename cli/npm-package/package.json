@@ -1,6 +1,6 @@
 {
   "name": "@trixter-osec/cli",
-  "version": "0.41.0",
+  "version": "0.41.5",
   "description": "Anchor CLI tool",
   "homepage": "https://github.com/coral-xyz/anchor#readme",
   "bugs": {

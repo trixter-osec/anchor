@@ -1,6 +1,6 @@
 [package]
 name = "trixter-osec-anchor-attribute-constant"
-version = "0.41.0"
+version = "0.41.5"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
 license = "Apache-2.0"
@@ -16,6 +16,6 @@ anchor-debug = ["trixter-osec-anchor-syn/anchor-debug"]
 idl-build = ["trixter-osec-anchor-syn/idl-build"]
 
 [dependencies]
-trixter-osec-anchor-syn = { path = "../../syn", version = "0.41.0" }
+trixter-osec-anchor-syn = { path = "../../syn", version = "0.41.5" }
 quote = "1"
 syn = { version = "1", features = ["full"] }
