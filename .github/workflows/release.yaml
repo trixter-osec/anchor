@@ -200,7 +200,7 @@ jobs:
 
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: "22"
+          node-version: "24"
           registry-url: "https://registry.npmjs.org"
 
       - name: Enable corepack (yarn)
@@ -320,9 +320,9 @@ jobs:
 
   build-cli:
     name: Build
-    runs-on: ${{ matrix.os }}
     needs: verify-tag
     if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    runs-on: ${{ matrix.os }}
     permissions:
       contents: read
       id-token: write
@@ -330,20 +330,19 @@ jobs:
 
     strategy:
       matrix:
+        # TODO: fix me
         target:
-          - aarch64-apple-darwin
+          # - aarch64-apple-darwin
           - x86_64-unknown-linux-gnu
-          - x86_64-apple-darwin
+          # - x86_64-apple-darwin
           - x86_64-pc-windows-msvc
         include:
-          # TODO: fix me
           # - target: aarch64-apple-darwin
           #   os: macos-latest
 
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
 
-          # TODO: fix me
           # - target: x86_64-apple-darwin
           #   os: macos-latest
 
