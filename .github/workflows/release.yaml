@@ -1,0 +1,439 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+env:
+  DIST: dist-${{ github.ref_name }}
+
+jobs:
+  verify-tag:
+    name: Verify tag
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    environment:
+      name: release
+    # inspired by Caddy's release process: https://github.com/caddyserver/caddy/blob/987375297862d9cd0a3fa33cfb199c25e504ad1b/.github/workflows/release.yml#L29C1-L143C54
+    outputs:
+      verification_passed: ${{ steps.verify.outputs.passed }}
+      tag_version: ${{ steps.info.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Force fetch upstream tags
+        run: git fetch --tags --force
+
+      - name: Get tag info
+        id: info
+        run: |
+          echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "version_tag=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Validate commits and tag signatures
+        id: verify
+        env:
+          RELEASE_MANAGERS: ${{ vars.RELEASE_MANAGERS }}
+        run: |
+          IFS=',' read -ra rms <<< "${RELEASE_MANAGERS}"
+          for u in "${rms[@]}"; do
+            curl -fsSL "https://github.com/${u}.gpg" | gpg --batch --import >/dev/null
+          done
+
+          echo "Verifying the tag: ${{ steps.info.outputs.version_tag }}"
+          git verify-tag -v "${{ steps.info.outputs.version_tag }}" 2>&1 | tee /tmp/verify-output.txt || {
+            echo "passed=false" >> $GITHUB_OUTPUT
+            exit 1
+          };
+
+          # SSH verification output typically includes the key fingerprint
+          # Use GNU grep with Perl regex for cleaner extraction (Linux environment)
+          KEY_SHA256=$(grep -oP "SHA256:[\"']?\K[A-Za-z0-9+/=]+(?=[\"']?)" /tmp/verify-output.txt | head -1 || echo "")
+          
+          if [ -z "$KEY_SHA256" ]; then
+            # Try alternative pattern with "key" prefix
+            KEY_SHA256=$(grep -oP "key SHA256:[\"']?\K[A-Za-z0-9+/=]+(?=[\"']?)" /tmp/verify-output.txt | head -1 || echo "")
+          fi
+          
+          if [ -z "$KEY_SHA256" ]; then
+            # Fallback: extract any base64-like string (40+ chars)
+            KEY_SHA256=$(grep -oP '[A-Za-z0-9+/]{40,}=?' /tmp/verify-output.txt | head -1 || echo "")
+          fi
+          
+          if [ -z "$KEY_SHA256" ]; then
+            echo "Somehow could not extract SSH key fingerprint from git verify-tag output"
+            echo "passed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+          echo "✅ Tag verification succeeded!"
+          echo "passed=true" >> $GITHUB_OUTPUT
+          echo "key_id=$KEY_SHA256" >> $GITHUB_OUTPUT
+
+      - name: Summary
+        run: |
+          echo "## Tag Verification Summary 🔐" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Tag:** ${{ steps.info.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** ${{ steps.info.outputs.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Signature:** ✅ Verified" >> $GITHUB_STEP_SUMMARY
+          echo "- **Signed by:** ${{ steps.verify.outputs.key_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Proceeding with release build..." >> $GITHUB_STEP_SUMMARY
+
+  publish-crates:
+    name: Publish crates
+    runs-on: ubuntu-latest
+    needs: verify-tag
+    if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    environment:
+      name: release
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+
+      - name: Authenticate with crates.io
+        id: auth
+        uses: rust-lang/crates-io-auth-action@b7e9a28eded4986ec6b1fa40eeee8f8f165559ec # v1.0.3
+
+      - name: Publish crates
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+        run: |
+          set -xeuo pipefail
+
+          publish() {
+            local dir="$1"
+            pushd "$dir" >/dev/null
+
+            local name version
+            name="$(
+              cargo metadata --no-deps --format-version 1 --manifest-path Cargo.toml \
+                | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .name'
+            )"
+            version="$(
+              cargo metadata --no-deps --format-version 1 --manifest-path Cargo.toml \
+                | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .version'
+            )"
+
+            if cargo search "$name" --limit 1 | grep -q "$version"; then
+              echo "The crate $1 is already up to date, skipping"
+              popd >/dev/null
+              return 0
+            fi
+
+            echo "Publishing $1 (${name}@${version})"
+            cargo publish --locked
+
+            echo "Waiting for crates.io index to update"
+            sleep 25
+
+            popd >/dev/null
+          }
+
+          publish idl/spec
+          publish idl
+          publish lang/syn
+          publish lang/derive/accounts
+          publish lang/derive/serde
+          publish lang/derive/space
+          publish lang/attribute/access-control
+          publish lang/attribute/account
+          publish lang/attribute/constant
+          publish lang/attribute/error
+          publish lang/attribute/program
+          publish lang/attribute/event
+          publish lang
+          publish spl
+          publish client
+          publish cli
+
+      - name: Check for crate artifacts
+        id: crate-artifacts
+        run: |
+          shopt -s nullglob
+          files=(target/package/*.crate)
+          if [ ${#files[@]} -gt 0 ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
+        if: steps.crate-artifacts.outputs.found == 'true'
+        with:
+          subject-path: target/package/*.crate
+
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        if: steps.crate-artifacts.outputs.found == 'true'
+        with:
+          if-no-files-found: ignore
+          name: published-crates
+          path: target/package/*.crate
+
+  publish-npmjs:
+    name: Publish npmjs packages
+    runs-on: ubuntu-latest
+    needs: verify-tag
+    if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    permissions:
+      id-token: write
+      contents: read
+    environment:
+      name: release
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Enable corepack (yarn)
+        run: corepack enable
+
+      - run: |
+          set -xeuo pipefail
+
+          publish() {
+            local dir="$1"
+            pushd "$dir" >/dev/null
+
+            local name version
+            name="$(node -p "require('./package.json').name")"
+            version="$(node -p "require('./package.json').version")"
+
+            # We still build the package even if we don't publish it, as yarn workspace will
+            # use the local version of each package, and if it's unbuilt then any subsequent
+            # build will error out due to missing files.
+            yarn --frozen-lockfile
+            local dirname="$(basename $dir)"
+            if [[ "$dirname" == spl-* ]]; then
+              yarn build:npm
+            else
+              yarn build
+            fi
+
+            if npm view "${name}@${version}" version >/dev/null 2>&1; then
+              echo "The package $1 is already up to date, skipping"
+              popd >/dev/null
+              return 0
+            fi
+
+            echo "Publishing $dir (${name}@${version})"
+            npm publish
+
+            popd >/dev/null
+          }
+
+          base="ts/packages"
+
+          publish "$base/borsh"
+          publish "$base/anchor-errors"
+          publish "$base/anchor"
+          publish "$base/spl-associated-token-account"
+          #publish "$base/spl-binary-option"
+          #publish "$base/spl-binary-oracle-pair"
+          #publish "$base/spl-feature-proposal"
+          #publish "$base/spl-governance"
+          #publish "$base/spl-memo"
+          #publish "$base/spl-name-service"
+          #publish "$base/spl-record"
+          #publish "$base/spl-stake-pool"
+          #publish "$base/spl-stateless-asks"
+          #publish "$base/spl-token"
+          #publish "$base/spl-token-lending"
+          #publish "$base/spl-token-swap"
+
+  # TODO: typedocs
+
+  publish-dockerhub:
+    name: Publish Docker image to Dockerhub
+    runs-on: ubuntu-latest
+    needs: verify-tag
+    if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    environment:
+      name: release
+    env:
+      IMAGE_NAME: trixterosec/anchor
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=tag
+            type=sha
+
+      - name: Build and push
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
+        with:
+          context: docker/build
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          # TODO: swap ANCHOR_CLI to ${{ github.ref_name }}
+          build-args: |
+            SOLANA_CLI=v2.3.0
+            ANCHOR_CLI=v0.32.1
+          provenance: mode=max
+          sbom: true
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
+        id: attest
+        with:
+          subject-name: ${{ env.IMAGE_NAME }}
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: false # provenance: mode=max above already pushes it to Dockerhub
+
+  build-cli:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    needs: verify-tag
+    if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+
+    strategy:
+      matrix:
+        target:
+          - aarch64-apple-darwin
+          - x86_64-unknown-linux-gnu
+          - x86_64-apple-darwin
+          - x86_64-pc-windows-msvc
+        include:
+          - target: aarch64-apple-darwin
+            os: macos-latest
+
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+
+          - target: x86_64-apple-darwin
+            os: macos-latest
+
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+          target: ${{ matrix.target }}
+
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libudev-dev
+
+      - name: Build release binary
+        run: cargo build --package trixter-osec-anchor-cli --release --locked --target ${{ matrix.target }}
+
+      - name: Prepare
+        id: prepare
+        shell: bash
+        run: |
+          version=$(echo $GITHUB_REF_NAME | cut -dv -f2)
+          ext=""
+          [[ "${{ matrix.os }}" == windows-latest ]] && ext=".exe"
+
+          mkdir $DIST
+          mv "target/${{ matrix.target }}/release/anchor$ext" $DIST/anchor-$version-${{ matrix.target }}$ext
+
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
+        with:
+          subject-path: ${{ env.DIST }}/anchor-${{ steps.prepare.outputs.version }}-${{ matrix.target }}*
+
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: anchor-${{ steps.prepare.outputs.version }}-${{ matrix.target }}
+          path: ${{ env.DIST }}
+          overwrite: true
+          retention-days: 1
+
+  upload-cli:
+    name: Upload binaries to release
+    runs-on: ubuntu-latest
+    needs: [verify-tag, build-cli]
+    if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          path: ${{ env.DIST }}
+
+      - name: Upload
+        shell: bash
+        run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} gh release upload $GITHUB_REF_NAME $DIST/*/* --clobber
+
+  publish-cli:
+    name: Publish CLI onto npmjs
+    runs-on: ubuntu-latest
+    needs: [verify-tag, build-cli]
+    if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
+    permissions:
+      id-token: write
+      contents: read
+    environment:
+      name: release
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Enable corepack (yarn)
+        run: corepack enable
+
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          path: ${{ env.DIST }}
+
+      - run: |
+          set -xeuo pipefail
+
+          cp $DIST cli/npm-package/anchor
+          cd cli/npm-package/
+          npm publish
+
