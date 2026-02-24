@@ -1027,7 +1027,7 @@
     bn.js "^5.1.2"
     buffer-layout "^1.2.0"
 
-"@trixter-osec/core@=0.32.1":
+"@trixter-osec/core@=0.41.0":
   version "0.40.4"
   resolved "https://registry.yarnpkg.com/@trixter-osec/core/-/core-0.40.4.tgz#892b5ead3b6c71f3f90e890fb49ce7f545b12381"
   integrity sha512-ThqXph8tuHjqLW+QEQPZ6jVLEuzqLu3H6JUEElPyRxPPSAYZq3vzIRmN3vjyUaETsRNKDvHeCFCY9q80lsxDUg==

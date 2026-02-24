@@ -50,7 +50,7 @@ popd
 git grep -l $old_version -- "**/package.json" | \
     xargs sed -E "${sedi[@]}" \
     -e "s/\"version\": \"$old_version\"/\"version\": \"$version\"/g" \
-    -e "s/@anchor-lang\/(.*)\": \"(.*)$old_version\"/@anchor-lang\/\1\": \"\2$version\"/g"
+    -e "s/@trixter-osec\/(.*)\": \"(.*)$old_version\"/@trixter-osec\/\1\": \"\2$version\"/g"
 
 # Insert version number into CHANGELOG
 sed "${sedi[@]}" -e \

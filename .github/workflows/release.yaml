@@ -157,10 +157,10 @@ jobs:
           publish lang/attribute/error
           publish lang/attribute/program
           publish lang/attribute/event
-          publish lang
-          publish spl
-          publish client
-          publish cli
+          #publish lang
+          #publish spl
+          #publish client
+          #publish cli
 
       - name: Check for crate artifacts
         id: crate-artifacts
@@ -259,8 +259,6 @@ jobs:
           #publish "$base/spl-token-lending"
           #publish "$base/spl-token-swap"
 
-  # TODO: typedocs
-
   publish-dockerhub:
     name: Publish Docker image to Dockerhub
     runs-on: ubuntu-latest
@@ -274,6 +272,7 @@ jobs:
     environment:
       name: release
     env:
+      # TODO: swap to solanafoundation/anchor
       IMAGE_NAME: trixterosec/anchor
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -337,14 +336,16 @@ jobs:
           - x86_64-apple-darwin
           - x86_64-pc-windows-msvc
         include:
-          - target: aarch64-apple-darwin
-            os: macos-latest
+          # TODO: fix me
+          # - target: aarch64-apple-darwin
+          #   os: macos-latest
 
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
 
-          - target: x86_64-apple-darwin
-            os: macos-latest
+          # TODO: fix me
+          # - target: x86_64-apple-darwin
+          #   os: macos-latest
 
           - target: x86_64-pc-windows-msvc
             os: windows-latest
