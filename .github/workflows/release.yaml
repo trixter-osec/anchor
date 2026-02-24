@@ -194,7 +194,8 @@ jobs:
             echo "Publishing $dir"
 
             yarn
-            if [[ "$name" == spl-* ]]; then
+            local dirname="$(basename $dir)"
+            if [[ "$dirname" == spl-* ]]; then
               yarn build:npm
             else
               yarn build
@@ -219,7 +220,7 @@ jobs:
           #publish "$base/spl-token"
           #publish "$base/spl-token-lending"
           #publish "$base/spl-token-swap"
-          #publish "$base/borsh"
+          publish "$base/borsh"
           #publish "$base/anchor-errors"
           #publish "$base/anchor"
 
