@@ -88,9 +88,10 @@ jobs:
     needs: verify-tag
     if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
     permissions:
-      id-token: write
       contents: read
+      id-token: write
       attestations: write
+      artifact-metadata: write
     environment:
       name: release
     steps:
@@ -122,7 +123,7 @@ jobs:
                 | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .version'
             )"
 
-            if cargo search "$name" --limit 1 | grep -q "$version"; then
+            if cargo info "$name" | grep -q "version: $version"; then
               echo "The crate $1 is already up to date, skipping"
               popd >/dev/null
               return 0
@@ -153,6 +154,16 @@ jobs:
           #publish spl
           #publish client
           #publish cli
+
+      - uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: target/package/*.crate
+
+      - uses: actions/upload-artifact@v4
+        with:
+          if-no-files-found: ignore
+          name: published-crates
+          path: target/package/*.crate
 
   publish-npmjs:
     runs-on: ubuntu-latest
@@ -277,7 +288,7 @@ jobs:
           sbom: true
 
       - name: Attest
-        uses: actions/attest@v3
+        uses: actions/attest-build-provenance@v3
         id: attest
         with:
           subject-name: ${{ env.IMAGE_NAME }}
