@@ -201,7 +201,7 @@ jobs:
         id: prepare
         shell: bash
         run: |
-          version="$GITHUB_REF_NAME"
+          version="next"
           ext=""
           [[ "${{ matrix.os }}" == windows-latest ]] && ext=".exe"
 
