@@ -9,6 +9,8 @@ on:
     paths:
       - "VERSION"
 
+  workflow_dispatch:
+
 jobs:
   publish-crates-dryrun:
     name: Publish crates dry-run
