@@ -270,9 +270,9 @@ dependencies = [
 
 [[package]]
 name = "async-compression"
-version = "0.4.40"
+version = "0.4.41"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7d67d43201f4d20c78bcda740c142ca52482d81da80681533d33bf3f0596c8e2"
+checksum = "d0f9ee0f6e02ffd7ad5816e9464499fba7b3effd01123b515c41d1697c43dad1"
 dependencies = [
  "compression-codecs",
  "compression-core",
@@ -6613,7 +6613,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-attribute-access-control"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -6623,7 +6623,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-attribute-account"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -6633,7 +6633,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-attribute-constant"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "quote",
  "syn 1.0.109",
@@ -6642,7 +6642,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-attribute-error"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "quote",
  "syn 1.0.109",
@@ -6651,7 +6651,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-attribute-event"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -6661,7 +6661,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-attribute-program"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "anyhow",
  "heck 0.3.3",
@@ -6675,7 +6675,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-cli"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "anyhow",
  "base64 0.21.7",
@@ -6730,7 +6730,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-client"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "anyhow",
  "futures",
@@ -6755,7 +6755,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-derive-accounts"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "quote",
  "syn 1.0.109",
@@ -6764,7 +6764,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-derive-serde"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "proc-macro-crate 3.4.0",
  "proc-macro2",
@@ -6775,7 +6775,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-derive-space"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -6784,7 +6784,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-lang"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "base64 0.21.7",
  "bincode",
@@ -6848,7 +6848,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-spl"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "base64ct",
  "borsh 1.6.0",
@@ -6867,7 +6867,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-anchor-syn"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "anyhow",
  "bs58",
@@ -6884,7 +6884,7 @@ dependencies = [
 
 [[package]]
 name = "trixter-osec-avm"
-version = "1.0.0-rc.3"
+version = "1.1.2"
 dependencies = [
  "anyhow",
  "cargo_toml",
