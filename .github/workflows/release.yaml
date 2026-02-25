@@ -450,6 +450,7 @@ jobs:
           cd cli/npm-package/
           chmod +x anchor
 
+          local version="$(node -p "require('./package.json').version")"
           local publish_args=()
           # If version looks like X.Y.Z-<something> (e.g. 1.0.0-rc.2), publish under dist-tag "next"
           if [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-.+ ]]; then
