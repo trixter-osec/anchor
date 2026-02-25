@@ -45,7 +45,10 @@ jobs:
             fi
 
             echo "Publishing $1 (${name}@${version}) as a dry-run"
-            cargo publish --locked --dry-run
+            # We need the --no-verify here as some of the packages depend on each other and require that their version is
+            # published onto crates.io -> will always fail no matter what. Though this is still better than having no
+            # dry-run at all.
+            cargo publish --locked --dry-run --no-verify
 
             popd >/dev/null
           }
@@ -109,8 +112,14 @@ jobs:
               return 0
             fi
 
+            local publish_args=(--dry-run)
+            # If version looks like vX.Y.Z-<something> (e.g. v1.0.0-rc.2), publish under dist-tag "next"
+            if [[ "$version" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-.+ ]]; then
+              publish_args+=(--tag next)
+            fi
+
             echo "Publishing $dir (${name}@${version}) as a dry-run"
-            npm publish --dry-run
+            npm publish "${publish_args[@]}"
 
             popd >/dev/null
           }
@@ -185,7 +194,7 @@ jobs:
         id: prepare
         shell: bash
         run: |
-          version=$(echo $GITHUB_REF_NAME | cut -dv -f2)
+          version="$GITHUB_REF_NAME"
           ext=""
           [[ "${{ matrix.os }}" == windows-latest ]] && ext=".exe"
 
@@ -194,7 +203,7 @@ jobs:
 
           echo "version=$version" >> $GITHUB_OUTPUT
 
-      # As we upload the artifacts anyway, we should keep the build attestation just in case
+      # As we upload the artifacts, we should generate the build attestation just in case
       - name: Attest build provenance
         uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
         with:

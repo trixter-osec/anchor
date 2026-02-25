@@ -238,8 +238,14 @@ jobs:
               return 0
             fi
 
+            local publish_args=()
+            # If version looks like vX.Y.Z-<something> (e.g. v1.0.0-rc.2), publish under dist-tag "next"
+            if [[ "$version" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-.+ ]]; then
+              publish_args+=(--tag next)
+            fi
+
             echo "Publishing $dir (${name}@${version})"
-            npm publish
+            npm publish "${publish_args[@]}"
 
             popd >/dev/null
           }
