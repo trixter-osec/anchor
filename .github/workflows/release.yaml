@@ -266,7 +266,7 @@ jobs:
             fi
 
             echo "Publishing $dir (${name}@${version})"
-            npm publish "${publish_args[@]}"
+            npm publish "${publish_args[@]}" --provenance --access public
 
             popd >/dev/null
           }
