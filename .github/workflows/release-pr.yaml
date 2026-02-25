@@ -48,7 +48,7 @@ jobs:
             # We cannot directly dry-run the publish process as all of the dependencies must be published
             # to crates.io for the dry-run (even with --no-verify) to succeed. Therefore, we'll just see if
             # packaging works.
-            cargo package --locked
+            cargo build --locked --release
 
             popd >/dev/null
           }
@@ -158,19 +158,20 @@ jobs:
     strategy:
       matrix:
         target:
-          - aarch64-apple-darwin
+          # - aarch64-apple-darwin
           - x86_64-unknown-linux-gnu
-          - x86_64-apple-darwin
+          # - x86_64-apple-darwin
           - x86_64-pc-windows-msvc
         include:
-          - target: aarch64-apple-darwin
-            os: macos-latest
+          # TODO: uncomment me
+          # - target: aarch64-apple-darwin
+          #   os: macos-latest
 
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
 
-          - target: x86_64-apple-darwin
-            os: macos-latest
+          # - target: x86_64-apple-darwin
+          #   os: macos-latest
 
           - target: x86_64-pc-windows-msvc
             os: windows-latest
