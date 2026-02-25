@@ -15,6 +15,9 @@ on:
 
   workflow_dispatch:
 
+env:
+  DIST: dist-dry-run
+
 jobs:
   publish-crates-dryrun:
     name: Publish crates (dry-run)
@@ -201,7 +204,7 @@ jobs:
         id: prepare
         shell: bash
         run: |
-          version="$GITHUB_REF_NAME"
+          version="dry-run"
           ext=""
           [[ "${{ matrix.os }}" == windows-latest ]] && ext=".exe"
 
