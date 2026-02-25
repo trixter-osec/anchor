@@ -45,10 +45,10 @@ jobs:
             fi
 
             echo "Publishing $1 (${name}@${version}) as a dry-run"
-            # We need the --no-verify here as some of the packages depend on each other and require that their version is
-            # published onto crates.io -> will always fail no matter what. Though this is still better than having no
-            # dry-run at all.
-            cargo publish --locked --dry-run --no-verify
+            # We cannot directly dry-run the publish process as all of the dependencies must be published
+            # to crates.io for the dry-run (even with --no-verify) to succeed. Therefore, we'll just see if
+            # packaging works.
+            cargo package --locked
 
             popd >/dev/null
           }
