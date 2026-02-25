@@ -113,8 +113,8 @@ jobs:
             fi
 
             local publish_args=(--dry-run)
-            # If version looks like vX.Y.Z-<something> (e.g. v1.0.0-rc.2), publish under dist-tag "next"
-            if [[ "$version" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-.+ ]]; then
+            # If version looks like X.Y.Z-<something> (e.g. 1.0.0-rc.2), publish under dist-tag "next"
+            if [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-.+ ]]; then
               publish_args+=(--tag next)
             fi
 
