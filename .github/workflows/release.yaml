@@ -7,8 +7,8 @@ name: Release
 on:
   push:
     tags:
-      - "v*"
-
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-*"
 env:
   DIST: dist-${{ github.ref_name }}
 
@@ -59,17 +59,17 @@ jobs:
           # SSH verification output typically includes the key fingerprint
           # Use GNU grep with Perl regex for cleaner extraction (Linux environment)
           KEY_SHA256=$(grep -oP "SHA256:[\"']?\K[A-Za-z0-9+/=]+(?=[\"']?)" /tmp/verify-output.txt | head -1 || echo "")
-          
+
           if [ -z "$KEY_SHA256" ]; then
             # Try alternative pattern with "key" prefix
             KEY_SHA256=$(grep -oP "key SHA256:[\"']?\K[A-Za-z0-9+/=]+(?=[\"']?)" /tmp/verify-output.txt | head -1 || echo "")
           fi
-          
+
           if [ -z "$KEY_SHA256" ]; then
             # Fallback: extract any base64-like string (40+ chars)
             KEY_SHA256=$(grep -oP '[A-Za-z0-9+/]{40,}=?' /tmp/verify-output.txt | head -1 || echo "")
           fi
-          
+
           if [ -z "$KEY_SHA256" ]; then
             echo "Somehow could not extract SSH key fingerprint from git verify-tag output"
             echo "passed=false" >> $GITHUB_OUTPUT
@@ -447,4 +447,3 @@ jobs:
           cd cli/npm-package/
           chmod +x anchor
           npm publish
-
