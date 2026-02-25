@@ -10,6 +10,11 @@ fi
 old_version=$(cat VERSION)
 version=$1
 
+if [[ "$version" == v* ]]; then
+    echo "The version number must not contain the v[...] prefix"
+    exit 1
+fi
+
 echo "Bumping versions to $version"
 
 # GNU/BSD compat

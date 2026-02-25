@@ -1,5 +1,9 @@
 name: Release
 
+# To avoid finding out mid-tag that certain parts of the release do not build, we have `release.yaml` and
+# `release-pr.yaml` workflows. Both of these files should be kept up to date (with `release-pr.yaml` excluding
+# any publishing/attestation steps), especially if the build steps etc. are updated.
+
 on:
   push:
     tags:
@@ -319,7 +323,7 @@ jobs:
           push-to-registry: false # provenance: mode=max above already pushes it to Dockerhub
 
   build-cli:
-    name: Build
+    name: Build binaries
     needs: verify-tag
     if: ${{ needs.verify-tag.outputs.verification_passed == 'true' }}
     runs-on: ${{ matrix.os }}
@@ -330,7 +334,7 @@ jobs:
 
     strategy:
       matrix:
-        # TODO: fix me
+        # TODO: uncomment me (this seems to be broken only on monkeypatched version, i.e. this fork due to changing package name)
         target:
           # - aarch64-apple-darwin
           - x86_64-unknown-linux-gnu
