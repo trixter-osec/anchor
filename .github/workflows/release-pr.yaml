@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
 
 env:
-  DIST: dist-${{ github.ref_name }}
+  DIST: dist-dry-run
 
 jobs:
   publish-crates-dryrun:
