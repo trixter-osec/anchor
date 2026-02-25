@@ -27,7 +27,7 @@
     "watch": "tsc -p tsconfig.cjs.json --watch"
   },
   "dependencies": {
-    "@trixter-osec/core": "=0.41.5"
+    "@trixter-osec/core": "=1.0.0-rc.3"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "=21.0.2",

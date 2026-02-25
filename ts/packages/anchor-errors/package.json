@@ -1,6 +1,6 @@
 {
   "name": "@trixter-osec/errors",
-  "version": "0.41.5",
+  "version": "1.0.0-rc.3",
   "description": "Anchor error codes",
   "repository": {
     "type": "git",
