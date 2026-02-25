@@ -1,6 +1,6 @@
 [package]
 name = "trixter-osec-anchor-derive-serde"
-version = "0.41.5"
+version = "1.0.0-rc.3"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 repository = "https://github.com/coral-xyz/anchor"
 license = "Apache-2.0"
@@ -16,7 +16,7 @@ idl-build = ["trixter-osec-anchor-syn/idl-build"]
 lazy-account = []
 
 [dependencies]
-trixter-osec-anchor-syn = { path = "../../syn", version = "0.41.5" }
+trixter-osec-anchor-syn = { path = "../../syn", version = "1.0.0-rc.3" }
 proc-macro-crate = "3.4.0"
 proc-macro2 = "1"
 quote = "1"

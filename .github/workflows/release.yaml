@@ -62,10 +62,13 @@ jobs:
           done
 
           echo "Verifying the tag: ${{ steps.info.outputs.version_tag }}"
-          git verify-tag -v "${{ steps.info.outputs.version_tag }}" 2>&1 | tee /tmp/verify-output.txt || {
+          if ! git verify-tag -v "${{ steps.info.outputs.version_tag }}" 2>&1; then
+            echo "❌ Tag verification failed!"
             echo "passed=false" >> $GITHUB_OUTPUT
             exit 1
-          };
+          fi
+          # Run it again to capture the output
+          git verify-tag -v "${{ steps.vars.outputs.version_tag }}" 2>&1 | tee /tmp/verify-output.txt;
 
           # SSH verification output typically includes the key fingerprint
           # Use GNU grep with Perl regex for cleaner extraction (Linux environment)
@@ -464,4 +467,14 @@ jobs:
           cp $DIST/anchor-*-x86_64-unknown-linux-gnu/anchor-*-x86_64-unknown-linux-gnu cli/npm-package/anchor
           cd cli/npm-package/
           chmod +x anchor
-          npm publish --provenance --access public
+
+          local version="$(node -p "require('./package.json').version")"
+          local publish_args=()
+          # If version looks like X.Y.Z-<something> (e.g. 1.0.0-rc.2), publish under dist-tag "next"
+          if [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-.+ ]]; then
+            publish_args+=(--tag next)
+          fi
+
+          echo "Publishing CLI"
+          npm publish "${publish_args[@]}" --provenance --access public
+
