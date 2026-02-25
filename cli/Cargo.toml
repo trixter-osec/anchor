@@ -1,6 +1,6 @@
 [package]
 name = "trixter-osec-anchor-cli"
-version = "0.41.5"
+version = "1.0.0-rc.3"
 authors = ["Anchor Maintainers <accounts@200ms.io>"]
 edition = "2021"
 repository = "https://github.com/coral-xyz/anchor"
@@ -18,8 +18,8 @@ name = "anchor_cli"
 dev = []
 
 [dependencies]
-trixter-osec-anchor-client = { path = "../client", version = "0.41.5" }
-trixter-osec-anchor-lang = { path = "../lang", version = "0.41.5" }
+trixter-osec-anchor-client = { path = "../client", version = "1.0.0-rc.3" }
+trixter-osec-anchor-lang = { path = "../lang", version = "1.0.0-rc.3" }
 trixter-osec-anchor-lang-idl = { path = "../idl", version = "0.1.2", features = ["build", "convert"] }
 anyhow = "1.0.32"
 base64 = "0.21"
