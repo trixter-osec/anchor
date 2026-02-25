@@ -50,6 +50,12 @@ jobs:
         env:
           RELEASE_MANAGERS: ${{ vars.RELEASE_MANAGERS }}
         run: |
+          if [ -z "${RELEASE_MANAGERS}" ]; then
+            echo "RELEASE_MANAGERS variable is not set"
+            echo "passed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
           IFS=',' read -ra rms <<< "${RELEASE_MANAGERS}"
           for u in "${rms[@]}"; do
             curl -fsSL "https://github.com/${u}.gpg" | gpg --batch --import >/dev/null
