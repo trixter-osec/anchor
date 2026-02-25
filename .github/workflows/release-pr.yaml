@@ -6,8 +6,14 @@ name: Release Dry-run
 
 on:
   pull_request:
+    branches:
+      - master
+
     paths:
-      - "VERSION"
+      - VERSION
+      - ./github/workflows/release-pr.yaml
+
+  workflow_dispatch:
 
 jobs:
   publish-crates-dryrun:
