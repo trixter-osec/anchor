@@ -50,7 +50,7 @@
 //!
 //! More examples can be found in [here].
 //!
-//! [here]: https://github.com/coral-xyz/anchor/tree/v1.1.2/client/example/src
+//! [here]: https://github.com/coral-xyz/anchor/tree/v1.1.5/client/example/src
 //!
 //! # Features
 //!
@@ -59,7 +59,7 @@
 //! The client is blocking by default. To enable asynchronous client, add `async` feature:
 //!
 //! ```toml
-//! anchor-client = { version = "1.1.2 ", features = ["async"] }
+//! anchor-client = { version = "1.1.5 ", features = ["async"] }
 //! ````
 //!
 //! ## `mock`
@@ -887,11 +887,11 @@ mod tests {
     #[test]
     fn test_parse_logs_response_fake_pop() -> Result<()> {
         let logs = [
-            "Program fake111111111111111111111111111111111111112 invoke [1]",
+            "Program fake11111111111111111111111111111111111.1.5 invoke [1]",
             "Program log: i logged success",
             "Program log: i logged success",
-            "Program fake111111111111111111111111111111111111112 consumed 1411 of 200000 compute units",
-            "Program fake111111111111111111111111111111111111112 success"
+            "Program fake11111111111111111111111111111111111.1.5 consumed 1411 of 200000 compute units",
+            "Program fake11111111111111111111111111111111111.1.5 success"
           ];
 
         // Converting to Vec<String> as expected in `RpcLogsResponse`
