@@ -36,59 +36,13 @@ jobs:
         run: |
           set -xeuo pipefail
 
-          publish() {
-            local dir="$1"
-            pushd "$dir" >/dev/null
-
-            local name version
-            name="$(
-              cargo metadata --no-deps --format-version 1 --manifest-path Cargo.toml \
-                | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .name'
-            )"
-            version="$(
-              cargo metadata --no-deps --format-version 1 --manifest-path Cargo.toml \
-                | jq -r --arg mp "$PWD/Cargo.toml" '.packages[] | select(.manifest_path == $mp) | .version'
-            )"
-
-            if cargo search "$name" --limit 1 | grep -q "$version"; then
-              echo "The crate $1 is already up to date, skipping"
-              popd >/dev/null
-              return 0
-            fi
-
-            if [[ "$DRY_RUN" == "true" ]]; then
-              echo "Publishing $1 (${name}@${version}) as a dry-run"
-              # We cannot directly dry-run the publish process as all of the dependencies must be published
-              # to crates.io for the dry-run (even with --no-verify) to succeed. Therefore, we'll just see if
-              # packaging works.
-              cargo build --locked --release
-            else
-              echo "Publishing $1 (${name}@${version})"
-              cargo publish --locked
-
-              echo "Waiting for crates.io index to update"
-              sleep 25
-            fi
-
-            popd >/dev/null
-          }
-
-          publish idl/spec
-          publish idl
-          publish lang/syn
-          publish lang/derive/accounts
-          publish lang/derive/serde
-          publish lang/derive/space
-          publish lang/attribute/access-control
-          publish lang/attribute/account
-          publish lang/attribute/constant
-          publish lang/attribute/error
-          publish lang/attribute/program
-          publish lang/attribute/event
-          publish lang
-          publish spl
-          publish client
-          publish cli
+          if [[ "$DRY_RUN" == "true" ]]; then
+            echo "Publishing all workspace packages as a dry-run"
+            cargo publish --workspace --locked --dry-run
+          else
+            echo "Publishing all workspace packages"
+            cargo publish --workspace --locked
+          fi
 
       - name: Check for crate artifacts
         id: crate-artifacts
