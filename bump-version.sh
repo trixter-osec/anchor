@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 if [ $# -eq 0 ]; then
     echo "Usage $0 VERSION"
