@@ -19,7 +19,7 @@ lazy-account = []
 event-cpi = []
 
 [dependencies]
-trixter-osec-anchor-syn = { path = "../../syn", version = "1.1.10", features = ["hash"] }
+trixter-osec-anchor-syn = { path = "../../syn", version = "1.1.11-rc.5", features = ["hash"] }
 proc-macro2 = "1"
 quote = "1"
 syn = { version = "1", features = ["full"] }
