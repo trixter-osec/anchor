@@ -195,6 +195,7 @@ jobs:
 
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
         with:
+          pattern: anchor-*
           path: ${{ env.DIST }}
 
       - name: Upload
@@ -225,6 +226,7 @@ jobs:
 
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
         with:
+          pattern: anchor-*
           path: ${{ env.DIST }}
 
       - run: |
