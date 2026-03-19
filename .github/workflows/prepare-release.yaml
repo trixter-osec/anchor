@@ -40,11 +40,6 @@ jobs:
           sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
           echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
 
-      - name: Install Anchor CLI
-        run: |
-          set -xeou pipefail
-          cargo install --path cli --locked
-
       - name: Install cargo-release
         run: cargo install cargo-release --version 1.1.1 --locked
 

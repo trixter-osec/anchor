@@ -478,7 +478,7 @@ export class LockFile {
 
       // Check failure
       if (result.status !== 0) {
-        throw new Error(`Failed to create ${this.#CARGO_LOCK}`);
+        throw new Error(`Failed to create ${this.#CARGO_LOCK}\nstdout: ${result.stdout}\nstderr: ${result.stderr}`);
       }
 
       await this.cache(version);
