@@ -1,0 +1,71 @@
+name: Prepare Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to bump to without the v[...] prefix (e.g. 1.0.0-rc.5)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+
+      - name: Enable corepack (yarn)
+        run: corepack enable
+
+      # This is not great, but as this does not happen in the actual release actions,
+      # the worst that could happen is that this sneaks something in the PR diff.
+      - name: Install Solana CLI
+        run: |
+          set -xeou pipefail
+          sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+          echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
+
+      - name: Install Anchor CLI
+        run: |
+          set -xeou pipefail
+          cargo install --path cli --locked
+
+      - name: Bump version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          set -xeou pipefail
+
+          # required for tests
+          solana-keygen new --no-bip39-passphrase
+
+          ./bump-version.sh $VERSION
+
+      - name: Create release PR
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        with:
+          branch: release/${{ inputs.version }}
+          base: master
+          commit-message: "${{ inputs.version }}"
+          title: "${{ inputs.version }}"
+          body: |
+            Auto-generated release prep PR. **Please review the PR diff before merging.**
+
+            Requested version: `${{ inputs.version }}`
+            Triggered by: `${{ github.actor }}`
+          delete-branch: true
