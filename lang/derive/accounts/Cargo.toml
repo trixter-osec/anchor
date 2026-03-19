@@ -19,6 +19,6 @@ idl-build = ["trixter-osec-anchor-syn/idl-build"]
 init-if-needed = ["trixter-osec-anchor-syn/init-if-needed"]
 
 [dependencies]
-trixter-osec-anchor-syn = { path = "../../syn", version = "1.1.11-rc.7" }
+trixter-osec-anchor-syn = { path = "../../syn", version = "1.1.11-rc.8" }
 quote = "1"
 syn = { version = "1", features = ["full"] }
