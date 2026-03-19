@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   prepare-release:
@@ -40,10 +39,12 @@ jobs:
           sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
           echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
 
-      - name: Install Anchor CLI
+      # This is not great, but as this does not happen in the actual release actions,
+      # the worst that could happen is that this sneaks something in the PR diff.
+      - name: Install Surfpool
         run: |
-          set -xeou pipefail
-          cargo install --path cli --locked
+          curl -sL https://run.surfpool.run/ | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install cargo-release
         run: cargo install cargo-release --version 1.1.1 --locked
@@ -58,18 +59,22 @@ jobs:
           solana-keygen new --no-bip39-passphrase
           ./setup-tests.sh
 
-          ./bump-version.sh $VERSION
+          ./bump-version.sh "$VERSION"
 
-      - name: Create release PR
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
-        with:
-          branch: release/${{ inputs.version }}
-          base: master
-          commit-message: "${{ inputs.version }}"
-          title: "${{ inputs.version }}"
-          body: |
-            Auto-generated release prep PR. **Please review the PR diff before merging.**
+      # I would love to automatically create a PR here, but GitHub does not allow triggering CI jobs
+      # on automatically created PRs to prevent recursion
+      - name: Create release branch
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          set -xeou pipefail
 
-            Requested version: `${{ inputs.version }}`
-            Triggered by: `${{ github.actor }}`
-          delete-branch: true
+          BRANCH="release/v$VERSION"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "v$VERSION"
+          git push --set-upstream origin "$BRANCH"

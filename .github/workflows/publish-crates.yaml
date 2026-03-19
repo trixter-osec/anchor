@@ -29,8 +29,8 @@ jobs:
         run: |
           set -xeuo pipefail
 
-          echo "Publishing unpublished workspace packages as a dry-run"
-          cargo release publish --workspace --unpublished --no-confirm
+          echo "Publishing crates as a dry-run"
+          cargo release publish --workspace --no-confirm
 
   publish-crates:
     name: Publish crates
@@ -63,8 +63,8 @@ jobs:
         run: |
           set -xeuo pipefail
 
-          echo "Publishing unpublished workspace packages"
-          cargo release publish --workspace --unpublished --no-confirm --execute
+          echo "Publishing crates"
+          cargo release publish --workspace --no-confirm --execute
 
       - name: Check for crate artifacts
         id: crate-artifacts
