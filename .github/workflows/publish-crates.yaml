@@ -64,7 +64,7 @@ jobs:
           set -xeuo pipefail
 
           echo "Publishing crates"
-          cargo release publish --workspace --allow-branch "*" --no-confirm --execute
+          #cargo release publish --workspace --allow-branch "*" --no-confirm --execute
 
       - name: Check for crate artifacts
         id: crate-artifacts

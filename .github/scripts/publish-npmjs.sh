@@ -39,7 +39,7 @@ publish() {
     npm publish "${publish_args[@]}" --dry-run
   else
     echo "Publishing $dir (${name}@${version})"
-    npm publish "${publish_args[@]}" --provenance --access public
+    #npm publish "${publish_args[@]}" --provenance --access public
   fi
 
   popd >/dev/null
